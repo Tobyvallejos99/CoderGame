@@ -6,4 +6,4 @@ const NavBar = () => {
 
 export default NavBar;
 
-//probando branches
+//celes sigue practicando
