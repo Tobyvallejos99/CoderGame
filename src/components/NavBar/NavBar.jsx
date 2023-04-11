@@ -6,5 +6,8 @@ const NavBar = () => {
 
 export default NavBar;
 
+//testing celes
+//soy Cesar
+
 //celes sigue practicando
 //celes testing 100
