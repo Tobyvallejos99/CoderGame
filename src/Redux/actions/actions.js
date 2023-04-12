@@ -4,6 +4,7 @@ export const GET_GENRES = "GET_GENRES";
 export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
+export const GET_BY_NAME = 'GET_BY_NAME';
 
 
 export const getVideogames = () => {
@@ -18,6 +19,13 @@ export const getVideogames = () => {
     }
   };
 };
+
+export const getGameByName = (payload) =>{
+  return {
+    type: 'GET_BY_NAME',
+    payload
+  }
+}
 
 export const getGenres = () => {
   return async (dispatch) => {

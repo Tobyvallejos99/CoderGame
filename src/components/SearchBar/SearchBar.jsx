@@ -1,5 +1,9 @@
+import { getGameByName } from "../../Redux/actions/actions";
+
 const { useState } = require("react");
 const { useDispatch } = require("react-redux");
+
+//Falta style
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -12,7 +16,7 @@ const SearchBar = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //dispatch(getGameByName(name)); descomentar cuando exista la action!!
+        dispatch(getGameByName(name)); 
     }
     return(
         <div>
