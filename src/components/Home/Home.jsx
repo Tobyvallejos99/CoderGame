@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar/SearchBar'
 const Home = () => {
     return(
         <SearchBar />
+        //hola
     )
 }
 
