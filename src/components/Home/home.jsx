@@ -1,12 +1,12 @@
-// import NavBar from './NavBar/navbar.jsx';
-// import Cards from './Cards/cards.jsx'
+import SearchBar from '../SearchBar/searchbar'
 
-
-export default function Home() {
-    return (
+const Home = () => {
+    return(
         <div>
-        <NavBar/>
-        <Cards/>
+            <h1>this is home</h1>
+            <SearchBar />
         </div>
     )
 }
+
+export default Home;
