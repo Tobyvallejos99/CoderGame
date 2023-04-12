@@ -3,8 +3,8 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const Home = () => {
     return(
-        <div>
-            <h1>this is home</h1>
+        <div class="container text-center">
+            <h1 class="text-danger">this is home</h1>
             <SearchBar />
             <Cards />
         </div>
