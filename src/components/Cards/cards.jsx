@@ -6,7 +6,7 @@ import Card from "../Card/card";
 const Cards = () => {
     
     const dispatch = useDispatch();
-    const games = useSelector((state) => state.allVideogames);
+    const games = useSelector((state) => state.renderedVideogames);
     
     useEffect(() => {
         dispatch(getVideogames());

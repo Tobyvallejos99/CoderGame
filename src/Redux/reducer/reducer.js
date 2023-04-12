@@ -4,6 +4,7 @@ import {
   FILTER_VIDEOGAMES,
   FILTER_BY_GENRE,
   SEARCH_VIDEOGAMES,
+  GET_BY_NAME
 } from "../actions/actions";
 
 const initialState = {
@@ -22,6 +23,14 @@ export default function reducer(state = initialState, action) {
         allVideogames: [...action.payload],
         renderedVideogames: [...action.payload],
       };
+
+    case GET_BY_NAME:
+      const game = state.allVideogames;
+      const filteredName = game.filter((el) => el.name.toLowerCase().includes(action.payload.toLowerCase()));
+      return {
+        ...state,
+        renderedVideogames: filteredName
+      }
     case GET_GENRES:
       return {
         ...state,
