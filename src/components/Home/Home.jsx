@@ -2,8 +2,10 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const Home = () => {
     return(
-        <SearchBar />
-        //holacesar
+        <div>
+            <h1>this is home</h1>
+            <SearchBar />
+        </div>
     )
 }
 
