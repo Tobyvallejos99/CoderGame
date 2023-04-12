@@ -6,15 +6,3 @@ const NavBar = () => {
 
 export default NavBar;
 
-//testing celes
-//soy Cesar
-
-//celes sigue practicando
-
-//JazminMartinez
-
-
-
-//celes testing 100
-
-
