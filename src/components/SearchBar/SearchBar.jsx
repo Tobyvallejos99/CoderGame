@@ -3,6 +3,7 @@ import { getGameByName } from "../../Redux/actions/actions";
 const { useState } = require("react");
 const { useDispatch } = require("react-redux");
 
+//Falta style
 
 const SearchBar = () => {
     const dispatch = useDispatch();
