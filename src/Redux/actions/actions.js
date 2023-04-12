@@ -9,8 +9,8 @@ export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const getVideogames = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/videogames");
-      dispatch({ type: GET_VIDEOGAMES, payload: response.data });
+      const response = await axios.get("https://api.rawg.io/api/games?key=f1604d8ab749472fafc5267341014b22");
+      dispatch({ type: GET_VIDEOGAMES, payload: response.data.results });
     } catch (error) {
       return window.alert(
         "No se pudo hacer el pedido de videojuegos al servidor"

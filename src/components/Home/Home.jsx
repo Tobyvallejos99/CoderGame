@@ -1,3 +1,4 @@
+import Cards from '../Cards/cards';
 import SearchBar from '../SearchBar/SearchBar'
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
         <div>
             <h1>this is home</h1>
             <SearchBar />
+            <Cards />
         </div>
     )
 }
