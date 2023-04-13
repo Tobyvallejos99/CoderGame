@@ -5,6 +5,7 @@ export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const GET_BY_NAME = 'GET_BY_NAME';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 
 
 export const getVideogames = () => {
@@ -45,6 +46,13 @@ export const filterVideogames = (value) => {
 export const filterByGenre = (value) => {
   return { type: FILTER_BY_GENRE, payload: value };
 };
+
+export const orderName = (payload) => {
+  return {
+      type: 'ORDER_BY_NAME',
+      payload
+  }
+}
 
 export const searchVideogames = (value) => {
   return async (dispatch) => {

@@ -31,6 +31,70 @@ export default function reducer(state = initialState, action) {
         ...state,
         renderedVideogames: filteredName
       }
+
+      case 'ORDER_BY_NAME':
+        console.log(action.payload)
+        // let order = action.payload === 'asc' ?
+        //     state.allVideogames.sort((a,b) => {
+        //         if(a.name > b.name) return 1;
+        //         if(b.name > a.name) return -1;
+        //         return 0;
+        //     }) :
+        //     state.allVideogames.sort((a,b) => {
+        //         if(a.name > b.name) return -1;
+        //         if(b.name > a.name) return 1;
+        //         return 0;
+        //     })
+        // return{
+        //     ...state,
+        //     renderedVideogames: order
+        // };
+        if (action.payload === "asc") {
+          const copyRenderedVideogames = [
+            ...state.renderedVideogames.sort((videogame1, videogame2) => {
+              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+            }),
+          ];
+          const copyToFilterByVideogames = [
+            ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
+              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+            }),
+          ];
+          const copyToFilterByGenre = [
+            ...state.toFilterByGenre.sort((videogame1, videogame2) => {
+              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+            }),
+          ];
+          return {
+            ...state,
+            renderedVideogames: [...copyRenderedVideogames],
+            toFilterByVideogames: [...copyToFilterByVideogames],
+            toFilterByGenre: [...copyToFilterByGenre],
+          };
+        } else {
+          const copyRenderedVideogames = [
+            ...state.renderedVideogames.sort((videogame1, videogame2) => {
+              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+            }),
+          ];
+          const copyToFilterByVideogames = [
+            ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
+              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+            }),
+          ];
+          const copyToFilterByGenre = [
+            ...state.toFilterByGenre.sort((videogame1, videogame2) => {
+              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+            }),
+          ];
+          return {
+            ...state,
+            renderedVideogames: [...copyRenderedVideogames],
+            toFilterByVideogames: [...copyToFilterByVideogames],
+            toFilterByGenre: [...copyToFilterByGenre],
+          };
+        }
+
     case GET_GENRES:
       return {
         ...state,
