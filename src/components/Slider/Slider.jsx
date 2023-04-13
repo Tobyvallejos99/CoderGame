@@ -29,6 +29,7 @@ const Slider = () => {
                 return(
                     <div key={index}>
                         {currImg === index &&
+                        //borrar este comentario
                             <img key={index} src={imagen} alt='F' width='600px' height='300px' />
                         }
                     </ div>
