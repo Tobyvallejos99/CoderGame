@@ -28,7 +28,7 @@ const Slider = () => {
     }, [setTimeout, nextImg]);
 
     return(
-        <div >
+        <div className="">
             
             {images.map((imagen, index) => {
                 return(
