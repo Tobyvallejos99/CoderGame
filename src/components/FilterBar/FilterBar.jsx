@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { orderName } from "../../Redux/actions/actions";
-import SearchBar from "../SearchBar/SearchBar";
 
 const FilterBar = () => {
     const dispatch = useDispatch();
@@ -14,15 +13,14 @@ const FilterBar = () => {
 
 
     return(
-        <div>
-            <select onChange={handlerNameOrder}>
+        <div class="btn-group ">
+            <select class="btn btn-secondary" onChange={handlerNameOrder}>
                 <option value="base" hidden={true}>
                 --Display options
                 </option>
                 <option value="asc">A-Z</option>
                 <option value="desc">Z-A</option>
             </select>
-            <SearchBar />
         </div>
     )
 }
