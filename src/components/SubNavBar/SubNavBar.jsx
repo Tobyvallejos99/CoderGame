@@ -10,7 +10,9 @@ export default function NavBar() {
                 <nav>
                     <div className="ro">
                         <SearchBar />
+                        <div className={style.navbar__options}>
                         <FilterBar/>
+                        </div>
                     </div>
                 </nav>
             </div>

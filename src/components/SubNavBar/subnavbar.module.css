@@ -21,10 +21,8 @@
   
   
   .navbar__options {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+      margin-left: -350px;
+      margin-top: -38px;
   }
   
   .navbar__img {

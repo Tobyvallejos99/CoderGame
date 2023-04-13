@@ -10,10 +10,12 @@ const Home = () => {
         <div>
             <NavBar/>
             <p/>
+            <div class="d-flex justify-content-center align-items-center">
             <SubNavBar/>
+            </div>
             <p/>
             <Slider />
-            <Cards />
+            <div className='position-absolute'><Cards /></div>
             
         </div>
     )

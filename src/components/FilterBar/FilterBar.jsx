@@ -15,9 +15,7 @@ const FilterBar = () => {
     return(
         <div class="btn-group ">
             <select class="btn btn-secondary" onChange={handlerNameOrder}>
-                <option value="base" hidden={true}>
-                --Display options
-                </option>
+                <option value="base" hidden={true}>Display options</option>
                 <option value="asc">A-Z</option>
                 <option value="desc">Z-A</option>
             </select>
