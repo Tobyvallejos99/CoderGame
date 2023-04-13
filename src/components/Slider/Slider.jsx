@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //const Slider = ({images}) => {
 const Slider = () => {
@@ -22,6 +22,10 @@ const Slider = () => {
             length -1 : currImg -1)
     }
 
+    useEffect(() => {
+        setTimeout(nextImg, 5000)
+    }, [setTimeout, nextImg]);
+
     return(
         <div>
             <button onClick={preImg}>pre</button>
@@ -29,7 +33,6 @@ const Slider = () => {
                 return(
                     <div key={index}>
                         {currImg === index &&
-                        //borrar este comentario
                             <img key={index} src={imagen} alt='F' width='600px' height='300px' />
                         }
                     </ div>
