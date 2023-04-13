@@ -1,10 +1,12 @@
 import React from "react";
 
 
-export default function Card ({ name }) {
+export default function Card ({ name,image,released }) {
     return (
         <div class="btn btn-secondary" >
         <h2>{name}</h2>
+        <img src={image} alt={name} />
+        <p>{released}</p>
         </div>
     )
 };
