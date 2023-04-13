@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import style from './slider.module.css'
 
 //const Slider = ({images}) => {
 const Slider = () => {
@@ -27,18 +28,20 @@ const Slider = () => {
     }, [setTimeout, nextImg]);
 
     return(
-        <div>
-            <button onClick={preImg}>pre</button>
+        <div >
+            
             {images.map((imagen, index) => {
                 return(
-                    <div key={index}>
+                    <div className={style.container} key={index}>
                         {currImg === index &&
                             <img key={index} src={imagen} alt='F' width='600px' height='300px' />
                         }
                     </ div>
                 )
             })}
-            <button onClick={nextImg}>next</button>
+            <div className={style.container}>
+                <button class="btn btn-danger" onClick={preImg}>pre</button><button class="btn btn-danger" onClick={nextImg}>next</button>
+            </div>
         </div>
     )
 }
