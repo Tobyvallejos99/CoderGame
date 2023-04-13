@@ -20,8 +20,8 @@ const SearchBar = () => {
     }
     return(
         <div>
-            <input type="text" class="btn btn-danger" placeholder="Search" onChange={handleInput} />
-            <button type="submit" class="btn btn-dark" onClick={handleSubmit} >Search</button>
+            <input type="text" class="btn btn-dark" placeholder="Search" onChange={handleInput} />
+            <button type="submit" class="btn btn-secondary" onClick={handleSubmit} >Search</button>
         </div>
     )
 }
