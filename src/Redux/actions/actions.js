@@ -11,8 +11,9 @@ export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const getVideogames = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("https://api.rawg.io/api/games?key=f1604d8ab749472fafc5267341014b22");
-      dispatch({ type: GET_VIDEOGAMES, payload: response.data.results });
+      const response = await axios.get("http://localhost:3001/videogames");
+      console.log(response)
+      dispatch({ type: GET_VIDEOGAMES, payload: response.data });
     } catch (error) {
       return window.alert(
         "No se pudo hacer el pedido de videojuegos al servidor"
@@ -31,7 +32,8 @@ export const getGameByName = (payload) =>{
 export const getGenres = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/genres");
+      const response = await axios.get("http://localhost:3001/genres");
+      console.log(response);
       dispatch({ type: GET_GENRES, payload: response.data });
     } catch (error) {
       return window.alert("No se pudo hacer el pedido de géneros al servidor");
