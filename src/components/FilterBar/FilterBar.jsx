@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { orderName, resetVideogames } from "../../Redux/actions/actions";
+import { getVideogames, orderName, resetVideogames } from "../../Redux/actions/actions";
 import GenderFilter from "./genderFilter";
 import RatingFilter from "./RatingFilter";
 
@@ -15,6 +15,7 @@ const FilterBar = () => {
     }
     const handleReset = () => {
         dispatch(resetVideogames());
+        dispatch(getVideogames());
     }
 
 
