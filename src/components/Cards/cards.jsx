@@ -19,7 +19,7 @@ const Cards = () => {
                     {games?.map((el) => {
                         return (
                             <div key={el.id}>
-                                <Card key={el.id} name={el.name}/>
+                                <Card key={el.id} name={el.name} image={el.image}/>
                             </div>
                         )
                     })}
