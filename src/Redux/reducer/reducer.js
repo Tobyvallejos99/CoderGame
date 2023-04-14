@@ -6,6 +6,8 @@ import {
   SEARCH_VIDEOGAMES,
   GET_BY_NAME,
   CREATE_GAME,
+  ORDER_RATING
+
 } from "../actions/actions";
 
 const initialState = {
@@ -88,6 +90,54 @@ export default function reducer(state = initialState, action) {
         ...state,
         allGenres: [...action.payload],
       };
+
+      case ORDER_RATING:
+      if (action.payload === "upward") {
+        const copyRenderedVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame1.rating - videogame2.rating;
+          }),
+        ];
+        const copyToFilterByVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame1.rating - videogame2.rating;
+          }),
+        ];
+        const copyToFilterByGenre = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame1.rating - videogame2.rating;
+          }),
+        ];
+        return {
+          ...state,
+          renderedVideogames: [...copyRenderedVideogames],
+          toFilterByVideogames: [...copyToFilterByVideogames],
+          toFilterByGenre: [...copyToFilterByGenre],
+        };
+      } else {
+        const copyRenderedVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame2.rating - videogame1.rating;
+          }),
+        ];
+        const copyToFilterByVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame2.rating - videogame1.rating;
+          }),
+        ];
+        const copyToFilterByGenre = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame2.rating - videogame1.rating;
+          }),
+        ];
+        return {
+          ...state,
+          renderedVideogames: [...copyRenderedVideogames],
+          toFilterByVideogames: [...copyToFilterByVideogames],
+          toFilterByGenre: [...copyToFilterByGenre],
+        };
+      }
+
     case FILTER_VIDEOGAMES:
       if (action.payload === "apiVideogames") {
         if (state.toFilterByGenre.length) {
