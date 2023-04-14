@@ -6,6 +6,7 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const GET_BY_NAME = 'GET_BY_NAME';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_RATING = "ORDER_RATING";
 
 
 export const getVideogames = () => {
@@ -38,6 +39,10 @@ export const getGenres = () => {
       return window.alert("No se pudo hacer el pedido de géneros al servidor");
     }
   };
+};
+
+export const orderRating = (value) => {
+  return { type: ORDER_RATING, payload: value };
 };
 
 export const filterVideogames = (value) => {
