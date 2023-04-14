@@ -4,7 +4,8 @@ import {
   FILTER_VIDEOGAMES,
   FILTER_BY_GENRE,
   SEARCH_VIDEOGAMES,
-  GET_BY_NAME
+  GET_BY_NAME,
+  CREATE_GAME,
 } from "../actions/actions";
 
 const initialState = {
@@ -27,58 +28,60 @@ export default function reducer(state = initialState, action) {
 
     case GET_BY_NAME:
       const game = state.allVideogames;
-      const filteredName = game.filter((el) => el.name.toLowerCase().includes(action.payload.toLowerCase()));
+      const filteredName = game.filter((el) =>
+        el.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
       return {
         ...state,
-        renderedVideogames: filteredName
-      }
+        renderedVideogames: filteredName,
+      };
 
-      case 'ORDER_BY_NAME':
-        if (action.payload === "asc") {
-          const copyRenderedVideogames = [
-            ...state.renderedVideogames.sort((videogame1, videogame2) => {
-              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
-            }),
-          ];
-          const copyToFilterByVideogames = [
-            ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
-              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
-            }),
-          ];
-          const copyToFilterByGenre = [
-            ...state.toFilterByGenre.sort((videogame1, videogame2) => {
-              return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
-            }),
-          ];
-          return {
-            ...state,
-            renderedVideogames: [...copyRenderedVideogames],
-            toFilterByVideogames: [...copyToFilterByVideogames],
-            toFilterByGenre: [...copyToFilterByGenre],
-          };
-        } else {
-          const copyRenderedVideogames = [
-            ...state.renderedVideogames.sort((videogame1, videogame2) => {
-              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
-            }),
-          ];
-          const copyToFilterByVideogames = [
-            ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
-              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
-            }),
-          ];
-          const copyToFilterByGenre = [
-            ...state.toFilterByGenre.sort((videogame1, videogame2) => {
-              return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
-            }),
-          ];
-          return {
-            ...state,
-            renderedVideogames: [...copyRenderedVideogames],
-            toFilterByVideogames: [...copyToFilterByVideogames],
-            toFilterByGenre: [...copyToFilterByGenre],
-          };
-        }
+    case "ORDER_BY_NAME":
+      if (action.payload === "asc") {
+        const copyRenderedVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+          }),
+        ];
+        const copyToFilterByVideogames = [
+          ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
+            return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+          }),
+        ];
+        const copyToFilterByGenre = [
+          ...state.toFilterByGenre.sort((videogame1, videogame2) => {
+            return videogame1.name.charCodeAt() - videogame2.name.charCodeAt();
+          }),
+        ];
+        return {
+          ...state,
+          renderedVideogames: [...copyRenderedVideogames],
+          toFilterByVideogames: [...copyToFilterByVideogames],
+          toFilterByGenre: [...copyToFilterByGenre],
+        };
+      } else {
+        const copyRenderedVideogames = [
+          ...state.renderedVideogames.sort((videogame1, videogame2) => {
+            return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+          }),
+        ];
+        const copyToFilterByVideogames = [
+          ...state.toFilterByVideogames.sort((videogame1, videogame2) => {
+            return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+          }),
+        ];
+        const copyToFilterByGenre = [
+          ...state.toFilterByGenre.sort((videogame1, videogame2) => {
+            return videogame2.name.charCodeAt() - videogame1.name.charCodeAt();
+          }),
+        ];
+        return {
+          ...state,
+          renderedVideogames: [...copyRenderedVideogames],
+          toFilterByVideogames: [...copyToFilterByVideogames],
+          toFilterByGenre: [...copyToFilterByGenre],
+        };
+      }
 
     case GET_GENRES:
       return {
@@ -113,7 +116,6 @@ export default function reducer(state = initialState, action) {
         }
       } else {
         if (state.toFilterByGenre.length) {
-
           const copyToFilterByVideogamesDb = [
             ...state.toFilterByVideogames.filter(
               (videogame) => typeof videogame.id !== "number"
@@ -125,7 +127,6 @@ export default function reducer(state = initialState, action) {
             toFilterByGenre: [...copyToFilterByVideogamesDb],
           };
         } else {
-
           const copyAllVideogamesDb = [
             ...state.allVideogames.filter(
               (videogame) => typeof videogame.id !== "number"
@@ -143,7 +144,9 @@ export default function reducer(state = initialState, action) {
       if (state.toFilterByVideogames.length) {
         const copyToFilterByGenre = [
           ...state.toFilterByGenre.filter((videogame) => {
-            return videogame.Genregames.some((obj) => obj.name === action.payload);
+            return videogame.Genregames.some(
+              (obj) => obj.name === action.payload
+            );
           }),
         ];
         return {
@@ -154,7 +157,9 @@ export default function reducer(state = initialState, action) {
       } else {
         const copyAllVideogames = [
           ...state.allVideogames.filter((videogame) => {
-            return videogame.Genregames.some((obj) => obj.name === action.payload);
+            return videogame.Genregames.some(
+              (obj) => obj.name === action.payload
+            );
           }),
         ];
         return {
@@ -174,5 +179,9 @@ export default function reducer(state = initialState, action) {
       };
     default:
       return { ...state };
+    case CREATE_GAME:
+      return {
+        ...state,
+      };
   }
 }
