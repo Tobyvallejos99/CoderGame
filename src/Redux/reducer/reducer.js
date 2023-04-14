@@ -5,9 +5,10 @@ import {
   FILTER_BY_GENRE,
   SEARCH_VIDEOGAMES,
   GET_BY_NAME,
+  ORDER_RATING,
+  RESET_VIDEOGAMES,
   CREATE_GAME,
   ORDER_RATING
-
 } from "../actions/actions";
 
 const initialState = {
@@ -136,7 +137,15 @@ export default function reducer(state = initialState, action) {
           toFilterByVideogames: [...copyToFilterByVideogames],
           toFilterByGenre: [...copyToFilterByGenre],
         };
-      }
+      };
+
+      case RESET_VIDEOGAMES:
+      return {
+        ...state,
+        renderedVideogames: [...state.allVideogames],
+        toFilterByVideogames: [],
+        toFilterByGenre: [],
+      };
 
     case FILTER_VIDEOGAMES:
       if (action.payload === "apiVideogames") {

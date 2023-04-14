@@ -8,6 +8,7 @@ export const GET_BY_NAME = "GET_BY_NAME";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 expor  const  CREATE_GAME = "CREATE_GAME"
 export const ORDER_RATING = "ORDER_RATING";
+export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -25,10 +26,14 @@ export const getVideogames = () => {
 
 export const getGameByName = (payload) => {
   return {
-    type: "GET_BY_NAME",
-    payload,
-  };
+    type: 'GET_BY_NAME',
+    payload
+  }
 };
+
+export const resetVideogames = () => {
+  return { type: RESET_VIDEOGAMES };
+  };
 
 export const getGenres = () => {
   return async (dispatch) => {
