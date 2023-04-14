@@ -28,8 +28,8 @@ const Slider = () => {
     }, [setTimeout, nextImg]);
 
     return(
-        <div className="">
-            
+        <div className="text-center">
+            <div className='text-center btn btn-danger'>Recomendados</div>
             {images.map((imagen, index) => {
                 return(
                     <div className={style.container} key={index}>

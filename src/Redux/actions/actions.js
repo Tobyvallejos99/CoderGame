@@ -34,7 +34,7 @@ export const getGenres = () => {
     try {
       const response = await axios.get("http://localhost:3001/genres");
       console.log(response);
-      dispatch({ type: GET_GENRES, payload: response.data });
+      dispatch({ type: GET_GENRES, payload: response });
     } catch (error) {
       return window.alert("No se pudo hacer el pedido de géneros al servidor");
     }
