@@ -1,14 +1,15 @@
-
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home/Home';
-import './style.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
+import FormGames from "./components/FormGames/FormGames";
+import "./style.css";
 
 function App() {
   return (
-    <div class="fondo">           
+    <div class="fondo">
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/createGame" element={<FormGames />} />
       </Routes>
     </div>
   );
