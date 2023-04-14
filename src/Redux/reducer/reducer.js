@@ -22,6 +22,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         allVideogames: [...action.payload],
         renderedVideogames: [...action.payload],
+        toFilterByVideogames: [...action.payload],
       };
 
     case GET_BY_NAME:
@@ -33,22 +34,6 @@ export default function reducer(state = initialState, action) {
       }
 
       case 'ORDER_BY_NAME':
-        console.log(action.payload)
-        // let order = action.payload === 'asc' ?
-        //     state.allVideogames.sort((a,b) => {
-        //         if(a.name > b.name) return 1;
-        //         if(b.name > a.name) return -1;
-        //         return 0;
-        //     }) :
-        //     state.allVideogames.sort((a,b) => {
-        //         if(a.name > b.name) return -1;
-        //         if(b.name > a.name) return 1;
-        //         return 0;
-        //     })
-        // return{
-        //     ...state,
-        //     renderedVideogames: order
-        // };
         if (action.payload === "asc") {
           const copyRenderedVideogames = [
             ...state.renderedVideogames.sort((videogame1, videogame2) => {
@@ -158,7 +143,7 @@ export default function reducer(state = initialState, action) {
       if (state.toFilterByVideogames.length) {
         const copyToFilterByGenre = [
           ...state.toFilterByGenre.filter((videogame) => {
-            return videogame.genres.some((obj) => obj.name === action.payload);
+            return videogame.Genregames.some((obj) => obj.name === action.payload);
           }),
         ];
         return {
@@ -169,7 +154,7 @@ export default function reducer(state = initialState, action) {
       } else {
         const copyAllVideogames = [
           ...state.allVideogames.filter((videogame) => {
-            return videogame.genres.some((obj) => obj.name === action.payload);
+            return videogame.Genregames.some((obj) => obj.name === action.payload);
           }),
         ];
         return {
