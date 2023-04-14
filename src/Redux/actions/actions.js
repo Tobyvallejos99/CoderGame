@@ -6,7 +6,7 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-expor  const  CREATE_GAME = "CREATE_GAME"
+export  const  CREATE_GAME = "CREATE_GAME"
 export const ORDER_RATING = "ORDER_RATING";
 export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
 

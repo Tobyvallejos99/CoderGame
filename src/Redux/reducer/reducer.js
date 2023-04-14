@@ -8,7 +8,6 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
-  ORDER_RATING
 } from "../actions/actions";
 
 const initialState = {
