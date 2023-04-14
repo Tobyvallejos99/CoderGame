@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { orderName } from "../../Redux/actions/actions";
 import GenderFilter from "./genderFilter";
+import RatingFilter from "./RatingFilter";
 
 const FilterBar = () => {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const FilterBar = () => {
                 <option value="desc">Z-A</option>
             </select>
             <GenderFilter />
+            <RatingFilter />
         </div>
     )
 }
