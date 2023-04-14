@@ -9,12 +9,12 @@ const FormGames = () => {
   // const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
-    platform: "",
-    allGenres: [],
-    img: [],
-    description: "",
-    insertGame: "",
     released: "",
+    platforms: [],
+    description: "",
+    genres: [],
+    image: "",
+    // insertGame: "",
   });
   console.log(input, "holaaa");
 
@@ -22,12 +22,28 @@ const FormGames = () => {
     dispatch(getGenres());
   }, [dispatch]);
 
-  const handleSelect = (e) => {
+  const handleSelectGenres = (e) => {
     setInput((input) => {
-      if (e.target.name === "allGenres") {
+      if (e.target.name === "genres") {
         return {
           ...input,
-          allGenres: [...input.allGenres, e.target.value],
+          genres: [...input.genres, e.target.value],
+        };
+      } else {
+        return {
+          ...input,
+          [e.target.name]: e.target.value,
+        };
+      }
+    });
+  };
+
+  const handleSelectPlatform = (e) => {
+    setInput((input) => {
+      if (e.target.name === "platforms") {
+        return {
+          ...input,
+          platforms: [...input.platforms, e.target.value],
         };
       } else {
         return {
@@ -50,52 +66,43 @@ const FormGames = () => {
     //   })
     // );
   };
-  const handleImageChange = (e) => {
-    setInput(e.target.files[0]);
-  };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(input);
-  //   if (
-  //     !input.allGenres ||
-  //     !input.name ||
-  //     !input.platform ||
-  //     !input.released ||
-  //     !input.img ||
-  //     !input.description ||
-  //     !input.insertGame
-  //   ) {
-  //     return alert("Complete the form correctly before submitting it");
-  //   }
+  //   const handleImageChange = (e) => {
+  //     setInput(e.target.files[0]);
+  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(input);
+    if (
+      !input.name ||
+      !input.released ||
+      !input.platforms ||
+      !input.description ||
+      !input.genres ||
+      !input.image
+      //   !input.insertGame
+    ) {
+      return alert("Complete the form correctly before submitting it");
+    }
 
-  //   dispatch(postGame(input));
-  //   alert("The game has been created");
-  //   setInput({
-  //     released: "",
-  //     name: "",
-  //     platform: "",
-  //     allGenres: [],
-  //     img: "",
-  //     description: "",
-  //     insertGame: "",
-  //   });
-  // };
+    dispatch(postGame(input));
+    alert("The game has been created");
+    setInput({
+      name: "",
+      released: "",
+      platforms: [],
+      description: "",
+      genres: [],
+      image: "",
+      //   insertGame: "",
+    });
+  };
 
   return (
     <div>
       <NavBar />
 
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h1>INSERT GAME</h1>
-        <hr />
-
-        <label>Image</label>
-        <input
-          type="text"
-          name="img"
-          value={input.img}
-          onChange={(e) => handleImageChange(e)}
-        />
         <hr />
 
         <label>Game Name</label>
@@ -108,22 +115,21 @@ const FormGames = () => {
         {/* {errors.name && <p>{errors.name}</p>} */}
         <hr />
 
-        <label>Genres</label>
-        <select
-          name="allgenres"
-          id="allgenres"
-          onChange={(e) => handleSelect(e)}
-        >
-          <option value="empty"></option>
-          {allGenres?.map((el) => (
-            <option value={el.id}>{el.name}</option>
-          ))}
-        </select>
-        {/* {errors.videogames && <p>{errors.videogames}</p>} */}
+        <label>Released</label>
+        <input
+          type="date"
+          name="released"
+          value={input.released}
+          onChange={(e) => handleChange(e)}
+        />
         <hr />
 
         <label>Platforms</label>
-        <select name="platform" id="platform" onChange={(e) => handleSelect(e)}>
+        <select
+          name="platforms"
+          id="platform"
+          onChange={(e) => handleSelectPlatform(e)}
+        >
           <option value="select"></option>
           <option value="PlayStation5">PlayStation 5</option>
           <option value="Xbox Series S/X">Xbox Series S/X</option>
@@ -135,13 +141,6 @@ const FormGames = () => {
         </select>
         {/* {errors.platform && <p>{errors.platform}</p>} */}
         <hr />
-        <label>Released</label>
-        <input
-          type="date"
-          name="released"
-          value={input.released}
-          onChange={(e) => handleChange(e)}
-        />
 
         <label htmlFor="">Description</label>
         <input
@@ -153,14 +152,41 @@ const FormGames = () => {
         {/* {errors.description && <p>{errors.description}</p>} */}
         <hr />
 
-        <label htmlFor="">insert Game</label>
+        <label>Genres</label>
+        <select
+          name="genres"
+          id="genres"
+          onChange={(e) => handleSelectGenres(e)}
+        >
+          <option value="empty"></option>
+          {allGenres?.map((el) => (
+            <option value={el.name}>{el.name}</option>
+          ))}
+        </select>
+        {/* {errors.videogames && <p>{errors.videogames}</p>} */}
+        <hr />
+
+        <label>Image</label>
+        <input
+          type="text"
+          name="image"
+          value={input.image}
+          onChange={(e) => handleChange(e)}
+        />
+        {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
+        <hr />
+
+        {/* <label htmlFor="">insert Game</label>
         <input
           type="file"
           name="insertGame"
           value={input.insertGame}
           onChange={(e) => handleChange(e)}
-        />
+        /> */}
         {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
+        <hr />
+
+        <button type="submit">Leave your game</button>
       </form>
     </div>
   );
