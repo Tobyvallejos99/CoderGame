@@ -9,7 +9,7 @@ const RatingFilter = () => {
       };
     return(
         <div>
-            <select name="rating" id="rating" onChange={handleRating}>
+            <select class="btn-group btn btn-secondary" name="rating" id="rating" onChange={handleRating}>
           <option value="base" hidden={true}>
             Rating
           </option>

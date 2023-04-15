@@ -8,9 +8,11 @@ export default function NavBar() {
     return (
             <div className={style.navbar}>
                 <nav>
-                    <div className="ro">
-                        <SearchBar />
-                        <div className={style.navbar__options}>
+                    <div>
+                        <div className={style.navbar__2}>
+                            <SearchBar />
+                        </div>
+                        <div className={style.navbar__1}>
                         <FilterBar/>
                         </div>
                     </div>

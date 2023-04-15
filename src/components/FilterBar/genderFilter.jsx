@@ -17,7 +17,7 @@ const GenderFilter = () => {
     }
 
     return(
-        <select name="genres" id="genres" onChange={handleGenre}>
+        <select class="btn-group btn btn-secondary" name="genres" id="genres" onChange={handleGenre}>
           <option value="base" hidden={true}>
             Gender
           </option>
