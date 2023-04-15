@@ -14,6 +14,7 @@ export default function NavBar() {
             <Link class="btn btn-outline-danger" to='/'>🛒</Link>
             </div>
         </div>
-        </nav>
-    )
-    }
+      </div>
+    </nav>
+  );
+}
