@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postGame, getGenres } from "../../Redux/actions/actions";
 import NavBar from "../NavBar/NavBar";
+import { Image } from "cloudinary-react";
 
 const FormGames = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const FormGames = () => {
     platforms: [],
     description: "",
     genres: [],
-    image: "",
+    imageFile: null,
     // insertGame: "",
   });
   console.log(input, "holaaa");
@@ -66,10 +67,16 @@ const FormGames = () => {
     //   })
     // );
   };
-  //   const handleImageChange = (e) => {
-  //     setInput(e.target.files[0]);
-  //   };
-  const handleSubmit = (e) => {
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setInput((input) => ({
+      ...input,
+      imageFile: file,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(input);
     if (
@@ -78,13 +85,35 @@ const FormGames = () => {
       !input.platforms ||
       !input.description ||
       !input.genres ||
-      !input.image
+      !input.imageFile
       //   !input.insertGame
     ) {
       return alert("Complete the form correctly before submitting it");
     }
 
-    dispatch(postGame(input));
+    const formData = new FormData();
+    formData.append("file", input.imageFile);
+    formData.append("upload_preset", "mrit7ruy");
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dng2w6k2p/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await response.json();
+    const imageUrl = data.secure_url;
+
+    dispatch(
+      postGame({
+        name: input.name,
+        released: input.released,
+        platforms: input.platforms,
+        description: input.description,
+        genres: input.genres,
+        image: imageUrl,
+      })
+    );
     alert("The game has been created");
     setInput({
       name: "",
@@ -93,6 +122,7 @@ const FormGames = () => {
       description: "",
       genres: [],
       image: "",
+      imageFile: null,
       //   insertGame: "",
     });
   };
@@ -103,6 +133,15 @@ const FormGames = () => {
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <h1>INSERT GAME</h1>
+        <hr />
+
+        <label>Image</label>
+        <input
+          type="file"
+          name="imageFile"
+          onChange={(e) => handleImageChange(e)}
+        />
+        {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
         <hr />
 
         <label>Game Name</label>
@@ -164,16 +203,6 @@ const FormGames = () => {
           ))}
         </select>
         {/* {errors.videogames && <p>{errors.videogames}</p>} */}
-        <hr />
-
-        <label>Image</label>
-        <input
-          type="text"
-          name="image"
-          value={input.image}
-          onChange={(e) => handleChange(e)}
-        />
-        {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
         <hr />
 
         {/* <label htmlFor="">insert Game</label>
