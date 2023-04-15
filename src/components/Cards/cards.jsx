@@ -27,14 +27,8 @@ const Cards = () => {
 
     return(
         <div>
-            <h1>CardContainer</h1>
+            <h1 className="btn btn-secondary">VideoGames</h1>
             <div>
-            <Pagination
-                    gamesPerPage={gamesPerPage}
-                    games = {games.length}
-                    pagination={pagination}
-                    />
-            
                     {currentGames?.map((el) => {
                         return (
                             <div key={el.id}>
@@ -43,7 +37,12 @@ const Cards = () => {
                         )
                     })}
                 </div>
-            
+            <Pagination
+                    gamesPerPage={gamesPerPage}
+                    games = {games.length}
+                    pagination={pagination}
+                    />
+                    <p></p>
         </div>
     )
 }
