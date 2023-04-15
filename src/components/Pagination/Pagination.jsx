@@ -4,7 +4,7 @@ import style from "../Pagination/Pagination.module.css"
 export default function pagination ({gamesPerPage, games, pagination}) {
     const pageNumbers = []
 
-    for (let i = 0; i <= Math.ceil(games/gamesPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(games/gamesPerPage); i++) {
         pageNumbers.push(i);
         
     }
