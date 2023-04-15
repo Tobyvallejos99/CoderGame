@@ -28,7 +28,7 @@ const FilterBar = () => {
             </select>
             <GenderFilter />
             <RatingFilter />
-            <button onClick={handleReset}>Reset</button>
+            <button class="btn-group btn btn-secondary " onClick={handleReset}>Reset</button>
         </div>
     )
 }
