@@ -4,10 +4,39 @@ import { postGame, getGenres } from "../../Redux/actions/actions";
 import NavBar from "../NavBar/NavBar";
 import { Image } from "cloudinary-react";
 
+const validation = (input) => {
+  let errors = {};
+
+  if (!input.imageFile) errors.imageFile = "required space";
+  else if (!/\.(jpg|png)$/i.test(input.imageFile.name.trim()))
+    errors.imageFile = "Only PNG or JPG format images are allowed.";
+
+  if (!input.name) errors.name = "required space";
+  else if (input.name.length > 39)
+    errors.name = "Can not be longer than 40 characters ";
+
+  if (!input.released) errors.released = "required space";
+  else if (new Date(input.released) > new Date())
+    errors.released =
+      "The date entered can not be greater than the current date.";
+
+  if (!input.platforms || input.platforms.length === 0)
+    errors.platforms = "required space";
+
+  if (!input.description) errors.description = "required space";
+  else if (input.description.length > 100)
+    errors.description = "can not have more than 100 characters";
+
+  if (!input.genres || input.genres.length === 0)
+    errors.genres = "required space";
+
+  return errors;
+};
+
 const FormGames = () => {
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.allGenres);
-  // const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
     released: "",
@@ -37,6 +66,12 @@ const FormGames = () => {
         };
       }
     });
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSelectPlatform = (e) => {
@@ -53,6 +88,12 @@ const FormGames = () => {
         };
       }
     });
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
   const handleChange = (e) => {
     setInput({
@@ -60,20 +101,25 @@ const FormGames = () => {
       [e.target.name]: e.target.value,
     });
 
-    // setErrors(
-    //   validation({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
     setInput((input) => ({
       ...input,
-      imageFile: file,
+      imageFile: e.target.files[0],
     }));
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.files[0],
+      })
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -141,7 +187,7 @@ const FormGames = () => {
           name="imageFile"
           onChange={(e) => handleImageChange(e)}
         />
-        {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
+        {errors.imageFile && <p>{errors.imageFile}</p>}
         <hr />
 
         <label>Game Name</label>
@@ -151,7 +197,7 @@ const FormGames = () => {
           value={input.name}
           onChange={(e) => handleChange(e)}
         />
-        {/* {errors.name && <p>{errors.name}</p>} */}
+        {errors.name && <p>{errors.name}</p>}
         <hr />
 
         <label>Released</label>
@@ -161,6 +207,7 @@ const FormGames = () => {
           value={input.released}
           onChange={(e) => handleChange(e)}
         />
+        {errors.released && <p>{errors.released}</p>}
         <hr />
 
         <label>Platforms</label>
@@ -178,7 +225,7 @@ const FormGames = () => {
           <option value="Xbox 360">Xbox 360</option>
           <option value="PlayStation 3">PlayStation 3</option>
         </select>
-        {/* {errors.platform && <p>{errors.platform}</p>} */}
+        {errors.platforms && <p>{errors.platforms}</p>}
         <hr />
 
         <label htmlFor="">Description</label>
@@ -188,7 +235,7 @@ const FormGames = () => {
           value={input.description}
           onChange={(e) => handleChange(e)}
         />
-        {/* {errors.description && <p>{errors.description}</p>} */}
+        {errors.description && <p>{errors.description}</p>}
         <hr />
 
         <label>Genres</label>
@@ -202,7 +249,7 @@ const FormGames = () => {
             <option value={el.name}>{el.name}</option>
           ))}
         </select>
-        {/* {errors.videogames && <p>{errors.videogames}</p>} */}
+        {errors.genres && <p>{errors.genres}</p>}
         <hr />
 
         {/* <label htmlFor="">insert Game</label>
