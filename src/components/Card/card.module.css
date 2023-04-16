@@ -1,0 +1,18 @@
+.minibox{
+    padding: 1.5rem;
+border-radius: 1rem;
+    background-color: rgba(117, 2, 2, 0.781);
+    box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(197, 191, 183);
+    overflow: hidden;
+    border: 1px solid black;
+    width: 350px;
+    /* width: 1000px; */
+    height: 320px;
+}
+
+.title {
+    font-size: 24px;
+    margin: 0;
+}
