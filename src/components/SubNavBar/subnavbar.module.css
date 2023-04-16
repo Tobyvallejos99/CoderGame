@@ -5,7 +5,7 @@
     justify-content: center;
     box-shadow: 0px 10px 10px -6px #d80000;
     border-radius: .6rem;
-    width: 1000px;    
+    width: auto;    
   }
   
   @media (max-width: 768px) {
@@ -20,8 +20,8 @@
   }
   
   
-  .navbar__options {
-      margin-left: -350px;
+  .navbar__1 {
+      margin-left: -5px;
       margin-top: -38px;
   }
   
@@ -31,6 +31,9 @@
     margin-right: 3px;
     text-decoration: none;
     transition: .6s;
+  }
 
-
+.navbar__2 {
+      margin-left: 700px;
+      margin-top: 0px;
   }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postGame, getGenres } from "../../Redux/actions/actions";
 import NavBar from "../NavBar/NavBar";
 import { Image } from "cloudinary-react";
+import style from '../FormGames/FormGames.module.css'
 
 const validation = (input) => {
   let errors = {};
@@ -174,22 +175,26 @@ const FormGames = () => {
   };
 
   return (
-    <div>
+    <div className={style.fondo2}>
       <NavBar />
-
+      <div className={style.Box}>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <h1>INSERT GAME</h1>
-        <hr />
-
+        <img src="https://cdn.discordapp.com/attachments/509143549787504665/1097210824713580644/gamee.png "   width="100px"
+                height="70px" alt="insert" className="container" />
+   
+        <div className={style.minibox}>
         <label>Image</label>
         <input
           type="file"
           name="imageFile"
           onChange={(e) => handleImageChange(e)}
         />
+
         {errors.imageFile && <p>{errors.imageFile}</p>}
         <hr />
 
+
+        <div className={style.minibox}>
         <label>Game Name</label>
         <input
           type="text"
@@ -197,8 +202,10 @@ const FormGames = () => {
           value={input.name}
           onChange={(e) => handleChange(e)}
         />
+
         {errors.name && <p>{errors.name}</p>}
         <hr />
+        <div className={style.minibox}>
 
         <label>Released</label>
         <input
@@ -206,10 +213,15 @@ const FormGames = () => {
           name="released"
           value={input.released}
           onChange={(e) => handleChange(e)}
+
         />
         {errors.released && <p>{errors.released}</p>}
         <hr />
 
+        /></div>
+
+
+        <div className={style.minibox}>
         <label>Platforms</label>
         <select
           name="platforms"
@@ -225,9 +237,12 @@ const FormGames = () => {
           <option value="Xbox 360">Xbox 360</option>
           <option value="PlayStation 3">PlayStation 3</option>
         </select>
+
         {errors.platforms && <p>{errors.platforms}</p>}
         <hr />
 
+
+        <div className={style.minibox}>
         <label htmlFor="">Description</label>
         <input
           type="text"
@@ -235,9 +250,12 @@ const FormGames = () => {
           value={input.description}
           onChange={(e) => handleChange(e)}
         />
+
         {errors.description && <p>{errors.description}</p>}
         <hr />
 
+
+        <div className={style.minibox}>
         <label>Genres</label>
         <select
           name="genres"
@@ -249,8 +267,10 @@ const FormGames = () => {
             <option value={el.name}>{el.name}</option>
           ))}
         </select>
+
         {errors.genres && <p>{errors.genres}</p>}
         <hr />
+
 
         {/* <label htmlFor="">insert Game</label>
         <input
@@ -260,10 +280,11 @@ const FormGames = () => {
           onChange={(e) => handleChange(e)}
         /> */}
         {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
-        <hr />
+        
 
-        <button type="submit">Leave your game</button>
+        <button className="btn btn-danger mx-auto d-block" type="submit">Leave your game</button>
       </form>
+      </div>
     </div>
   );
 };
