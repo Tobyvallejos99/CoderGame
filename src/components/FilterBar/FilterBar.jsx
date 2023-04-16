@@ -21,14 +21,14 @@ const FilterBar = () => {
 
     return(
         <div class="btn-group ">
-            <select class="btn btn-secondary" onChange={handlerNameOrder}>
+            <select class="btn btn-secondary mx-2 rounded" onChange={handlerNameOrder}>
                 <option value="base" hidden={true}>Display options</option>
                 <option value="asc">A-Z</option>
                 <option value="desc">Z-A</option>
             </select>
             <GenderFilter />
             <RatingFilter />
-            <button class="btn-group btn btn-secondary " onClick={handleReset}>Reset</button>
+            <button class="btn btn-secondary mx-2 rounded " onClick={handleReset}>Reset</button>
         </div>
     )
 }

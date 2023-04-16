@@ -13,7 +13,7 @@ export default function NavBar() {
                 height="70px"
             />
             <div className={style.navbar__options}>
-            <Link class="btn btn-outline-danger" to="/Home">
+            <Link class="btn btn-outline-danger" to="/">
                 Home
             </Link>
             <Link class="btn btn-outline-danger" to="/createGame">
