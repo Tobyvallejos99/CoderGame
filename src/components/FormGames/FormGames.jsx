@@ -122,6 +122,20 @@ const FormGames = () => {
     );
   };
 
+  const handleDeleteGenres = (e) => {
+    setInput({
+      ...input,
+      genres: input.genres.filter((con) => con !== e),
+    });
+  };
+
+  const handleDeletePlatforms = (e) => {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((cont) => cont !== e),
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(input);
@@ -177,7 +191,7 @@ const FormGames = () => {
     <div className={style.fondo2}>
       <NavBar />
       <div className={style.Box}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form>
           <img
             src="https://cdn.discordapp.com/attachments/509143549787504665/1097210824713580644/gamee.png "
             width="100px"
@@ -235,7 +249,14 @@ const FormGames = () => {
               <option value="PlayStation 3">PlayStation 3</option>
             </select>
             {errors.platforms && <p>{errors.platforms}</p>}
-            <hr />
+          </div>
+          <div>
+            {input.platforms?.map((e) => (
+              <div>
+                <p> {e} </p>
+                <button onClick={() => handleDeletePlatforms(e)}>X </button>
+              </div>
+            ))}
           </div>
 
           <div className={style.minibox}>
@@ -263,6 +284,14 @@ const FormGames = () => {
             </select>
             {errors.genres && <p>{errors.genres}</p>}
           </div>
+          <div>
+            {input.genres?.map((e) => (
+              <div>
+                <p> {e} </p>
+                <button onClick={() => handleDeleteGenres(e)}>X </button>
+              </div>
+            ))}
+          </div>
 
           {/* <label htmlFor="">insert Game</label>
         <input
@@ -274,8 +303,12 @@ const FormGames = () => {
           {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
           <hr />
 
-          <button className="btn btn-danger mx-auto d-block" type="submit">
-            Leave your game
+          <button
+            className="btn btn-danger mx-auto d-block"
+            type="submit"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            Add Game
           </button>
         </form>
       </div>
