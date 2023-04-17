@@ -1,0 +1,32 @@
+.container {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: rgb(237, 237, 237, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
+    backdrop-filter: blur(1px);
+    width: 500px;
+    margin: 4rem auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.image {
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+.imgBox {
+    display: flex;
+    justify-content: center;
+}
+
+.genderBox, .platformBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+li {
+    margin-top: 5px;
+}
+

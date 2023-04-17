@@ -34,9 +34,9 @@ const Cards = () => {
             <div className={style.Cards__Box}>
                     {currentGames?.map((el) => {
                         return (
-                            <div className={style.Cards__Box}>
+                            <div key={el.id} className={style.Cards__Box}>
                             <div key={el.id} className={style.Card}>
-                                <Card key={el.id} name={el.name} image={el.image} released={el.released} />
+                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} />
                             </div>
                             </div>
                         )

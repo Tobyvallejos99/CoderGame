@@ -33,6 +33,7 @@
     flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem 0;
+    padding-left: 3px;
 }
 
 .Card {

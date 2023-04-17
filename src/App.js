@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import FormGames from "./components/FormGames/FormGames";
 import "./style.css";
+import Detail from "./components/Details/details";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/createGame" element={<FormGames />} />
+        <Route path="/game/:id" element={<Detail />} />
       </Routes>
     </div>
   );
