@@ -212,8 +212,7 @@ export default function reducer(state = initialState, action) {
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
-          toFilterByVideogames: [...copyToFilterByGenre],
-          page:1
+          toFilterByVideogames: [...copyToFilterByGenre],        
         };
       } else {
         const copyAllVideogames = [
@@ -227,8 +226,7 @@ export default function reducer(state = initialState, action) {
           ...state,
           renderedVideogames: [...copyAllVideogames],
           toFilterByGenre: [...state.allVideogames],
-          toFilterByVideogames: [...copyAllVideogames],
-          page:1
+          toFilterByVideogames: [...copyAllVideogames],          
         };
       }
 
