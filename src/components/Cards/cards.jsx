@@ -11,15 +11,16 @@ const Cards = () => {
     const dispatch = useDispatch();
     const games = useSelector((state) => state.renderedVideogames);
 
-    const [currentPage, setCurrentPage] = useState(1)
+        const page = useSelector(state => state.page)
+    //const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(10)
-    const indexOfLastGame = currentPage * gamesPerPage
+    const indexOfLastGame = page * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame)
 
-    const pagination = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
+    // const pagination = (pageNumber) => {
+    //     setCurrentPage(pageNumber)
+    // }
 
         
     useEffect(() => {
@@ -45,7 +46,7 @@ const Cards = () => {
             <Pagination
                     gamesPerPage={gamesPerPage}
                     games = {games.length}
-                    pagination={pagination}
+                    //pagination={pagination}
                     />
                     <p></p>
         </div>

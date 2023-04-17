@@ -9,6 +9,7 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export  const  CREATE_GAME = "CREATE_GAME"
 export const ORDER_RATING = "ORDER_RATING";
 export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
+export const SET_PAGE = "SET_PAGE";
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -81,5 +82,12 @@ export const postGame = (payload) => {
     const info = await axios.post("http://localhost:3001/videogames", payload);
     console.log(info);
     return info;
+  };
+};
+
+export const setPage = (payload) => {
+  return {
+    type: SET_PAGE,
+    payload,
   };
 };
