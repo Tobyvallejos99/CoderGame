@@ -5,18 +5,15 @@ import GenderFilter from "./genderFilter";
 import RatingFilter from "./RatingFilter";
 
 const FilterBar = () => {
-    const dispatch = useDispatch();
-    dispatch(setPage(1));
+    const dispatch = useDispatch();    
     const [orden, setOrden] = useState('');
     console.log(orden)
 
     const handlerNameOrder = (e) => {
-        dispatch(orderName(e.target.value));
-        dispatch(setPage(1));
+        dispatch(orderName(e.target.value));        
         setOrden(`Ordenado ${e.target.value}`);
     }
-    const handleReset = () => {
-        dispatch(setPage(1));
+    const handleReset = () => {        
         dispatch(resetVideogames());
         dispatch(getVideogames());
     }
