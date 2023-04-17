@@ -1,19 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres, filterByGenre } from "../../Redux/actions/actions";
+import { getGenres, filterByGenre, setPage } from "../../Redux/actions/actions";
 
 const GenderFilter = () => {
     const dispatch = useDispatch();
+    dispatch(setPage(1));
     const allGenres = useSelector((state) => state.allGenres);
 
     useEffect(()=>{
         if(!allGenres.length) {
             dispatch(getGenres());
+            dispatch(setPage(1));
         }
     }, []);
 
     const handleGenre = (e) => {
-        dispatch(filterByGenre(e.target.value));
+      dispatch(setPage(1));
+        dispatch(filterByGenre(e.target.value));      
     }
 
     return(

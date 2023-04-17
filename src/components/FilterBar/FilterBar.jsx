@@ -1,19 +1,22 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getVideogames, orderName, resetVideogames } from "../../Redux/actions/actions";
+import { getVideogames, orderName, resetVideogames, setPage } from "../../Redux/actions/actions";
 import GenderFilter from "./genderFilter";
 import RatingFilter from "./RatingFilter";
 
 const FilterBar = () => {
     const dispatch = useDispatch();
+    dispatch(setPage(1));
     const [orden, setOrden] = useState('');
     console.log(orden)
 
     const handlerNameOrder = (e) => {
         dispatch(orderName(e.target.value));
+        dispatch(setPage(1));
         setOrden(`Ordenado ${e.target.value}`);
     }
     const handleReset = () => {
+        dispatch(setPage(1));
         dispatch(resetVideogames());
         dispatch(getVideogames());
     }

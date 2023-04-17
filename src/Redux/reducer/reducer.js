@@ -8,6 +8,7 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
+  SET_PAGE
 } from "../actions/actions";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   renderedVideogames: [],
   toFilterByVideogames: [],
   toFilterByGenre: [],
+  page: 1,
 };
 
 export default function reducer(state = initialState, action) {
@@ -211,6 +213,7 @@ export default function reducer(state = initialState, action) {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
           toFilterByVideogames: [...copyToFilterByGenre],
+          page:1
         };
       } else {
         const copyAllVideogames = [
@@ -225,6 +228,7 @@ export default function reducer(state = initialState, action) {
           renderedVideogames: [...copyAllVideogames],
           toFilterByGenre: [...state.allVideogames],
           toFilterByVideogames: [...copyAllVideogames],
+          page:1
         };
       }
 
@@ -235,6 +239,14 @@ export default function reducer(state = initialState, action) {
         toFilterByVideogames: [...action.payload],
         toFilterByGenre: [...action.payload],
       };
+
+      case SET_PAGE: {
+        return {
+          ...state,
+          page: action.payload,
+        };
+      };
+
     default:
       return { ...state };
     case CREATE_GAME:
