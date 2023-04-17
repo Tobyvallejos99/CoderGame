@@ -191,7 +191,7 @@ const FormGames = () => {
     <div className={style.fondo2}>
       <NavBar />
       <div className={style.Box}>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <img
             src="https://cdn.discordapp.com/attachments/509143549787504665/1097210824713580644/gamee.png "
             width="100px"
@@ -306,7 +306,7 @@ const FormGames = () => {
           <button
             className="btn btn-danger mx-auto d-block"
             type="submit"
-            onSubmit={(e) => handleSubmit(e)}
+            
           >
             Add Game
           </button>
