@@ -20,12 +20,14 @@ const Home = () => {
                 <div class="d-inline-block"><Slider/></div>
                 <div class="d-inline-block"><Slider/></div>
                 </div>
+                <p/>
             </div>
             </div>
             <div className={style.minibox}>
                 <h1 class="display-5 text-danger">VideoGames</h1>
             </div>
             <div className=' text-center'>
+                <p/>
                 <Cards />
             </div>
             

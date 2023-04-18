@@ -12,7 +12,7 @@ const Cards = () => {
     const games = useSelector((state) => state.renderedVideogames);
     const page = useSelector(state => state.page)
     
-    const [gamesPerPage, setGamesPerPage] = useState(10)
+    const [gamesPerPage, setGamesPerPage] = useState(5)
     const indexOfLastGame = page * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame)
