@@ -4,7 +4,6 @@ import Login from "../LoginLogout/Login";
 import style from "./navbar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   return (
@@ -26,29 +25,23 @@ export default function NavBar() {
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
-          <Link class="btn btn-outline-danger" to="/">
-            🛒
-          </Link>
-
           {isAuthenticated ? (
             <>
               <Link class="btn btn-outline-danger" to="/profile">
                 Profile
-
               </Link>
             </>
           ) : (
             <Login />
           )}
 
-            </Link>
-            <Link class="btn btn-outline-danger" to="/cart">
-                🛒
-            </Link>
-            </div>
-
+          {/* </Link> */}
+          <Link class="btn btn-outline-danger" to="/cart">
+            🛒
+          </Link>
         </div>
       </div>
+      {/* </div> */}
     </nav>
   );
 }
