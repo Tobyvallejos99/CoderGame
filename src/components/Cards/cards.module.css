@@ -29,11 +29,9 @@
 }
 
 .Cards__Box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem 0;
-    padding-left: 3px;
+
+    padding-right: 20%;
+
 }
 
 .Card {
