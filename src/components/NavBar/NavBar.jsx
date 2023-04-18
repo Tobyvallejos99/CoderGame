@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./navbar.module.css";
 
+
 export default function NavBar() {
     return (
         <nav>
@@ -22,7 +23,7 @@ export default function NavBar() {
             <Link class="btn btn-outline-danger" to="/">
                 Profile
             </Link>
-            <Link class="btn btn-outline-danger" to="/">
+            <Link class="btn btn-outline-danger" to="/cart">
                 🛒
             </Link>
             </div>
