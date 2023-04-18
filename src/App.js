@@ -14,8 +14,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/createGame" element={<FormGames />} />
         <Route path="/game/:id" element={<Detail />} />
+
         <Route path="/profile" element={<ProfileRender />} />
         {/* <Route path="/login" element={<LoginRender />} /> */}
+
+        {/* <Route path="/cart" element={<ShoppingCart />} /> */}
+
       </Routes>
     </div>
   );

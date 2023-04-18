@@ -29,7 +29,7 @@ const Cards = () => {
                         return (
                             <div key={el.id} className={style.Cards__Box}>
                             <div key={el.id} className={style.Card}>
-                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} />
+                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description}/>
                             </div>
                             </div>
                         )

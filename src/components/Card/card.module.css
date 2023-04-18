@@ -27,3 +27,21 @@
     width: 25%; /* Ajusta el ancho según tus necesidades */
     margin-right: 10px; /* Agrega margen a la derecha del contenedor */
   }
+
+.containerderecha{
+    background-color: #2b2b2b;
+    color: aliceblue;
+    float: right;
+    width: 10%; /* Ajusta el ancho según tus necesidades */
+    margin-right: 10px; 
+    margin-top: 100px;
+    border-radius: 20%;
+    padding: 5px;
+    border: 0;
+}
+
+.containerderecha:hover {
+        cursor: pointer;
+        color: rgb(255, 255, 255);
+        background-color: #3f0f0f;
+}

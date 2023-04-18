@@ -31,21 +31,21 @@ li {
 }
 
 .fondo2{
-    background-image: url(https://wallpaperaccess.com/full/5927911.gif);
-    color: rgb(0, 0, 0);
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top:0;
-    left:0;
-    size: contain;
-    perspective: 1px;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
+    background-image: url(https://p4.wallpaperbetter.com/wallpaper/709/31/637/firewatch-dark-night-minimalism-videogame-hd-wallpaper-preview.jpg);
+        color: rgb(0, 0, 0);
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top:0;
+        left:0;
+        size: contain;
+        perspective: 1px;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
 .minibox{
     padding: 1.5rem;
