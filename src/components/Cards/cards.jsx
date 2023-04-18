@@ -28,9 +28,6 @@ const Cards = () => {
 
     return(
         <div>
-            <div className={style.minibox}>
-            <h1 class="display-5 text-danger">VideoGames</h1>
-            </div>
             <div className={style.Cards__Box}>
                     {currentGames?.map((el) => {
                         return (

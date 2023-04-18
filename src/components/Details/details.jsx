@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import style from './detail.module.css'
 import axios from "axios";
+import NavBar from '../NavBar/NavBar'
 
 export default function Detail() {
 const params = useParams();
@@ -22,29 +23,30 @@ useEffect(() => {
 }, []);
 
 return (
+    <div className={style.fondo2}>
+        <NavBar />
     <div className={style.container}>
         <div className={style.imgBox}>
             <img className={style.image} src={videogame.image} alt="" width='300px'  heigth='300px' />
         </div>
-    <div className={style.textBox}>
+    <div className='text-center'>
         <h1>{videogame.name}</h1>
-        <NavLink to={"/"} className="btn btn-danger text-center">
-        <button  className="btn btn-danger text-center">Return to home</button>
-        </NavLink>
         <div>
         <div>
-            <div>
+            <div className={style.minibox}>
                 {videogame.description || videogame.description_raw ?
-                    <h2 >Description</h2> : null
+                    <div>Description</div> : null
                 }
+                <div >
             <p  value="description">
                 {videogame.description_raw
                 ? videogame.description_raw
                 : videogame.description}
             </p>
             </div>
+            </div>
             <div>
-            <div >
+            <div className={style.minibox} >
                 <h2 >Genres</h2>
                 <ul className={style.genderBox}>
                 {videogame.Genregames?.map((obj) => {
@@ -52,19 +54,19 @@ return (
                 })}
                 </ul>
             </div>
-            <div >
+            <div className={style.minibox}>
                 <h2 >Released</h2>
                 <p value="released">
                 {videogame.released}
                 </p>
             </div>
-            <div >
+            <div className={style.minibox}>
                 <h2 >Rating</h2>
                 <p value="rating">
                 {videogame.rating}
                 </p>
             </div>
-            <div>
+            <div className={style.minibox}>
                 <h2>Platforms</h2>
                 <ul className={style.platformBox}>
                 {videogame.platforms?.map((obj) => {
@@ -81,6 +83,7 @@ return (
             </div>
         </div>
         </div>
+    </div>
     </div>
     </div>
 );
