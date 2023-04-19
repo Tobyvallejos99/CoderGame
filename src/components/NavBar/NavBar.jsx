@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React,{ useContext } from "react";
 import { Link } from "react-router-dom";
 import Login from "../LoginLogout/Login";
 import style from "./navbar.module.css";
@@ -31,9 +31,9 @@ export default function NavBar() {
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
-          <Link to={"/cart"} className='btn btn-outline-danger'>
+          <Link to={"/cart"} className="btn btn-outline-danger" >
             <li>
-              Cart items: <span className="cart-count">{quantity}</span>
+              Cart items: <span className="btn btn-danger">{quantity}</span>
             </li>
           </Link>
 

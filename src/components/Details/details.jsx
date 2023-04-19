@@ -63,20 +63,16 @@ return (
             <div className={style.minibox}>
                 <h2 >Rating</h2>
                 <p value="rating">
-                {videogame.rating}
+                {videogame.rating ? videogame.rating : 'No Rated Yet'}
                 </p>
             </div>
             <div className={style.minibox}>
                 <h2>Platforms</h2>
                 <ul className={style.platformBox}>
-                {videogame.platforms?.map((obj) => {
-                    if (obj.platform) {
-                    return (
-                        <li className='btn btn-danger' key={obj.platform.name}>{obj.platform.name}</li>
-                    );
-                    } else {
-                    return <li className='btn btn-danger' key={obj}>{obj}</li>;
-                    }
+                {videogame.Platforms?.map((obj) => {
+                    return(
+                        <li className='btn btn-danger' key={obj.name}>{obj.name}</li>
+                    )
                 })}
                 </ul>
             </div>
