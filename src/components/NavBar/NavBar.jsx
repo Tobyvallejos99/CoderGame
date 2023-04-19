@@ -32,9 +32,7 @@ export default function NavBar() {
             Profile
           </Link> */}
           <Link to={"/cart"} className="btn btn-outline-danger" >
-            <li>
-              Cart items: <span className="btn btn-danger">{quantity}</span>
-            </li>
+            <li>Cart: <span className="btn btn-danger">{quantity}</span></li>
           </Link>
 
           {isAuthenticated ? (

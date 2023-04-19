@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "./ShoppingCartContext";
+import NavBar from "../NavBar/NavBar";
+import card from '../Card/card'
 
 const ShoppingCart = () => {
     const [cart, setCart] = useContext(CartContext);
@@ -14,11 +16,14 @@ const ShoppingCart = () => {
     );
 
     return (
+        
         <div className="cart-container">
-        <div>
+            <NavBar/>
+        <div className="container">
+            <card/>
             <div>Items in cart: {quantity}</div>
             <div>Total: ${totalPrice}</div>
-            <button onClick={() => console.log(cart)}>Checkout</button>
+            <button onClick={() => (cart)}>Checkout</button>
         </div>
         </div>
     );
