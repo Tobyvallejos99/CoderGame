@@ -1,9 +1,11 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import FormGames from "./components/FormGames/FormGames";
 import "./style.css";
 import Detail from "./components/Details/details";
+import Home from "./components/Home/Home";
+import FormGames from "./components/FormGames/FormGames";
+import ProfileRender from "./components/Profile/ProfileRender";
+// import LoginRender from "./components/Login/LoginRender";
 
 function App() {
   return (
@@ -12,6 +14,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/createGame" element={<FormGames />} />
         <Route path="/game/:id" element={<Detail />} />
+
+        <Route path="/profile" element={<ProfileRender />} />
+        {/* <Route path="/login" element={<LoginRender />} /> */}
+
+        {/* <Route path="/cart" element={<ShoppingCart />} /> */}
+
       </Routes>
     </div>
   );
