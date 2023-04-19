@@ -44,13 +44,7 @@ export default function NavBar() {
             </>
           ) : (
             <Login />
-          )}
-
-          {/* </Link> */}
-          <Link className="btn btn-outline-danger" to="/cart">
-            🛒
-          </Link>
-          
+          )}          
         </div>
       </div>
     </nav>
