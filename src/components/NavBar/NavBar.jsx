@@ -32,7 +32,7 @@ export default function NavBar() {
               </Link>
             </>
           ) : (
-            <Login style='border: 1px #DC3545 solid;' />
+            <Login />
           )}
 
           {/* </Link> */}
