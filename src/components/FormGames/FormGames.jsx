@@ -30,6 +30,15 @@ const validation = (input) => {
   if (!input.genres || input.genres.length === 0)
     errors.genres = "required space";
 
+  if (!input.price) errors.price = "required space";
+  else if (Number(input.price) < 0)
+    errors.price = "Price can not be lower than 0";
+  else if (Number(input.price) > 100)
+    errors.price = "Price can not be higher than 0";
+
+  if (!input.gameLink || input.gameLink.length === 0)
+    errors.gameLink = "required space";
+
   return errors;
 };
 
@@ -44,6 +53,8 @@ const FormGames = () => {
     description: "",
     genres: [],
     imageFile: null,
+    price: "",
+    gameLink: "",
     // insertGame: "",
   });
   console.log(input, "holaaa");
@@ -145,8 +156,9 @@ const FormGames = () => {
       !input.platforms ||
       !input.description ||
       !input.genres ||
-      !input.imageFile
-      //   !input.insertGame
+      !input.imageFile ||
+      !input.price ||
+      !input.gameLink
     ) {
       return alert("Complete the form correctly before submitting it");
     }
@@ -172,6 +184,8 @@ const FormGames = () => {
         description: input.description,
         genres: input.genres,
         image: imageUrl,
+        price: input.price,
+        gameLink: input.gameLink,
       })
     );
     alert("The game has been created");
@@ -183,6 +197,8 @@ const FormGames = () => {
       genres: [],
       image: "",
       imageFile: null,
+      price: "",
+      gameLink: "",
       //   insertGame: "",
     });
   };
@@ -292,6 +308,27 @@ const FormGames = () => {
               </div>
             ))}
           </div>
+          <div className={style.minibox}>
+            <label>Price</label>
+            <input
+              type="number"
+              value={input.price}
+              name="price"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.price && <p>{errors.price}</p>}
+          </div>
+
+          <div className={style.minibox}>
+            <label>Insert Game</label>
+            <input
+              type="text"
+              value={input.gameLink}
+              name="gameLink"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.gameLink && <p>{errors.gameLink}</p>}
+          </div>
 
           {/* <label htmlFor="">insert Game</label>
         <input
@@ -303,11 +340,7 @@ const FormGames = () => {
           {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
           <hr />
 
-          <button
-            className="btn btn-danger mx-auto d-block"
-            type="submit"
-            
-          >
+          <button className="btn btn-danger mx-auto d-block" type="submit">
             Add Game
           </button>
         </form>
