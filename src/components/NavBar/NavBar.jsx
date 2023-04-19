@@ -22,10 +22,10 @@ export default function NavBar() {
           height="70px"
         />
         <div className={style.navbar__options}>
-          <Link class="btn btn-outline-danger" to="/">
+          <Link className="btn btn-outline-danger" to="/">
             Home
           </Link>
-          <Link class="btn btn-outline-danger" to="/createGame">
+          <Link className="btn btn-outline-danger" to="/createGame">
             Sell
           </Link>
           {/* <Link class="btn btn-outline-danger" to="/">
@@ -37,7 +37,7 @@ export default function NavBar() {
 
           {isAuthenticated ? (
             <>
-              <Link class="btn btn-outline-danger" to="/profile">
+              <Link className="btn btn-outline-danger" to="/profile">
                 Profile
 
               </Link>
@@ -45,6 +45,12 @@ export default function NavBar() {
           ) : (
             <Login />
           )}
+
+          {/* </Link> */}
+          <Link className="btn btn-outline-danger" to="/cart">
+            🛒
+          </Link>
+          
         </div>
       </div>
     </nav>
