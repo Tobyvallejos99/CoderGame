@@ -6,9 +6,12 @@ import Home from "./components/Home/Home";
 import FormGames from "./components/FormGames/FormGames";
 import ProfileRender from "./components/Profile/ProfileRender";
 // import LoginRender from "./components/Login/LoginRender";
+import ShoppingCart from './components/ShoppingCart/shoppingcart'
+import { ShoppingCartProvider } from "./components/ShoppingCart/ShoppingCartContext";
 
 function App() {
   return (
+  <ShoppingCartProvider>
     <div class="fondo">
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,10 +21,11 @@ function App() {
         <Route path="/profile" element={<ProfileRender />} />
         {/* <Route path="/login" element={<LoginRender />} /> */}
 
-        {/* <Route path="/cart" element={<ShoppingCart />} /> */}
+        <Route path="/cart" element={<ShoppingCart />} />
 
       </Routes>
     </div>
+  </ShoppingCartProvider>  
   );
 }
 
