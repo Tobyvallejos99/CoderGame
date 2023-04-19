@@ -63,7 +63,7 @@ return (
             <div className={style.minibox}>
                 <h2 >Rating</h2>
                 <p value="rating">
-                {videogame.rating}
+                {videogame.rating ? videogame.rating : 'No Rated Yet'}
                 </p>
             </div>
             <div className={style.minibox}>
