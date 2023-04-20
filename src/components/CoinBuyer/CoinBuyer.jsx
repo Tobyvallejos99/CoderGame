@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 
 const stripePromise = loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8')
 
@@ -57,8 +58,10 @@ const CheckoutForm = () =>{
 
     return(
         <form onSubmit={handleSubmit} className={style.container}>
-            <input type="text" name="coins" onChange={handleChange} />
-            
+            <h3>Ingrese la cantidad deseada de CoderCoins a comprar</h3>
+            <input type="text" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
+            <p>coins</p>
+            <p>Su total es de : {input} USD</p>
             <div className="form-group">
                 <CardElement className={style.CardElement} />
             </div>
