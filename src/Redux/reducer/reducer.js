@@ -8,12 +8,15 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
-  SET_PAGE
+  SET_PAGE,
+  ADD_FAV,
+  DELETE_FAV
 } from "../actions/actions";
 
 const initialState = {
   allVideogames: [],
   allGenres: [],
+  myFavorites:[],
   renderedVideogames: [],
   toFilterByVideogames: [],
   toFilterByGenre: [],
@@ -39,6 +42,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         renderedVideogames: filteredName,
       };
+
+    case ADD_FAV:
+      return {
+        ...state,
+        myFavorites: [...state.myFavorites, action.payload]
+      }
+
+    case DELETE_FAV:
+      return {
+        ...state,
+        myFavorites: state.myFavorites.filter((el) => el.id !== action.payload)
+      }
 
     case "ORDER_BY_NAME":
       if (action.payload === "asc") {
