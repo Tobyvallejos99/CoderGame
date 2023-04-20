@@ -23,7 +23,7 @@ const Cards = () => {
     }, [dispatch])
 
     return(
-        <div>
+        <div className="container">
             <div className={style.Cards__Box}>
                     {currentGames?.map((el) => {
                         return (
