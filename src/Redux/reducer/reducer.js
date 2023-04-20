@@ -8,7 +8,9 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
-  SET_PAGE
+  CREATE_USER,
+  SET_PAGE,
+  LOGUIN_USER,
 } from "../actions/actions";
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
   toFilterByVideogames: [],
   toFilterByGenre: [],
   page: 1,
+  userId: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -93,7 +96,7 @@ export default function reducer(state = initialState, action) {
         allGenres: [...action.payload],
       };
 
-      case ORDER_RATING:
+    case ORDER_RATING:
       if (action.payload === "upward") {
         const copyRenderedVideogames = [
           ...state.renderedVideogames.sort((videogame1, videogame2) => {
@@ -138,9 +141,9 @@ export default function reducer(state = initialState, action) {
           toFilterByVideogames: [...copyToFilterByVideogames],
           toFilterByGenre: [...copyToFilterByGenre],
         };
-      };
+      }
 
-      case RESET_VIDEOGAMES:
+    case RESET_VIDEOGAMES:
       return {
         ...state,
         renderedVideogames: [...state.allVideogames],
@@ -212,7 +215,7 @@ export default function reducer(state = initialState, action) {
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
-          toFilterByVideogames: [...copyToFilterByGenre],        
+          toFilterByVideogames: [...copyToFilterByGenre],
         };
       } else {
         const copyAllVideogames = [
@@ -226,7 +229,7 @@ export default function reducer(state = initialState, action) {
           ...state,
           renderedVideogames: [...copyAllVideogames],
           toFilterByGenre: [...state.allVideogames],
-          toFilterByVideogames: [...copyAllVideogames],          
+          toFilterByVideogames: [...copyAllVideogames],
         };
       }
 
@@ -238,11 +241,22 @@ export default function reducer(state = initialState, action) {
         toFilterByGenre: [...action.payload],
       };
 
-      case SET_PAGE: {
-        return {
-          ...state,
-          page: action.payload,
-        };
+    case SET_PAGE: {
+      return {
+        ...state,
+        page: action.payload,
+      };
+    }
+    case LOGUIN_USER: {
+      return {
+        ...state,
+        userId: action.payload,
+      };
+    }
+
+    case CREATE_USER:
+      return {
+        ...state,
       };
 
     default:

@@ -6,10 +6,13 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export  const  CREATE_GAME = "CREATE_GAME"
+export const CREATE_GAME = "CREATE_GAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
 export const SET_PAGE = "SET_PAGE";
+export const POST_USER = "POST_USER";
+export const CREATE_USER = "CREARE_USER";
+export const LOGUIN_USER = "LOGUIN_USER";
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -27,14 +30,14 @@ export const getVideogames = () => {
 
 export const getGameByName = (payload) => {
   return {
-    type: 'GET_BY_NAME',
-    payload
-  }
+    type: "GET_BY_NAME",
+    payload,
+  };
 };
 
 export const resetVideogames = () => {
   return { type: RESET_VIDEOGAMES };
-  };
+};
 
 export const getGenres = () => {
   return async (dispatch) => {
@@ -77,6 +80,14 @@ export const searchVideogames = (value) => {
   };
 };
 
+export const postUser = (payload) => {
+  return async (dispatch) => {
+    const info = await axios.post("http://localhost:3001/user", payload);
+    console.log(info);
+    return info;
+  };
+};
+
 export const postGame = (payload) => {
   return async (dispatch) => {
     const info = await axios.post("http://localhost:3001/videogames", payload);
@@ -88,6 +99,13 @@ export const postGame = (payload) => {
 export const setPage = (payload) => {
   return {
     type: SET_PAGE,
+    payload,
+  };
+};
+
+export const loguinUser = (payload) => {
+  return {
+    type: LOGUIN_USER,
     payload,
   };
 };
