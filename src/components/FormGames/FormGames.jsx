@@ -24,7 +24,7 @@ const validation = (input) => {
     errors.platforms = "required space";
 
   if (!input.description) errors.description = "required space";
-  else if (input.description.length > 100)
+  else if (input.description.length > 500)
     errors.description = "can not have more than 100 characters";
 
   if (!input.genres || input.genres.length === 0)
