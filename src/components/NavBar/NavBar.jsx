@@ -9,9 +9,6 @@ export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const [cart, setCart] = useContext(CartContext);
 
-  const quantity = cart.reduce((acc, curr) => {
-    return acc + curr.quantity;
-  }, 0);
   return (
     <nav>
       <div className={style.navbar}>
@@ -32,7 +29,7 @@ export default function NavBar() {
             Profile
           </Link> */}
           <Link to={"/favorites"} className="btn btn-outline-danger" >
-            <li>Cart: <span className="btn btn-danger">{quantity}</span></li>
+            🛒
           </Link>
 
           {isAuthenticated ? (
