@@ -1,0 +1,10 @@
+.CardElement {
+    height: 50px;
+    border: 1px solid white;
+    color: white;
+}
+
+.container {
+    background-color: white;
+    width: 50%;
+}

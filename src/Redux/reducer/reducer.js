@@ -8,7 +8,8 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
-  SET_PAGE
+  SET_PAGE,
+  BUY_COIN
 } from "../actions/actions";
 
 const initialState = {

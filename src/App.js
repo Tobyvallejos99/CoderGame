@@ -8,6 +8,10 @@ import ProfileRender from "./components/Profile/ProfileRender";
 // import LoginRender from "./components/Login/LoginRender";
 import ShoppingCart from './components/ShoppingCart/shoppingcart'
 import { ShoppingCartProvider } from "./components/ShoppingCart/ShoppingCartContext";
+import CoinBuyer from "./components/CoinBuyer/CoinBuyer";
+import SuccessBuy from "./components/Success/SuccessBuy";
+import CanceledBuy from "./components/Canceled/CanceledBuy";
+
 
 function App() {
   return (
@@ -22,6 +26,12 @@ function App() {
         {/* <Route path="/login" element={<LoginRender />} /> */}
 
         <Route path="/cart" element={<ShoppingCart />} />
+
+        <Route path="/payment" element={<CoinBuyer />} />
+
+        <Route path="/success" element={<SuccessBuy />} />
+
+        <Route path="/canceled" element={<CanceledBuy />} />
 
       </Routes>
     </div>
