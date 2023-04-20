@@ -31,7 +31,7 @@ export default function NavBar() {
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
-          <Link to={"/cart"} className="btn btn-outline-danger" >
+          <Link to={"/favorites"} className="btn btn-outline-danger" >
             <li>Cart: <span className="btn btn-danger">{quantity}</span></li>
           </Link>
 
