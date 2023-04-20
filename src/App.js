@@ -10,6 +10,9 @@ import ProfileRender from "./components/Profile/ProfileRender";
 import { ShoppingCartProvider } from "./components/ShoppingCart/ShoppingCartContext";
 import Favorites from "./components/Favorites/favorites";
 
+import axios from 'axios'
+axios.defaults.baseURL = 'http//localhost:3001/'
+
 function App() {
   return (
   <ShoppingCartProvider>
