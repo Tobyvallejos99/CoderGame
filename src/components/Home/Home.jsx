@@ -1,7 +1,6 @@
 import Cards from '../Cards/cards';
 import Slider from '../Slider/Slider';
 import NavBar from '../NavBar/NavBar';
-import SubNavBar from '../SubNavBar/SubNavBar';
 import style from '../Home/cards.module.css'
 
 
@@ -10,9 +9,6 @@ const Home = () => {
         <div>
             <NavBar/>
             <p/>
-            <div class="d-flex justify-content-center align-items-center">
-                <SubNavBar/>
-            </div>
                 <p/>
                 <div className='container'>
                 <div class="row">
@@ -24,9 +20,9 @@ const Home = () => {
             </div>
             </div>
             <div className={style.minibox}>
-                <h1 class="display-5 text-danger">VideoGames</h1>
+                <h1 class="display-4 text-dark text-center">🕹️ Best Games 🕹️</h1>
             </div>
-            <div className=' text-center'>
+            <div className='text-center '>
                 <p/>
                 <Cards />
             </div>

@@ -31,6 +31,7 @@ const Cards = () => {
                             <div key={el.id} className={style.Card}>
                                 <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description}/>
                             </div>
+                            <p></p>
                             </div>
                         )
                     })}
