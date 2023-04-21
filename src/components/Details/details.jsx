@@ -11,7 +11,7 @@ const [videogame, setVideogame] = useState({});
 
 useEffect(() => {
     axios
-    .get(`/videogames/${params.id}`)
+    .get(`http://localhost:3001/videogames/${params.id}`)
     .then((response) => {
         setVideogame(response.data);
         console.log(videogame)
