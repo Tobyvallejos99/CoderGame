@@ -10,6 +10,7 @@ export const CREATE_GAME = "CREATE_GAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
 export const SET_PAGE = "SET_PAGE";
+export const BUY_COIN = 'BUY_COIN';
 
 export const POST_USER = "POST_USER";
 export const CREATE_USER = "CREARE_USER";
@@ -107,6 +108,15 @@ export const setPage = (payload) => {
     payload,
   };
 };
+
+
+export const buyCoin = (payload) => {
+  return async (dispatch) => {
+    const buy = await axios.post('http://localhost:3001/create-checkout-session', payload);
+    console.log(payload, 'hola')
+    return buy;
+  }
+}
 
 
 export const loguinUser = (payload) => {

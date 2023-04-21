@@ -8,11 +8,13 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
+  BUY_COIN,
   CREATE_USER,
   LOGUIN_USER,
   SET_PAGE,
   ADD_FAV,
   DELETE_FAV
+
 
 } from "../actions/actions";
 
