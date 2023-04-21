@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../Redux/actions/actions";
 import Card from "../Card/card";
-import Pagination from "../Pagination/Pagination";
 import style from '../Cards/cards.module.css'
 
 
@@ -36,11 +35,7 @@ const Cards = () => {
                         )
                     })}
                 </div>
-            <Pagination
-                    gamesPerPage={gamesPerPage}
-                    games = {games.length}                   
-                    />
-                    <p></p>
+                <p></p>
         </div>
     )
 }
