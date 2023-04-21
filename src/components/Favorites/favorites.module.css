@@ -1,0 +1,38 @@
+.fondo2{
+background-image: url(https://p4.wallpaperbetter.com/wallpaper/709/31/637/firewatch-dark-night-minimalism-videogame-hd-wallpaper-preview.jpg);
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top:0;
+    left:0;
+    size: contain;
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.Box {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: rgb(237, 237, 237, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
+    backdrop-filter: blur(1px);
+    width: 500px;
+    margin: 4rem auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.minibox{
+    padding: 1.5rem;
+    color: azure;
+border-radius: 1rem;
+    background-color: rgba(92, 3, 3, 0.87);
+    box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
+    width: auto;
+    margin: 4rem auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

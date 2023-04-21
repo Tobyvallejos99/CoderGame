@@ -9,11 +9,14 @@ const Profile = () => {
     return <div>Loading ...</div>;
   }
 
-  return (
-    isAuthenticated && (
+  return (console.log(user),
+    isAuthenticated && ( 
       <div className={style.container}>
+        
         <img src={user.picture} alt={user.name} />
+        
         <h2>{user.name}</h2>
+
         <p>{user.email}</p>
       </div>
     )
