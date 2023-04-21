@@ -10,11 +10,13 @@ const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const userId = useSelector((state) => state.userId);
 
+
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(postUser(user.email, user.name));
+      const send = {email: user.email, name: user.name}
+      dispatch(postUser(send));
       dispatch(loguinUser(user));
-      console.log(userId);
+     
     }
   }, [isAuthenticated, user, dispatch]);
 
