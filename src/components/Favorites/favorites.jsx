@@ -28,7 +28,9 @@ import { async } from "q";
             released={elem.released}
             price={elem.price}
             image={elem.image}
+            description={elem.description}
             id={elem.id}
+
             />
         ))} 
         <button onClick={handleSubmit}>COMPRAR</button>

@@ -1,4 +1,4 @@
-import Cards from '../Cards/cards';
+import CardsHome from '../Cards/cardsHome';
 import Slider from '../Slider/Slider';
 import NavBar from '../NavBar/NavBar';
 import style from '../Home/cards.module.css'
@@ -24,7 +24,7 @@ const Home = () => {
             </div>
             <div className='text-center '>
                 <p/>
-                <Cards />
+                <CardsHome />
             </div>
             
         </div>

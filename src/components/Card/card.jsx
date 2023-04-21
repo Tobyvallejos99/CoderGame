@@ -16,7 +16,7 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
         }
         else {
             setIsFav(true);
-            addFav({name,image,released, price, id})
+            addFav({name,image,description,released, price, id})
         }
     }
 
@@ -38,11 +38,14 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
             <div className={style.containerizquierda}>
                 <h2 className={style.title}>{name} </h2>
                 <img src={image} alt={name} width='150px' height="85px" />
+                <p>{released}</p>
             </div>
-        </Link>
+            <div>
+                <p>Description:</p> 
+            {description.length > 100 ? description.slice(0, 100) + " ...For more press!" : description}
+            </div>
 
-            {/* <div className= {style.containerderecha} to={'/cart/'+id}>
-            </div> */}
+        </Link>
 
             <div className={style.containerderecha}>
             {isfav ? (
