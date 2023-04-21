@@ -4,6 +4,7 @@ import style from '../Card/card.module.css'
 import { connect } from "react-redux";
 import { addFav, deleteFav } from "../../Redux/actions/actions";
 
+
 function Card ({ name,image,released, price, description, id,deleteFav,addFav, onclose, myFavorites }) {
 
     const [isfav,setIsFav] = useState(false);
@@ -26,6 +27,7 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
             }
         });
         }, [myFavorites]);
+
 
 
 
