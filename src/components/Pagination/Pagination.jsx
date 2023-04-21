@@ -6,7 +6,6 @@ import { setPage } from "../../Redux/actions/actions";
 export default function Pagination ({gamesPerPage, games}) {
     const pageNumbers = []
     const dispatch = useDispatch()
-    
     for (let i = 1; i <= Math.ceil(games/gamesPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -51,6 +50,7 @@ export default function Pagination ({gamesPerPage, games}) {
     
     return(
         <nav className={style.nav_container}>
+
         <ul className={style.ul_container}>
             <li className={style.li_container}>
             <button className="btn btn-danger" type="button" onClick={handlePrev} disabled={currentPage === 1}>

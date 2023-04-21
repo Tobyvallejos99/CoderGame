@@ -11,7 +11,8 @@ import CoinBuyer from "./components/CoinBuyer/CoinBuyer";
 import SuccessBuy from "./components/Success/SuccessBuy";
 import CanceledBuy from "./components/Canceled/CanceledBuy";
 import Favorites from "./components/Favorites/favorites";
-
+import axios from 'axios'
+axios.defaults.baseURL = 'http//localhost:3001/'
 
 function App() {
   return (
