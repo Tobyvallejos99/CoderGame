@@ -25,11 +25,8 @@ const Home = () => {
       <p />
       <div className="container">
         <div class="row">
-          <div class="col-md">
-            <div class="d-inline-block">
-              <Slider />
-            </div>
-            <div class="d-inline-block">
+          <div class="text-center">
+            <div className="btn btn-secondary ">
               <Slider />
             </div>
           </div>
