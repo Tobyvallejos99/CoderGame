@@ -6,6 +6,7 @@ import style from '../Home/cards.module.css'
 
 
 const Home = () => {
+
     return(
         <div>
             <NavBar/>
