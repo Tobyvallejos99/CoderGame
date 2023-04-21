@@ -11,11 +11,18 @@ const Cards = () => {
     const games = useSelector((state) => state.renderedVideogames);
     const page = useSelector(state => state.page)
     
+    
     const [gamesPerPage, setGamesPerPage] = useState(5)
     const indexOfLastGame = page * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
-    const currentGames = games.slice(indexOfFirstGame, indexOfLastGame)
-
+    
+    const ordedByRatin =  games.sort((a,b) =>{
+        if(a.rating > b.rating) return -1;
+        if(a.rating < b.rating) return 1;
+        return 0
+    });
+    const currentGames = ordedByRatin.slice(indexOfFirstGame, indexOfLastGame)
+    
 
     useEffect(() => {
         dispatch(getVideogames());
