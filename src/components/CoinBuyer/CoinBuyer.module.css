@@ -1,6 +1,7 @@
 .CardElement {
     border: 1px solid black;
     color: white;
+    margin: 5px;
 }
 
 .container {
@@ -16,7 +17,7 @@
     margin: 10px;
 }
 
-button{
+/* button{
     margin: 10px;
     margin-left: 43% ;
-}
+} */

@@ -1,4 +1,4 @@
-import React,{ useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Login from "../LoginLogout/Login";
 import style from "./navbar.module.css";
@@ -22,26 +22,32 @@ export default function NavBar() {
           <Link className="btn btn-outline-danger" to="/">
             Home
           </Link>
+
+          <Link to={"/videogames"} className="btn btn-outline-danger">
+            🎮 ALL Games
+          </Link>
+
           <Link className="btn btn-outline-danger" to="/createGame">
             Sell
           </Link>
+
+          <Link to={"/favorites"} className="btn btn-outline-danger">
+            🛒
+          </Link>
+
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
-          <Link to={"/favorites"} className="btn btn-outline-danger" >
-            🛒
-          </Link>
 
           {isAuthenticated ? (
             <>
               <Link className="btn btn-outline-danger" to="/profile">
                 Profile
-
               </Link>
             </>
           ) : (
             <Login />
-          )}          
+          )}
         </div>
       </div>
     </nav>

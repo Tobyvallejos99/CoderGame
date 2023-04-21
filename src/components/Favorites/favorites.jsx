@@ -22,15 +22,17 @@ import { async } from "q";
         return (
         <div className={style.fondo2}>
             <Navbar />
+            <p></p>
             {props.myFavorites.map((elem) => (
             <Card
             name={elem.name}
             released={elem.released}
             price={elem.price}
             image={elem.image}
-            id={elem.id}
-            />
-        ))} 
+            description={elem.description}
+            id={elem.id}></Card>
+        )
+        )} 
         <button onClick={handleSubmit}>COMPRAR</button>
         </div>
     );
