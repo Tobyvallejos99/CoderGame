@@ -1,5 +1,4 @@
 .minibox{
-
     border-radius: 1rem;
     background-color: rgba(0, 0, 0, 0.781);
     box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
@@ -8,13 +7,18 @@
     overflow: hidden;
     border: 1px solid black;
     width: 1000px;
-    /* width: 1000px; */
     height: 150px;
-}
-
-
-.minibox2{
-
+    margin-bottom: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .minibox {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  .minibox2{
     border-radius: 1rem;
     background-color: rgba(117, 2, 2, 0.781);
     box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
@@ -23,31 +27,49 @@
     overflow: hidden;
     border: 1px solid black;
     height: 150px;
-    width: 83%
-}
-
-.minibox2:hover{
+    width: 83%;
+  }
+  
+  .minibox2:hover{
     cursor: pointer;
     color: rgb(255, 255, 255);
     background-color: #000000;
-}
-
-.title {
+  }
+  
+  .title {
     font-size: 15px;
     margin: 0;
-}
-.containerizquierda {
-    float: left;
-    width: 25%; /* Ajusta el ancho según tus necesidades */
-    margin-right: 10px; /* Agrega margen a la derecha del contenedor */
   }
-
-.containerderecha{
+  
+  .containerizquierda {
+    float: left;
+    width: 25%;
+    margin-right: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .containerizquierda {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .containerderecha{
     color: aliceblue;
     float: right;
-    width: 80px; /* Ajusta el ancho según tus necesidades */
-    margin-right: 10px; 
+    width: 80px;
+    margin-right: 10px;
     border-radius: 20%;
     padding: auto;
     border: 0;
-}
+  }
+  
+  @media screen and (max-width: 768px) {
+    .containerderecha {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      text-align: center;
+    }
+  }

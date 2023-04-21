@@ -21,16 +21,23 @@ export default function NavBar() {
         <div className={style.navbar__options}>
           <Link className="btn btn-outline-danger" to="/">
             Home
+          </Link> 
+          
+          <Link to={"/videogames"} className="btn btn-outline-danger" >
+          🎮 ALL Games
           </Link>
+
           <Link className="btn btn-outline-danger" to="/createGame">
             Sell
           </Link>
-          {/* <Link class="btn btn-outline-danger" to="/">
-            Profile
-          </Link> */}
+          
           <Link to={"/favorites"} className="btn btn-outline-danger" >
             🛒
           </Link>
+
+          {/* <Link class="btn btn-outline-danger" to="/">
+            Profile
+          </Link> */}
 
           {isAuthenticated ? (
             <>

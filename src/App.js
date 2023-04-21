@@ -9,6 +9,7 @@ import ProfileRender from "./components/Profile/ProfileRender";
 
 import { ShoppingCartProvider } from "./components/ShoppingCart/ShoppingCartContext";
 import Favorites from "./components/Favorites/favorites";
+import VideoGames from "./components/VideoGames/videogames";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/profile" element={<ProfileRender />} />
         {/* <Route path="/login" element={<LoginRender />} /> */}
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/videogames" element={<VideoGames />} />
+
       </Routes>
     </div>
   </ShoppingCartProvider>  
