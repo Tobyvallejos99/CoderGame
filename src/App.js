@@ -6,11 +6,11 @@ import Home from "./components/Home/Home";
 import FormGames from "./components/FormGames/FormGames";
 import ProfileRender from "./components/Profile/ProfileRender";
 // import LoginRender from "./components/Login/LoginRender";
-import ShoppingCart from './components/ShoppingCart/shoppingcart'
 import { ShoppingCartProvider } from "./components/ShoppingCart/ShoppingCartContext";
 import CoinBuyer from "./components/CoinBuyer/CoinBuyer";
 import SuccessBuy from "./components/Success/SuccessBuy";
 import CanceledBuy from "./components/Canceled/CanceledBuy";
+import Favorites from "./components/Favorites/favorites";
 
 
 function App() {
@@ -21,11 +21,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/createGame" element={<FormGames />} />
         <Route path="/game/:id" element={<Detail />} />
-
         <Route path="/profile" element={<ProfileRender />} />
         {/* <Route path="/login" element={<LoginRender />} /> */}
-
-        <Route path="/cart" element={<ShoppingCart />} />
 
         <Route path="/payment" element={<CoinBuyer />} />
 
@@ -33,6 +30,8 @@ function App() {
 
         <Route path="/canceled" element={<CanceledBuy />} />
 
+        <Route path="/favorites" element={<Favorites />} />
+          
       </Routes>
     </div>
   </ShoppingCartProvider>  

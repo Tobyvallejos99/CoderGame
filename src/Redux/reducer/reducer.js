@@ -10,15 +10,24 @@ import {
   CREATE_GAME,
   SET_PAGE,
   BUY_COIN
+  CREATE_USER,
+  LOGUIN_USER,
+  SET_PAGE,
+  ADD_FAV,
+  DELETE_FAV
+
+
 } from "../actions/actions";
 
 const initialState = {
   allVideogames: [],
   allGenres: [],
+  myFavorites:[],
   renderedVideogames: [],
   toFilterByVideogames: [],
   toFilterByGenre: [],
   page: 1,
+  userId: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -40,6 +49,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         renderedVideogames: filteredName,
       };
+
+    case ADD_FAV:
+      return {
+        ...state,
+        myFavorites: [...state.myFavorites, action.payload]
+      }
+
+    case DELETE_FAV:
+      return {
+        ...state,
+        myFavorites: state.myFavorites.filter((el) => el.id !== action.payload)
+      }
 
     case "ORDER_BY_NAME":
       if (action.payload === "asc") {
@@ -94,7 +115,7 @@ export default function reducer(state = initialState, action) {
         allGenres: [...action.payload],
       };
 
-      case ORDER_RATING:
+    case ORDER_RATING:
       if (action.payload === "upward") {
         const copyRenderedVideogames = [
           ...state.renderedVideogames.sort((videogame1, videogame2) => {
@@ -139,9 +160,9 @@ export default function reducer(state = initialState, action) {
           toFilterByVideogames: [...copyToFilterByVideogames],
           toFilterByGenre: [...copyToFilterByGenre],
         };
-      };
+      }
 
-      case RESET_VIDEOGAMES:
+    case RESET_VIDEOGAMES:
       return {
         ...state,
         renderedVideogames: [...state.allVideogames],
@@ -213,7 +234,7 @@ export default function reducer(state = initialState, action) {
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
-          toFilterByVideogames: [...copyToFilterByGenre],        
+          toFilterByVideogames: [...copyToFilterByGenre],
         };
       } else {
         const copyAllVideogames = [
@@ -227,7 +248,7 @@ export default function reducer(state = initialState, action) {
           ...state,
           renderedVideogames: [...copyAllVideogames],
           toFilterByGenre: [...state.allVideogames],
-          toFilterByVideogames: [...copyAllVideogames],          
+          toFilterByVideogames: [...copyAllVideogames],
         };
       }
 
@@ -239,11 +260,23 @@ export default function reducer(state = initialState, action) {
         toFilterByGenre: [...action.payload],
       };
 
-      case SET_PAGE: {
-        return {
-          ...state,
-          page: action.payload,
-        };
+    case SET_PAGE: {
+      return {
+        ...state,
+        page: action.payload,
+      };
+    }
+
+    case LOGUIN_USER: {
+      return {
+        ...state,
+        userId: action.payload,
+      };
+    }
+
+    case CREATE_USER:
+      return {
+        ...state,
       };
 
     default:
