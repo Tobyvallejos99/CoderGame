@@ -8,14 +8,19 @@ import {
   ORDER_RATING,
   RESET_VIDEOGAMES,
   CREATE_GAME,
+  SET_PAGE,
+  ADD_FAV,
+  DELETE_FAV
 } from "../actions/actions";
 
 const initialState = {
   allVideogames: [],
   allGenres: [],
+  myFavorites:[],
   renderedVideogames: [],
   toFilterByVideogames: [],
   toFilterByGenre: [],
+  page: 1,
 };
 
 export default function reducer(state = initialState, action) {
@@ -37,6 +42,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         renderedVideogames: filteredName,
       };
+
+    case ADD_FAV:
+      return {
+        ...state,
+        myFavorites: [...state.myFavorites, action.payload]
+      }
+
+    case DELETE_FAV:
+      return {
+        ...state,
+        myFavorites: state.myFavorites.filter((el) => el.id !== action.payload)
+      }
 
     case "ORDER_BY_NAME":
       if (action.payload === "asc") {
@@ -210,7 +227,7 @@ export default function reducer(state = initialState, action) {
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
-          toFilterByVideogames: [...copyToFilterByGenre],
+          toFilterByVideogames: [...copyToFilterByGenre],        
         };
       } else {
         const copyAllVideogames = [
@@ -224,7 +241,7 @@ export default function reducer(state = initialState, action) {
           ...state,
           renderedVideogames: [...copyAllVideogames],
           toFilterByGenre: [...state.allVideogames],
-          toFilterByVideogames: [...copyAllVideogames],
+          toFilterByVideogames: [...copyAllVideogames],          
         };
       }
 
@@ -235,6 +252,14 @@ export default function reducer(state = initialState, action) {
         toFilterByVideogames: [...action.payload],
         toFilterByGenre: [...action.payload],
       };
+
+      case SET_PAGE: {
+        return {
+          ...state,
+          page: action.payload,
+        };
+      };
+
     default:
       return { ...state };
     case CREATE_GAME:

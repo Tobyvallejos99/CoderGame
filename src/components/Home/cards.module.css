@@ -24,14 +24,16 @@
 
 .Filter__Option:hover {
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     background-color: #000000;
 }
 
 .Cards__Box {
-
-    padding-right: 20%;
-
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 0;
+    padding-left: 3px;
 }
 
 .Card {

@@ -37,3 +37,16 @@
 
 
   }
+
+  button {
+    border: 1px #DC3545 solid;
+    background-color: transparent;
+    color: #DC3545;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  button:hover {
+    background-color: #DC3545;
+    color: white;
+  }

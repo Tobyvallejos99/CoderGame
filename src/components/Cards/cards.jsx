@@ -10,33 +10,26 @@ const Cards = () => {
     
     const dispatch = useDispatch();
     const games = useSelector((state) => state.renderedVideogames);
-
-    const [currentPage, setCurrentPage] = useState(1)
-    const [gamesPerPage, setGamesPerPage] = useState(10)
-    const indexOfLastGame = currentPage * gamesPerPage
+    const page = useSelector(state => state.page)
+    
+    const [gamesPerPage, setGamesPerPage] = useState(5)
+    const indexOfLastGame = page * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame)
 
-    const pagination = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
-
-        
+   
     useEffect(() => {
         dispatch(getVideogames());
     }, [dispatch])
 
     return(
-        <div>
-            <div className={style.minibox}>
-            <h1 class="display-5 text-danger">VideoGames</h1>
-            </div>
+        <div className="container">
             <div className={style.Cards__Box}>
                     {currentGames?.map((el) => {
                         return (
-                            <div className={style.Cards__Box}>
+                            <div key={el.id} className={style.Cards__Box}>
                             <div key={el.id} className={style.Card}>
-                                <Card key={el.id} name={el.name} image={el.image} released={el.released} />
+                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description}/>
                             </div>
                             </div>
                         )
@@ -44,8 +37,7 @@ const Cards = () => {
                 </div>
             <Pagination
                     gamesPerPage={gamesPerPage}
-                    games = {games.length}
-                    pagination={pagination}
+                    games = {games.length}                   
                     />
                     <p></p>
         </div>
