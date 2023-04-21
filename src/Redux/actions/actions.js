@@ -10,9 +10,14 @@ export const CREATE_GAME = "CREATE_GAME";
 export const ORDER_RATING = "ORDER_RATING";
 export const RESET_VIDEOGAMES = "RESET_VIDEOGAMES";
 export const SET_PAGE = "SET_PAGE";
+
 export const POST_USER = "POST_USER";
 export const CREATE_USER = "CREARE_USER";
 export const LOGUIN_USER = "LOGUIN_USER";
+
+export const ADD_FAV = "ADD_FAV";
+export const DELETE_FAV = "DELETE_FAV";
+
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -103,9 +108,21 @@ export const setPage = (payload) => {
   };
 };
 
+
 export const loguinUser = (payload) => {
   return {
     type: LOGUIN_USER,
     payload,
   };
 };
+
+export const addFav =(videogame)=>{
+  return {type: ADD_FAV, payload:videogame}
+
+}
+
+export const deleteFav =(id)=>{
+  return {type: DELETE_FAV, payload:id}
+
+}
+

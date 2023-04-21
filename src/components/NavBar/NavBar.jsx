@@ -1,11 +1,14 @@
-import React from "react";
+import React,{ useContext } from "react";
 import { Link } from "react-router-dom";
 import Login from "../LoginLogout/Login";
 import style from "./navbar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { CartContext } from "../ShoppingCart/ShoppingCartContext";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
+  const [cart, setCart] = useContext(CartContext);
+
   return (
     <nav>
       <div className={style.navbar}>
@@ -16,32 +19,31 @@ export default function NavBar() {
           height="70px"
         />
         <div className={style.navbar__options}>
-          <Link class="btn btn-outline-danger" to="/">
+          <Link className="btn btn-outline-danger" to="/">
             Home
           </Link>
-          <Link class="btn btn-outline-danger" to="/createGame">
+          <Link className="btn btn-outline-danger" to="/createGame">
             Sell
           </Link>
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
+          <Link to={"/favorites"} className="btn btn-outline-danger" >
+            🛒
+          </Link>
+
           {isAuthenticated ? (
             <>
-              <Link class="btn btn-outline-danger" to="/profile">
+              <Link className="btn btn-outline-danger" to="/profile">
                 Profile
+
               </Link>
             </>
           ) : (
             <Login />
-          )}
-
-          {/* </Link> */}
-          <Link class="btn btn-outline-danger" to="/cart">
-            🛒
-          </Link>
+          )}          
         </div>
       </div>
-      {/* </div> */}
     </nav>
   );
 }
