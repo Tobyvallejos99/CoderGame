@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./Profile.module.css";
-
+import CoinBuyer from "../CoinBuyer/CoinBuyer";
+import { Link } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 
 const Profile = () => {
@@ -23,6 +24,8 @@ const Profile = () => {
         <h2>{user.name}</h2>
 
         <p>{user.email}</p>
+
+        <Link to={"/payment"}>Buy game</Link>
       </div>
     )
   );
