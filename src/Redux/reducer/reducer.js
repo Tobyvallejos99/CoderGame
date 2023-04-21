@@ -9,9 +9,7 @@ import {
   RESET_VIDEOGAMES,
   CREATE_GAME,
   CREATE_USER,
-  SET_PAGE,
   LOGUIN_USER,
-
   SET_PAGE,
   ADD_FAV,
   DELETE_FAV
@@ -265,6 +263,7 @@ export default function reducer(state = initialState, action) {
         page: action.payload,
       };
     }
+
     case LOGUIN_USER: {
       return {
         ...state,
