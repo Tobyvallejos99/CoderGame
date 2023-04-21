@@ -40,7 +40,7 @@ const CheckoutForm = () =>{
                 {
                     id,
                     amount: input * 100, //cent
-                }
+                }, user
                 );
                 console.log(data)
                 console.log(user, 'soy el user')
