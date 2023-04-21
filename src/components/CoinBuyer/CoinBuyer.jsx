@@ -6,7 +6,7 @@ import { CardElement, Elements, useElements, useStripe } from "@stripe/react-str
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 const stripePromise = loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8')
 
@@ -15,7 +15,8 @@ const CheckoutForm = () =>{
     const element = useElements();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [input, setInput] = useState(0)
+    const [input, setInput] = useState(0);
+    const user = useSelector((state) => state.userId);
 
     const handleChange = (e) => {
         setInput(e.target.value);
@@ -38,13 +39,15 @@ const CheckoutForm = () =>{
                 {
                     id,
                     amount: input * 100, //cent
+                    idUser: user.
                 }
                 );
                 console.log(data)
-                if(data.message.rawType){
+                console.log(user, 'soy el user')
+                if(!data.success){
                     navigate('/canceled');
                 }
-                element.getElement(CardElement).clear();
+                //element.getElement(CardElement).clear();
                 navigate('/success');
 
             } catch (error) {
