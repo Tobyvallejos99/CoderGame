@@ -25,7 +25,7 @@ const validation = (input) => {
 
   if (!input.description) errors.description = "required space";
   else if (input.description.length > 500)
-    errors.description = "can not have more than 100 characters";
+    errors.description = "can not have more than 500 characters";
 
   if (!input.genres || input.genres.length === 0)
     errors.genres = "required space";
@@ -34,7 +34,7 @@ const validation = (input) => {
   else if (Number(input.price) < 0)
     errors.price = "Price can not be lower than 0";
   else if (Number(input.price) > 100)
-    errors.price = "Price can not be higher than 0";
+    errors.price = "Price can not be higher than 100";
 
   if (!input.gameLink || input.gameLink.length === 0)
     errors.gameLink = "required space";
