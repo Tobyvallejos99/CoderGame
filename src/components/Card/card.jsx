@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import style from '../Card/card.module.css'
 import { connect, useDispatch } from "react-redux";
@@ -6,7 +6,6 @@ import { addFav, deleteFav } from "../../Redux/actions/actions";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../LoginLogout/Login";
-
 
 function Card ({ name,image,released, price, description, id,deleteFav,addFav, onclose, myFavorites }) {
 
@@ -84,55 +83,28 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
                 <button onClick={handleFavorite}>🛒${price}</button>
                 )}</div>
         </div>
-        <div>
-          <p>Description:</p>
-          {description.length > 100
-            ? description.slice(0, 100) + " ...For more press!"
-            : description}
-        </div>
-      </Link>
 
-      <div className={style.containerderecha}>
-        {isAuthenticated ? (
-          isfav ? (
-            <button onClick={handleFavorite}>
-              ✅<p> In the cart </p>
-            </button>
-          ) : (
-            <button onClick={handleFavorite}>🛒${price}</button>
-          )
-        ) : isfav ? (
-          <Link>
-            {" "}
-            <Login />{" "}
-          </Link>
-        ) : (
-          <button onClick={handleFavorite}>🛒${price}</button>
-        )}
-      </div>
-    </div>
-  );
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addFav: (game) => {
-      dispatch(addFav(game));
-    },
-    deleteFav: (id) => {
-      dispatch(deleteFav(id));
-    },
-  };
+    )
 };
 
-export function mapStateToProps(state) {
-  return {
-    myFavorites: state.myFavorites,
-  };
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        addFav:(game)=>{dispatch(addFav(game))},
+        deleteFav:(id)=>{dispatch(deleteFav(id))}
+    }
 }
 
+export function mapStateToProps(state){
+    return {
+        myFavorites:state.myFavorites,
+    }
+}
+
+
+
 export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-  { addFav, deleteFav }
+    mapStateToProps,
+    // mapDispatchToProps,
+    {addFav,deleteFav}
 )(Card);
