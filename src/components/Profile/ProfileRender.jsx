@@ -6,12 +6,14 @@ import style from "./ProfileRender.module.css";
 
 const ProfileRender = () => {
   return (
-    <div className={style.container}>
-      <div>
+    <div className={style.fondo2}>
+      <div >
         <NavBar />
       </div>
-      <div>
+      <div className="text-center container">
+        <div className={style.Card_Box}>
         <Profile />
+        </div>
       </div>
       <div>
         <Logout />

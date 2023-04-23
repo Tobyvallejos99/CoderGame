@@ -40,8 +40,13 @@ const Slider = () => {
                 )
             })}
             <div className={style.container}>
-                <button class="btn btn-danger " onClick={preImg}>⇐</button>::<button class="btn btn-danger" onClick={nextImg}>⇒</button>
-            </div>
+                <button class="btn btn-danger" style={{ marginRight: "10px" }} onClick={preImg}>
+                    ⇐
+                </button>
+                <button class="btn btn-danger" onClick={nextImg}>
+                    ⇒
+                </button>
+                </div>
         </div>
     )
 }
