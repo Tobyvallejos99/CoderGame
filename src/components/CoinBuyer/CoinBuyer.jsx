@@ -16,8 +16,7 @@ const CheckoutForm = () =>{
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState(0);
-    const user = useSelector((state) => state.userId);
-
+    const user = useSelector((state) => state.sub);
     const handleChange = (e) => {
         setInput(e.target.value);
     }
@@ -39,7 +38,7 @@ const CheckoutForm = () =>{
                 {
                     id,
                     amount: input * 100, //cent
-                    idUser: user.
+                    idUser: user
                 }
                 );
                 console.log(data)

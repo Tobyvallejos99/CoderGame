@@ -4,13 +4,15 @@ import Navbar from '../NavBar/NavBar'
 import style from './favorites.module.css'
 import axios from 'axios';
 import { async } from "q";
+import { useSelector } from "react-redux";
 
     function Favorites(props) {
         console.log(props.myFavorites)
 
-
+        const user = useSelector((state) => state.sub);
         const handleSubmit = async () => {
-            await axios.post ('/user/favorites', { idVideogame: props.id, idUser:"7adb453f-e4ce-4351-8afa-3146f9455a25" })
+             console.log(user)
+            await axios.post ('/user/favorites', { idVideogame: props.id, idUser:user })
                 .then((response) => {
                     console.log(response);
                 })

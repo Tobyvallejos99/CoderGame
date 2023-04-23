@@ -87,10 +87,9 @@ export const searchVideogames = (value) => {
 
 export const postUser = (payload) => {
   return async (dispatch) => {
-    console.log(payload)
+
     const info = await axios.post("http://localhost:3001/user", payload);
     
-    console.log(info);
     return info;
   };
 };
@@ -135,3 +134,4 @@ export const addFav = (videogame) => {
 export const deleteFav = (id) => {
   return { type: DELETE_FAV, payload: id };
 };
+
