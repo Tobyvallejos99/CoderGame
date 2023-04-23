@@ -25,7 +25,7 @@ const validation = (input) => {
 
   if (!input.description) errors.description = "required space";
   else if (input.description.length > 500)
-    errors.description = "can not have more than 100 characters";
+    errors.description = "can not have more than 500 characters";
 
   if (!input.genres || input.genres.length === 0)
     errors.genres = "required space";
@@ -34,7 +34,7 @@ const validation = (input) => {
   else if (Number(input.price) < 0)
     errors.price = "Price can not be lower than 0";
   else if (Number(input.price) > 100)
-    errors.price = "Price can not be higher than 0";
+    errors.price = "Price can not be higher than 100";
 
   if (!input.gameLink || input.gameLink.length === 0)
     errors.gameLink = "required space";
@@ -249,32 +249,33 @@ const FormGames = () => {
             {errors.released && <p>{errors.released}</p>}
           </div>
 
-          <div className={style.minibox}>
-            <label>Platforms</label>
-            <select
-              name="platforms"
-              id="platform"
-              onChange={(e) => handleSelectPlatform(e)}
-            >
-              <option value="select"></option>
-              <option value="PlayStation5">PlayStation 5</option>
-              <option value="Xbox Series S/X">Xbox Series S/X</option>
-              <option value="PlayStation 4">PlayStation 4</option>
-              <option value="PC">PC</option>
-              <option value="Xbox One">Xbox One</option>
-              <option value="Xbox 360">Xbox 360</option>
-              <option value="PlayStation 3">PlayStation 3</option>
-            </select>
-            {errors.platforms && <p>{errors.platforms}</p>}
-          </div>
-          <div>
-            {input.platforms?.map((e) => (
-              <div>
-                <p> {e} </p>
-                <button onClick={() => handleDeletePlatforms(e)}>X </button>
-              </div>
-            ))}
-          </div>
+          <div className={style.minibox3}>
+  <label className="mb-2">Platforms</label>
+  <select
+    className={`form-control mb-2 ${errors.platforms ? 'is-invalid' : ''}`}
+    name="platforms"
+    id="platform"
+    onChange={(e) => handleSelectPlatform(e)}
+  >
+    <option value="select"></option>
+    <option value="PlayStation5">PlayStation 5</option>
+    <option value="Xbox Series S/X">Xbox Series S/X</option>
+    <option value="PlayStation 4">PlayStation 4</option>
+    <option value="PC">PC</option>
+    <option value="Xbox One">Xbox One</option>
+    <option value="Xbox 360">Xbox 360</option>
+    <option value="PlayStation 3">PlayStation 3</option>
+  </select>
+  {errors.platforms && <div className="invalid-feedback mb-2">{errors.platforms}</div>}
+  <div className="d-flex flex-wrap">
+    {input.platforms?.map((e) => (
+      <div key={e} className="mr-2 mb-2">
+        <span className="badge bg-danger">{e}</span>
+        <button className="btn btn-link text-white" onClick={() => handleDeletePlatforms(e)}>X</button>
+      </div>
+    ))}
+  </div>
+</div>
 
           <div className={style.minibox}>
             <label htmlFor="">Description</label>
@@ -287,28 +288,32 @@ const FormGames = () => {
             {errors.description && <p>{errors.description}</p>}
           </div>
 
-          <div className={style.minibox}>
-            <label>Genres</label>
-            <select
-              name="genres"
-              id="genres"
-              onChange={(e) => handleSelectGenres(e)}
-            >
-              <option value="empty"></option>
-              {allGenres?.map((el) => (
-                <option value={el.name}>{el.name}</option>
-              ))}
-            </select>
-            {errors.genres && <p>{errors.genres}</p>}
-          </div>
-          <div>
-            {input.genres?.map((e) => (
-              <div>
-                <p> {e} </p>
-                <button onClick={() => handleDeleteGenres(e)}>X </button>
-              </div>
-            ))}
-          </div>
+          <div className={style.minibox3}>
+  <label className="mb-2">Genres</label>
+  <select
+    className={`form-control mb-2 ${errors.genres ? 'is-invalid' : ''}`}
+    name="genres"
+    id="genres"
+    onChange={(e) => handleSelectGenres(e)}
+  >
+    <option value="empty"></option>
+    {allGenres?.map((el) => (
+      <option key={el.id} value={el.name}>{el.name}</option>
+    ))}
+  </select>
+  {errors.genres && <div className="invalid-feedback mb-2">{errors.genres}</div>}
+  <div className="d-flex flex-wrap">
+    {input.genres?.map((e) => (
+      <div key={e} className="mr-2 mb-2">
+        <span className="badge bg-danger">{e}</span>
+        <button className="btn btn-link text-white" onClick={() => handleDeleteGenres(e)}>X</button>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+
           <div className={style.minibox}>
             <label>Price</label>
             <input

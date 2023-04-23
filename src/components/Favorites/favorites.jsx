@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Card from '../Card/card';
 import Navbar from '../NavBar/NavBar'
 import style from './favorites.module.css'
@@ -7,12 +7,10 @@ import { async } from "q";
 import { useSelector } from "react-redux";
 
     function Favorites(props) {
+        const user = useSelector((state) => state.idUser)
         console.log(props.myFavorites)
-
-        const user = useSelector((state) => state.sub);
         const handleSubmit = async () => {
-             console.log(user)
-            await axios.post ('/user/favorites', { idVideogame: props.id, idUser:user })
+            await axios.post ('/user/favorites', { idVideogame: props.id, user })
                 .then((response) => {
                     console.log(response);
                 })

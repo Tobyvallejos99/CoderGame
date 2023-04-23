@@ -42,7 +42,6 @@ const CheckoutForm = () =>{
                 }
                 );
                 console.log(data)
-                console.log(user, 'soy el user')
                 if(!data.success){
                     navigate('/canceled');
                 }
