@@ -21,8 +21,9 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
             deleteFav(id);
         
             try {
+                
                 await axios.delete(
-                `http://localhost:3001/user/favorites/${user.sub}/${id}`,{
+                `http://localhost:3001/user/favorites`,{
                     idVideogame: id,
                     idUser: user.sub,
                     }
