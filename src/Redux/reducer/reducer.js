@@ -13,7 +13,8 @@ import {
   LOGUIN_USER,
   SET_PAGE,
   ADD_FAV,
-  DELETE_FAV
+  DELETE_FAV,
+  POST_USER
 
 
 } from "../actions/actions";
@@ -273,9 +274,10 @@ export default function reducer(state = initialState, action) {
       };
     }
 
-    case CREATE_USER:
+    case POST_USER:
       return {
         ...state,
+        userId: action.payload,
       };
 
     default:
