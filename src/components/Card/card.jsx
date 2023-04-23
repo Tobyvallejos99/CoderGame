@@ -1,24 +1,52 @@
 import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import style from '../Card/card.module.css'
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../../Redux/actions/actions";
-
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Card ({ name,image,released, price, description, id,deleteFav,addFav, onclose, myFavorites }) {
 
-    const [isfav,setIsFav] = useState(false);
+    const dispatch = useDispatch();
+    const { user, isAuthenticated } = useAuth0();
 
-    const handleFavorite =()=>{
-        if(isfav){
+    const [isfav,setIsFav] = useState(false);
+    // const user = useSelector((state) => state.userId)
+    
+    const handleFavorite = async () => {
+        if (isfav) {
             setIsFav(false);
             deleteFav(id);
-        }
-        else {
+        
+            try {
+                await axios.delete(
+                `http://localhost:3001/user/favorites/${user.sub}/${id}`,{
+                    idVideogame: id,
+                    idUser: user.sub,
+                    }
+                );
+            } catch (error) {
+                console.error(error);
+            }
+            } else {
             setIsFav(true);
-            addFav({name,image,description,released, price, id})
-        }
-    }
+            addFav({ name, image, description, released, price, id });
+            try {
+                await axios.post("http://localhost:3001/user/favorites", {
+                idVideogame: id,
+                idUser: user.sub,
+                });
+            } catch (error) {
+                console.error(error);
+            }
+            }
+        };
+        
+
+
+
+
 
     useEffect(() => {
         myFavorites.forEach((fav) => {
