@@ -5,6 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../../Redux/actions/actions";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import Login from "../LoginLogout/Login";
 
 function Card ({ name,image,released, price, description, id,deleteFav,addFav, onclose, myFavorites }) {
 
@@ -15,34 +16,37 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
     // const user = useSelector((state) => state.userId)
     
     const handleFavorite = async () => {
-        if (isfav) {
-            setIsFav(false);
-            deleteFav(id);
-        
-            try {
-                await axios.delete(
-                `http://localhost:3001/user/favorites/${user.sub}/${id}`,{
+            if (isfav) {
+                setIsFav(false);
+                deleteFav(id);
+            
+                try {
+                    for (const elem of myFavorites) {
+                    const { id } = elem;
+                    await axios.delete("http://localhost:3001/user/favorites", {
+                        data: { idVideogame: id, idUser: user.sub },
+                    });
+                    }
+                    console.log("Cart delete successfully!");
+                    // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
+                } catch (error) {
+                    console.error("Error delete cart:", error);
+                    // Aquí podrías mostrar un mensaje de error al usuario, por ejemplo
+                }
+                } else {
+                setIsFav(true);
+                addFav({ name, image, description, released, price, id });
+                try {
+                    await axios.post("http://localhost:3001/user/favorites", {
                     idVideogame: id,
                     idUser: user.sub,
-                    }
-                );
-            } catch (error) {
-                console.error(error);
-            }
-            } else {
-            setIsFav(true);
-            addFav({ name, image, description, released, price, id });
-            try {
-                await axios.post("http://localhost:3001/user/favorites", {
-                idVideogame: id,
-                idUser: user.sub,
-                });
-            } catch (error) {
-                console.error(error);
-            }
-            }
-        };
-        
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+                }
+            };
+            
 
 
 

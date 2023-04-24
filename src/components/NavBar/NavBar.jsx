@@ -26,15 +26,25 @@ export default function NavBar() {
           <Link to={"/videogames"} className="btn btn-outline-danger">
             🎮 ALL Games
           </Link>
+          {isAuthenticated ? (
+            <>
+              <Link className="btn btn-outline-danger" to="/createGame">
+                Sell
+              </Link>
+            </>
+          ) : (
+            <></>
+          )}
 
-          <Link className="btn btn-outline-danger" to="/createGame">
-            Sell
-          </Link>
-
+        {isAuthenticated ? (
+            <>
           <Link to={"/favorites"} className="btn btn-outline-danger">
             🛒
           </Link>
-
+          </>
+          ) : (
+            <></>
+          )}
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}

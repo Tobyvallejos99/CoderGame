@@ -52,18 +52,25 @@ function Favorites(props) {
             price={elem.price}
             image={elem.image}
             description={elem.description}
-            id={elem.id}></Card>
-        )
-        )} 
-        <button onClick={handleSubmit}>COMPRAR</button>
-        </div>
-    );
+            id={elem.id}
+          ></Card>
+        ))}
+        <button className="btn btn-danger" onClick={handleSubmit}>
+          Confirm Cart
+        </button>
+        <button className="btn btn-danger" onClick={handledelete}>
+          delete
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export function mapStateToProps(state){
-    return {
-        myFavorites:state.myFavorites,
-    }
+export function mapStateToProps(state) {
+  return {
+    myFavorites: state.myFavorites,
+    idUser: state.idUser,
+  };
 }
 
-export default connect(mapStateToProps)(Favorites)
+export default connect(mapStateToProps)(Favorites);
