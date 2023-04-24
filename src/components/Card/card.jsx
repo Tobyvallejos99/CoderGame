@@ -6,48 +6,43 @@ import { addFav, deleteFav } from "../../Redux/actions/actions";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../LoginLogout/Login";
-
 function Card ({ name,image,released, price, description, id,deleteFav,addFav, onclose, myFavorites }) {
-
     const dispatch = useDispatch();
     const { user, isAuthenticated } = useAuth0();
-
     const [isfav,setIsFav] = useState(false);
     // const user = useSelector((state) => state.userId)
-    
+
     const handleFavorite = async () => {
             if (isfav) {
-                setIsFav(false);
-                deleteFav(id);
-            
-                try {
-                    for (const elem of myFavorites) {
-                    const { id } = elem;
-                    await axios.delete("http://localhost:3001/user/favorites", {
-                        data: { idVideogame: id, idUser: user.sub },
-                    });
-                    }
-                    console.log("Cart delete successfully!");
-                    // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
-                } catch (error) {
-                    console.error("Error delete cart:", error);
-                    // Aquí podrías mostrar un mensaje de error al usuario, por ejemplo
-                }
-                } else {
-                setIsFav(true);
-                addFav({ name, image, description, released, price, id });
-                try {
-                    await axios.post("http://localhost:3001/user/favorites", {
-                    idVideogame: id,
-                    idUser: user.sub,
-                    });
-                    console.log("Cart ADD successfully!");
-                } catch (error) {
-                    console.error(error);
-                }
-                }
-            };
-            
+            setIsFav(false);
+            deleteFav(id);
+        
+            try {
+                await axios.delete("http://localhost:3001/user/favorites", {
+                data: { idVideogame: id, idUser: user.sub },
+                });
+                console.log("Game deleted successfully!");
+                // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
+            } catch (error) {
+                console.error("Error deleting game:", error);
+                // Aquí podrías mostrar un mensaje de error al usuario, por ejemplo
+            }
+            } else {
+            setIsFav(true);
+            addFav({ name, image, description, released, price, id });
+            try {
+                await axios.post("http://localhost:3001/user/favorites", {
+                idVideogame: id,
+                idUser: user.sub,
+                });
+                console.log("Game added successfully!");
+            } catch (error) {
+                console.error(error);
+            }
+            }
+        };
+
+
 
 
     useEffect(() => {
@@ -57,8 +52,6 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
             }
         });
         }, [myFavorites]);
-
-
     return (
         <div className={style.minibox}>
         <Link className={style.minibox2} to={'/game/'+id}>
@@ -71,9 +64,7 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
                 <p>Description:</p> 
             {description.length > 100 ? description.slice(0, 100) + " ...For more press!" : description}
             </div>
-
         </Link>
-
             <div className={style.containerderecha}>
             {isfav ? (
                 <button  onClick={handleFavorite}>✅<p> In the cart  </p></button>
@@ -81,28 +72,31 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
                 <button onClick={handleFavorite}>🛒${price}</button>
                 )}</div>
         </div>
-
-
     )
 };
-
 const mapDispatchToProps = (dispatch) =>{
     return {
         addFav:(game)=>{dispatch(addFav(game))},
         deleteFav:(id)=>{dispatch(deleteFav(id))}
     }
 }
-
 export function mapStateToProps(state){
     return {
         myFavorites:state.myFavorites,
     }
 }
-
-
-
 export default connect(
     mapStateToProps,
     // mapDispatchToProps,
     {addFav,deleteFav}
+
+    
+          
+            
+    
+
+          
+    
+    
+  
 )(Card);
