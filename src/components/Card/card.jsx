@@ -41,15 +41,13 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
                     idVideogame: id,
                     idUser: user.sub,
                     });
+                    console.log("Cart ADD successfully!");
                 } catch (error) {
                     console.error(error);
                 }
                 }
             };
             
-
-
-
 
 
     useEffect(() => {
@@ -59,9 +57,6 @@ function Card ({ name,image,released, price, description, id,deleteFav,addFav, o
             }
         });
         }, [myFavorites]);
-
-
-
 
 
     return (
