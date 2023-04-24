@@ -35,7 +35,7 @@ const Profile = () => {
 
         <p>{user.email}</p>
 
-        <Link to={"/payment"}>Buy game</Link>
+        <Link className="btn btn-outline-danger" to={"/payment"}>Buy game</Link>
       </div>
     )
   );

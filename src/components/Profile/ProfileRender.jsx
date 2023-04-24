@@ -10,14 +10,15 @@ const ProfileRender = () => {
       <div >
         <NavBar />
       </div>
-      <div className="text-center container">
+      <div className="container">
         <div className={style.Card_Box}>
         <Profile />
-        </div>
-      </div>
-      <div>
+       
+      <div className="text-center">
         <Logout />
       </div>
+    </div> 
+    </div>
     </div>
   );
 };
