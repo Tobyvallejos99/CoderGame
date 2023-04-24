@@ -87,19 +87,40 @@ export const searchVideogames = (value) => {
 
 export const postUser = (payload, token) => {
   return async (dispatch) => {
-    const info = await axios.post("http://localhost:3001/user/register", payload, token);
+    const info = await axios.post(
+      "http://localhost:3001/user/register",
+      payload,
+      token
+    );
     console.log(info);
+    return {
+      type: POST_USER,
+      payload,
+    };
+  };
+};
+
+export const postGame = (payload, token) => {
+  return async (dispatch) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const info = await axios.post(
+      "http://localhost:3001/videogames",
+      payload,
+      config
+    );
     return info;
   };
 };
 
-export const postGame = (payload) => {
-  return async (dispatch) => {
-    const info = await axios.post("http://localhost:3001/videogames", payload);
-    console.log(info);
-    return info;
-  };
-};
+// export const postGame = (payload) => {
+//   return async (dispatch) => {
+//     const info = await axios.post("http://localhost:3001/videogames", payload);
+//     console.log(info);
+//     return info;
+//   };
+// };
 
 export const setPage = (payload) => {
   return {
