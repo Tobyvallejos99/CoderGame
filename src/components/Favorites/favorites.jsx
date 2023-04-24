@@ -26,6 +26,9 @@ function Favorites(props) {
     }
   };
 
+
+
+  
   const handledelete = async () => {
     try {
       for (const elem of props.myFavorites) {
