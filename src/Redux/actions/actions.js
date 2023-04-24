@@ -154,3 +154,4 @@ export const addFav = (videogame) => {
 export const deleteFav = (id) => {
   return { type: DELETE_FAV, payload: id };
 };
+

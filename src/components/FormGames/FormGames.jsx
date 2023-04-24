@@ -172,7 +172,7 @@ const FormGames = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
+    
     if (
       !input.name ||
       !input.released ||
@@ -198,7 +198,7 @@ const FormGames = () => {
     );
     const data = await response.json();
     const imageUrl = data.secure_url;
-
+      
     dispatch(
       postGame(
         {
@@ -214,6 +214,7 @@ const FormGames = () => {
         token
       )
     );
+
     alert("The game has been created");
     setInput({
       name: "",
