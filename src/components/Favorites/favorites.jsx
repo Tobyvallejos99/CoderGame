@@ -41,36 +41,54 @@ function Favorites(props) {
             }
             
             };
-
-        return (
-        <div className={style.fondo2}>
-            <Navbar />
-            <p></p>
-            {arrFav.map((elem) => (
-            <Card
-            name={elem.name}
-            released={elem.released}
-            price={elem.price}
-            image={elem.image}
-            description={elem.description}
-            id={elem.id}
-          ></Card>
-        ))}
-        <button className="btn btn-danger" onClick={handleSubmit}>
-          Confirm Cart
-        </button>
-        {/* <button className="btn btn-danger" onClick={handledelete}>
-          delete
-        </button> */}
-      </div>
-      );
-            }
-
- export function mapStateToProps(state) {
-  return {
-    myFavorites: state.myFavorites,
-    idUser: state.idUser,
-  };
-}
-
-export default connect(mapStateToProps)(Favorites);
+            const handledelete = async () => {
+              try {
+                for (const elem of props.myFavorites) {
+                  const { id } = elem;
+                  await axios.delete("http://localhost:3001/user/favorites", {
+                    data: { idVideogame: id, idUser: user.sub },
+                  });
+                }
+                console.log("Cart delete successfully!");
+                // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
+              } catch (error) {
+                console.error("Error delete cart:", error);
+                // Aquí podrías mostrar un mensaje de error al usuario, por ejemplo
+              }
+            };
+          
+            return (
+              <div className="text-center">
+                <div className={style.fondo2}>
+                  <Navbar />
+                  <p></p>
+                  {props.myFavorites.map((elem) => (
+                    <Card
+                      name={elem.name}
+                      released={elem.released}
+                      price={elem.price}
+                      image={elem.image}
+                      description={elem.description}
+                      id={elem.id}
+                    ></Card>
+                  ))}
+                  <button className="btn btn-danger" onClick={handleSubmit}>
+                    Confirm Cart
+                  </button>
+                  <p></p>
+                  {/* <button className="btn btn-danger" onClick={handledelete}>
+                    Delete Cart
+                  </button> */}
+                </div>
+              </div>
+            );
+          }
+          
+          export function mapStateToProps(state) {
+            return {
+              myFavorites: state.myFavorites,
+              idUser: state.idUser,
+            };
+          }
+          
+          export default connect(mapStateToProps)(Favorites);
