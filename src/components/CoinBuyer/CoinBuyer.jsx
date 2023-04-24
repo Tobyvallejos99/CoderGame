@@ -48,7 +48,9 @@ const CheckoutForm = () =>{
                     navigate('/canceled');
                 }
                 //element.getElement(CardElement).clear();
-                navigate('/success');
+                else {
+                    navigate('/success');
+                }
 
             } catch (error) {
                 navigate('/canceled');
