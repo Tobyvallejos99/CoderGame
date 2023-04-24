@@ -39,10 +39,12 @@ const CheckoutForm = () =>{
                 {
                     id,
                     amount: input * 100, //cent
-                    idUser: user.sub
+                    user
                 }
                 );
+                
                 console.log(data)
+                console.log(user.sub)
                 if(!data.success){
                     navigate('/canceled');
                 }

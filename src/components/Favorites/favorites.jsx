@@ -14,6 +14,7 @@ function Favorites(props) {
     const [total, setTotal] = useState(0)
 
     const { user, isAuthenticated } = useAuth0();
+
     useEffect(()=>{
         const getFav = async ()=>{
             console.log(user.sub)
@@ -25,7 +26,7 @@ function Favorites(props) {
         }
         getFav()
         
-        
+
     },[user,total])
 
         const handleSubmit = async () => {
@@ -58,15 +59,14 @@ function Favorites(props) {
         <button className="btn btn-danger" onClick={handleSubmit}>
           Confirm Cart
         </button>
-        <button className="btn btn-danger" onClick={handledelete}>
+        {/* <button className="btn btn-danger" onClick={handledelete}>
           delete
-        </button>
+        </button> */}
       </div>
-    </div>
-  );
-}
+      );
+            }
 
-export function mapStateToProps(state) {
+ export function mapStateToProps(state) {
   return {
     myFavorites: state.myFavorites,
     idUser: state.idUser,

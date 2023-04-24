@@ -87,7 +87,7 @@ export const searchVideogames = (value) => {
 
 export const postUser = (payload, token) => {
   return async (dispatch) => {
-    const info = await axios.post("http://localhost:3001/user", payload, token);
+    const info = await axios.post("http://localhost:3001/user/register", payload, token);
     console.log(info);
     return info;
   };
