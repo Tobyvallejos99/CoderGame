@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const stripePromise = loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8')
 
@@ -16,7 +17,7 @@ const CheckoutForm = () =>{
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState(0);
-    const user = useSelector((state) => state.sub);
+    const {user} = useAuth0()
     const handleChange = (e) => {
         setInput(e.target.value);
     }
@@ -38,7 +39,7 @@ const CheckoutForm = () =>{
                 {
                     id,
                     amount: input * 100, //cent
-                    idUser: user
+                    idUser: user.sub
                 }
                 );
                 console.log(data)
