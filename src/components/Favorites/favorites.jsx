@@ -3,27 +3,49 @@ import Card from '../Card/card';
 import Navbar from '../NavBar/NavBar'
 import style from './favorites.module.css'
 import axios from 'axios';
-import { async } from "q";
-import { useSelector } from "react-redux";
+// import { async } from "q";
+import { useEffect, useState } from "react"
 
-    function Favorites(props) {
-        const user = useSelector((state) => state.idUser)
-        console.log(props.myFavorites)
+import { useAuth0 } from "@auth0/auth0-react";
+
+function Favorites(props) {
+    const [arrFav, setArrFav] = useState([]) 
+    const [balance, setBalance] = useState(0)
+    const [total, setTotal] = useState(0)
+
+    const { user, isAuthenticated } = useAuth0();
+    useEffect(()=>{
+        const getFav = async ()=>{
+            console.log(user.sub)
+            const fav = await axios.get(`http://localhost:3001/user/favorites/${user.sub}`)
+            setArrFav(fav.data.listFavorites)
+            setBalance(fav.data.balance.balance)
+            setTotal(fav.data.total)
+            return fav
+        }
+        getFav()
+        
+        
+    },[user,total])
+
         const handleSubmit = async () => {
-            await axios.post ('/user/favorites', { idVideogame: props.id, user })
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            const idVideogames = arrFav.map(fav =>fav.id)
+            console.log(idVideogames)
+            try {
+                const response = await axios.post ('http://localhost:3001/checkout/buy', { idVideogame: idVideogames, idUser:user.sub })
+                window.alert(response.data)
+                setArrFav([])
+            } catch (error) {
+                window.alert(error.response.data)
+            }
+            
             };
 
         return (
         <div className={style.fondo2}>
             <Navbar />
             <p></p>
-            {props.myFavorites.map((elem) => (
+            {arrFav.map((elem) => (
             <Card
             name={elem.name}
             released={elem.released}
