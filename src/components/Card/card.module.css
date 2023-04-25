@@ -26,7 +26,7 @@
     color: rgb(197, 191, 183);
     overflow: hidden;
     border: 1px solid black;
-    height: 150px;
+    height: 115px;
     width: 83%;
   }
   
@@ -36,10 +36,37 @@
     background-color: #000000;
   }
   
-  .title {
-    font-size: 15px;
-    margin: 0;
+  .title_container {
+    max-width: 500px; /* ancho máximo */
+    margin: 0 auto; /* centrar horizontalmente */
+    background-color: #575555; /* color de fondo de la caja */
+ 
+    border: 1px solid #c40b0b; /* agregar un borde */
+    border-radius: 10px; /* agregar esquinas redondeadas */
   }
+  
+  .title {
+    font-size: 18px;
+    margin: 0; /* quitar margen para el título */
+    font-family: 'Comic Sans MS';
+    box-shadow: 0 8px 32px 0 rgba(189, 4, 4, 0.37);
+    text-align:center;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+  }
+
+  .price{
+    font-size: 18px;
+    margin: 0; /* quitar margen para el título */
+    font-family: 'Comic Sans MS';
+    box-shadow: 0 8px 32px 0 rgba(189, 4, 4, 0.37);
+    text-align:center;
+    margin-top: 10px;
+    border: 1px solid #c40b0b; /* agregar un borde */
+    border-radius: 10px; /* agregar esquinas redondeadas */
+  
+  }
+  
   
   .containerizquierda {
     float: left;
@@ -59,7 +86,7 @@
     color: aliceblue;
     float: right;
     width: 80px;
-    margin-right: 10px;
+    margin:auto;
     border-radius: 20%;
     padding: auto;
     border: 0;
