@@ -34,9 +34,7 @@ const validation = (input) => {
   if (!input.price) errors.price = "required space";
   else if (Number(input.price) < 0)
     errors.price = "Price can not be lower than 0";
-  else if (Number(input.price) > 100)
-    errors.price = "Price can not be higher than 100";
-
+ 
   if (!input.gameLink || input.gameLink.length === 0)
     errors.gameLink = "required space";
 
@@ -169,11 +167,17 @@ const FormGames = () => {
       platforms: input.platforms.filter((cont) => cont !== e),
     });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    const today = new Date();
+    const releaseDate = new Date(input.released);
+     
     if (
+      (releaseDate > today) ||
+      input.price < 1||
       !input.name ||
       !input.released ||
       !input.platforms ||
