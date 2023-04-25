@@ -40,6 +40,7 @@ function CoinBuyer() {
       <div className={style.container}>
         <div>
           <h3>Ingrese la cantidad deseada de CoderCoins a comprar</h3>
+          <p>Ingresar una cantidad mayor a 10</p>
           <input type="text" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
           <p>coins</p>
           <p>Su total es de : {input} USD</p>
