@@ -19,9 +19,11 @@ function CoinBuyer() {
     const [stripePromise, setStripePromise] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
     const [input, setInput] = useState(0);
+    const [inputError, setInputError] = useState(true) 
 
     const handleChange = (e) => {
       setInput(e.target.value);
+      input > 0 ? setInputError(false) : setInputError(true)
       }
 
     useEffect(() => {
@@ -41,7 +43,7 @@ function CoinBuyer() {
           <input type="text" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
           <p>coins</p>
           <p>Su total es de : {input} USD</p>
-          <button onClick={handleClick}>Confirmar</button>
+          <button disabled={inputError} className={style.btn} onClick={handleClick}>Confirmar</button>
         </div>
         {clientSecret && stripePromise  && (
           <Elements stripe={stripePromise} options={{ clientSecret }} >

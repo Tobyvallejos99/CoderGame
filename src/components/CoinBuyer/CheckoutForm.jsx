@@ -1,7 +1,8 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
-import style from './CheckoutForm.module.css';
+import style from './CheckoutForm.module.css'
+
 import axios from "axios";
 
  const CheckoutForm = (props) => {
@@ -45,9 +46,9 @@ import axios from "axios";
   };
 
   return (
-    <form className={style.container} id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isProcessing || !stripe || !elements} id="submit">
+      <button className={style.btn} disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>
