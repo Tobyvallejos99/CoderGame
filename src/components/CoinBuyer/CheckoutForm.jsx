@@ -41,7 +41,6 @@ import { useNavigate } from "react-router-dom";
 
     setIsProcessing(false);
     
-    //axios.post('http://localhost:3001/checkout/cargaCoins',{input, user})
   };
 
   return (

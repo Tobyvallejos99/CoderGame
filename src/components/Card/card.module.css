@@ -89,7 +89,7 @@
     margin:auto;
     border-radius: 20%;
     padding: auto;
-    border: 0;
+    margin-right: 3%;
   }
   
   @media screen and (max-width: 768px) {
