@@ -40,10 +40,10 @@ ReactDOM.render(
 //       <Auth0Provider
 //         domain="dev-5j3qqtfths0frdeu.us.auth0.com"
 //         clientId="5gO8jG2KYeQZzcwSNYWbHVPqwayBvG3f"
+
 //         authorizationParams={{
 //           redirect_uri: window.location.origin,
 //         }}
-//         scope="openid,name,email,roles"
 //       >
 //         <App />
 //       </Auth0Provider>
