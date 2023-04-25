@@ -4,15 +4,9 @@ import style from './CoinBuyer.module.css';
 import { loadStripe } from "@stripe/stripe-js";
 import {  Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
-import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import CheckoutForm from "./CheckoutForm";
 import { useEffect } from "react";
-
-
-
 
 function CoinBuyer() {
     const {user} = useAuth0()
@@ -27,13 +21,15 @@ function CoinBuyer() {
       }
 
     useEffect(() => {
-        setStripePromise(loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8'));
+        setStripePromise(loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8'));    
       }, []);
   
     const handleClick = async (e) => {
       e.preventDefault();
       const {data} = await axios.post("http://localhost:3001/checkout", {input})
         setClientSecret(data.clientSecret);
+        console.log(input, user, 'hola')
+        axios.post('http://localhost:3001/checkout/cargacoins', {input, user})  
     }
   
     return (
@@ -48,7 +44,7 @@ function CoinBuyer() {
         </div>
         {clientSecret && stripePromise  && (
           <Elements stripe={stripePromise} options={{ clientSecret }} >
-            <CheckoutForm input={input} user={user} />
+            <CheckoutForm />
           </Elements>
         )}
       </div>

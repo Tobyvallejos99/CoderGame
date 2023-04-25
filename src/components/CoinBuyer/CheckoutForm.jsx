@@ -2,12 +2,12 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import style from './CheckoutForm.module.css'
-
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
  const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -28,9 +28,10 @@ import axios from "axios";
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000/success',
+        return_url: '/success',
       },
     });
+    navigate('/success')
 
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
