@@ -5,7 +5,7 @@ import style from './CheckoutForm.module.css'
 
 import axios from "axios";
 
- const CheckoutForm = (props) => {
+ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -15,8 +15,6 @@ import axios from "axios";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const input = props.input;
-    const user = props.user;
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -42,7 +40,7 @@ import axios from "axios";
 
     setIsProcessing(false);
     
-    axios.post('http://localhost:3001/checkout/cargaCoins',{input, user})
+    //axios.post('http://localhost:3001/checkout/cargaCoins',{input, user})
   };
 
   return (
