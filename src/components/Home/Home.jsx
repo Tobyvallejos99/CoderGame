@@ -21,7 +21,7 @@ const Home = () => {
   for(let i = 0; i < 5; i++){
     selectedGames.push(games[Math.floor(Math.random() * games.length)])
   }
-  const maped = selectedGames.map((el)=>{return{ id:el.id, image:el.image}});
+  const maped = selectedGames?.map((el)=>{return{ id:el?.id, image:el?.image}});
 
   useEffect(() => {
     if (isAuthenticated) {
