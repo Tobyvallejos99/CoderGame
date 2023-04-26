@@ -180,8 +180,12 @@ const FormGames = () => {
     const today = new Date();
     const releaseDate = new Date(input.released);
 
-     
     if (
+      existingGame.length
+    ){
+      return alert ("Name already exist, please choose a different one.")
+    } else if (
+
       existingGame.length ||      
       (releaseDate > today) ||
       input.price < 1||
