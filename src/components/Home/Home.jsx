@@ -3,7 +3,7 @@ import React from "react";
 import Slider from "../Slider/Slider";
 import NavBar from "../NavBar/NavBar";
 import style from "../Home/cards.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "../../Redux/actions/actions";
 import { useEffect,useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -15,6 +15,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
+  const games = useSelector((state) => state.allVideogames);
+  const selectedGames = [];
+  for(let i = 0; i < 5; i++){
+    selectedGames.push(games[Math.floor(Math.random() * games.length)])
+  }
+  const maped = selectedGames.map((el)=>{return{ id:el.id, image:el.image}});
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -117,7 +124,7 @@ const Home = () => {
         <div class="row">
           <div class="text-center">
             <div className="btn btn-secondary ">
-              <Slider />
+              <Slider maped={maped}/>
             </div>
           </div>
           <p />
