@@ -223,14 +223,16 @@ export default function reducer(state = initialState, action) {
         }
       }
     case FILTER_BY_GENRE:
-      if (state.toFilterByVideogames.length) {
+      if (state.allVideogames.length) {
         const copyToFilterByGenre = [
-          ...state.toFilterByGenre.filter((videogame) => {
+          ...state.allVideogames.filter((videogame) => {
             return videogame.Genregames.some(
               (obj) => obj.name === action.payload
+              
             );
           }),
         ];
+        console.log(copyToFilterByGenre)
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
