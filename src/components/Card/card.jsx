@@ -6,6 +6,8 @@ import { addFav, deleteFav } from "../../Redux/actions/actions";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../LoginLogout/Login";
+
+
 function Card({
   name,
   image,
@@ -27,7 +29,6 @@ function Card({
     if (isfav) {
       setIsFav(false);
       deleteFav(id);
-
       try {
         await axios.delete("http://localhost:3001/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
