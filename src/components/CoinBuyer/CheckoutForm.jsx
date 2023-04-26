@@ -1,12 +1,13 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
-import style from './CheckoutForm.module.css';
-import axios from "axios";
+import style from './CheckoutForm.module.css'
+import { useNavigate } from "react-router-dom";
 
- const CheckoutForm = (props) => {
+ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -14,8 +15,6 @@ import axios from "axios";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const input = props.input;
-    const user = props.user;
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -29,9 +28,10 @@ import axios from "axios";
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000/success',
+        return_url: '/success',
       },
     });
+    navigate('/success')
 
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
@@ -41,13 +41,12 @@ import axios from "axios";
 
     setIsProcessing(false);
     
-    axios.post('http://localhost:3001/checkout/cargaCoins',{input, user})
   };
 
   return (
-    <form className={style.container} id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isProcessing || !stripe || !elements} id="submit">
+      <button className={style.btn} disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/actions/actions";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import CartBtn from "../CartBtn/CartBtn";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Home = () => {
   return (
     <div>
       <NavBar />
+      <CartBtn />
       <p />
       <p />
       <div className="container">
