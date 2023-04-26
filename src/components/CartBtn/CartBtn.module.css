@@ -1,10 +1,14 @@
 .container {
     border: 3px solid red;
-    position: absolute;
+    position: fixed;
     right: 10%;
     bottom: 10%;
     padding: 1%;
+    background-color: transparent;
     border-radius: 50%;
+    animation-name: saltar;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
 }
 
 .icon {
@@ -20,4 +24,10 @@
     right: 1px;
     top: 0;
     font-size: 1rem;
+}
+
+@keyframes saltar {
+    0%{ scale: 1;}
+    50%{ scale: 1.5;}
+    100%{ scale: .9;}
 }
