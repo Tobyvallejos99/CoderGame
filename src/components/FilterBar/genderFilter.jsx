@@ -5,10 +5,12 @@ import { getGenres, filterByGenre, setPage } from "../../Redux/actions/actions";
 const GenderFilter = () => {
     const dispatch = useDispatch();    
     const allGenres = useSelector((state) => state.allGenres);
+    //console.log(allGenres)
 
     useEffect(()=>{
         if(!allGenres.length) {
-            dispatch(getGenres());            
+            dispatch(getGenres());
+            //console.log(allGenres)
         }
     }, []);
 

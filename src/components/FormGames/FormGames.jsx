@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postGame, getGenres } from "../../Redux/actions/actions";
+import { postGame, getGenres, getVideogames } from "../../Redux/actions/actions";
 import NavBar from "../NavBar/NavBar";
 import style from "../FormGames/FormGames.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -34,14 +34,13 @@ const validation = (input) => {
   if (!input.price) errors.price = "required space";
   else if (Number(input.price) < 0)
     errors.price = "Price can not be lower than 0";
-  else if (Number(input.price) > 100)
-    errors.price = "Price can not be higher than 100";
-
+ 
   if (!input.gameLink || input.gameLink.length === 0)
     errors.gameLink = "required space";
 
   return errors;
 };
+
 
 const FormGames = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -81,7 +80,8 @@ const FormGames = () => {
     gameLink: "",
     // insertGame: "",
   });
-
+  
+ 
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
@@ -169,10 +169,26 @@ const FormGames = () => {
       platforms: input.platforms.filter((cont) => cont !== e),
     });
   };
-
+  
+  const games = useSelector((state) => state.allVideogames);
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
+    
+    const existingGame = games.filter ((e) => (e.name == input.name));
+    console.log (existingGame);
+
+    const today = new Date();
+    const releaseDate = new Date(input.released);
+
     if (
+      existingGame.length
+    ){
+      return alert ("Name already exist, please choose a different one.")
+    } else if (
+
+      existingGame.length ||      
+      (releaseDate > today) ||
+      input.price < 1||
       !input.name ||
       !input.released ||
       !input.platforms ||
