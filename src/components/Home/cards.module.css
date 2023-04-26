@@ -1,5 +1,5 @@
 .Cards__Container {
-    color: white;
+    color: rgb(141, 135, 135);
 }
 
 .Filter__Container {
@@ -49,7 +49,7 @@
     padding: 1.5rem;
     border-radius: 1rem;
     background-image: url(https://static.vecteezy.com/system/resources/thumbnails/003/220/114/small/gaming-abstract-background-video.jpg);
-    background-color: #000000;
+    background-color: #5f0505;
     background-position: center;
     box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -59,3 +59,10 @@
     width: auto;
     height: auto;
 }
+
+.chatbot {
+    position: sticky;
+    bottom: 0%;
+    right: 100%;
+    
+  }
