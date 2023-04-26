@@ -36,15 +36,10 @@ export default function NavBar() {
             <></>
           )}
 
-        {isAuthenticated ? (
-            <>
           <Link to={"/favorites"} className="btn btn-outline-danger">
             🛒
           </Link>
-          </>
-          ) : (
-            <></>
-          )}
+
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
           </Link> */}
