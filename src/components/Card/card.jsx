@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import style from "../Card/card.module.css";
 import { connect, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../../Redux/actions/actions";

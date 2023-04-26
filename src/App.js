@@ -12,7 +12,7 @@ import SuccessBuy from "./components/Success/SuccessBuy";
 import CanceledBuy from "./components/Canceled/CanceledBuy";
 import Favorites from "./components/Favorites/favorites";
 import VideoGames from "./components/VideoGames/videogames";
-import Aux from "./components/LoginLogout/Aux";
+import Auxi from "./components/LoginLogout/Auxi";
 
 
 function App() {
@@ -36,7 +36,9 @@ function App() {
 
         <Route path="/videogames" element={<VideoGames />} />
 
-        <Route path="/login" element={<Aux />} />
+
+        <Route path="/login" element={<Auxi />} />
+
       </Routes>
     </div>
   </ShoppingCartProvider>  
