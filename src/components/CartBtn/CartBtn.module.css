@@ -1,0 +1,23 @@
+.container {
+    border: 3px solid red;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    padding: 1%;
+    border-radius: 50%;
+}
+
+.icon {
+    width: 80px;
+}
+
+.cont {
+    position: absolute;
+    background-color: #B40E42;
+    color: white;
+    padding: 14%;
+    border-radius: 50%;
+    right: 1px;
+    top: 0;
+    font-size: 1rem;
+}
