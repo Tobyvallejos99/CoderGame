@@ -89,9 +89,10 @@ function Favorites(props) {
             </Link>
           )
         ) : (
-          <>
+          <div className={style.conditionalDiv}>
+            <h4>Para continuar debes loguearte</h4>
             <Login />
-          </>
+          </div>
         )}
         <p></p>
         {/* <button className="btn btn-danger" onClick={handledelete}>
