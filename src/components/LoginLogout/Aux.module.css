@@ -1,0 +1,15 @@
+.container {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: fit-content;
+    margin-left: 33%;
+}
+
+.secondLine, .thirdLine {
+    display: flex;
+    justify-content: center;
+}
+
+

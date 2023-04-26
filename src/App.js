@@ -36,7 +36,9 @@ function App() {
 
         <Route path="/videogames" element={<VideoGames />} />
 
+
         <Route path="/login" element={<Auxi />} />
+
       </Routes>
     </div>
   </ShoppingCartProvider>  
