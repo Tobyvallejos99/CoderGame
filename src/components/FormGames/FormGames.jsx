@@ -172,7 +172,6 @@ const FormGames = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (
       !input.name ||
       !input.released ||
@@ -198,21 +197,19 @@ const FormGames = () => {
     );
     const data = await response.json();
     const imageUrl = data.secure_url;
-      
+
     dispatch(
-      postGame(
-        {
-          name: input.name,
-          released: input.released,
-          platforms: input.platforms,
-          description: input.description,
-          genres: input.genres,
-          image: imageUrl,
-          price: input.price,
-          gameLink: input.gameLink,
-        },
-        token
-      )
+      postGame({
+        name: input.name,
+        released: input.released,
+        platforms: input.platforms,
+        description: input.description,
+        genres: input.genres,
+        image: imageUrl,
+        price: input.price,
+        gameLink: input.gameLink,
+        user,
+      })
     );
 
     alert("The game has been created");
