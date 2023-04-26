@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "../Card/card.module.css";
 import { connect, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../../Redux/actions/actions";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../LoginLogout/Login";
+
 function Card({
   name,
   image,
@@ -21,13 +22,14 @@ function Card({
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const [isfav, setIsFav] = useState(false);
+  const navigate = useNavigate();
   // const user = useSelector((state) => state.userId)
 
   const handleFavorite = async () => {
+    if(!isAuthenticated){navigate('/login')}
     if (isfav) {
       setIsFav(false);
       deleteFav(id);
-
       try {
         await axios.delete("http://localhost:3001/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
