@@ -1,6 +1,7 @@
 import axios from "axios";
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_GENRES = "GET_GENRES";
+export const GET_PLATFORMS = "GET_PLATFORMS";
 export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
@@ -42,6 +43,17 @@ export const getGameByName = (payload) => {
 
 export const resetVideogames = () => {
   return { type: RESET_VIDEOGAMES };
+};
+
+export const getPlatforms = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:3001/platforms");
+      dispatch({ type: GET_PLATFORMS, payload: response.data });
+    } catch (error) {
+      return window.alert("No se pudo hacer el pedido de plataformas al servidor");
+    }
+  };
 };
 
 export const getGenres = () => {

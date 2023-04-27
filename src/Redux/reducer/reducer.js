@@ -1,6 +1,7 @@
 import {
   GET_VIDEOGAMES,
   GET_GENRES,
+  GET_PLATFORMS,
   FILTER_VIDEOGAMES,
   FILTER_BY_GENRE,
   SEARCH_VIDEOGAMES,
@@ -22,6 +23,7 @@ import {
 const initialState = {
   allVideogames: [],
   allGenres: [],
+  allPlatforms:[],
   myFavorites:[],
   renderedVideogames: [],
   toFilterByVideogames: [],
@@ -113,6 +115,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         allGenres: [...action.payload],
+      };
+
+      case GET_PLATFORMS:
+      return {
+        ...state,
+        allPlatforms: [...action.payload],
       };
 
     case ORDER_RATING:
