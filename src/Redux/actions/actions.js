@@ -19,6 +19,9 @@ export const LOGUIN_USER = "LOGUIN_USER";
 export const ADD_FAV = "ADD_FAV";
 export const DELETE_FAV = "DELETE_FAV";
 
+export const ADD_COMMENT = "ADD_COMMENT";
+
+
 export const getVideogames = () => {
   return async (dispatch) => {
     try {
@@ -30,6 +33,13 @@ export const getVideogames = () => {
         "No se pudo hacer el pedido de videojuegos al servidor"
       );
     }
+  };
+};
+
+export const addComment = (comment) => {
+  return {
+    type: ADD_COMMENT,
+    payload: comment,
   };
 };
 

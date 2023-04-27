@@ -14,7 +14,8 @@ import {
   SET_PAGE,
   ADD_FAV,
   DELETE_FAV,
-  POST_USER
+  POST_USER,
+  ADD_COMMENT
 
 
 } from "../actions/actions";
@@ -28,6 +29,7 @@ const initialState = {
   toFilterByGenre: [],
   page: 1,
   userId: {},
+  comments: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -282,6 +284,12 @@ export default function reducer(state = initialState, action) {
         userId: action.payload,
       };
 
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
+
     default:
       return { ...state };
     case CREATE_GAME:
@@ -289,4 +297,6 @@ export default function reducer(state = initialState, action) {
         ...state,
       };
   }
+
+  
 }

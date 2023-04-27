@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import style from './detail.module.css'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
+import Comments from "../Comments/comments";
 
 export default function Detail() {
 const params = useParams();
@@ -80,6 +81,9 @@ return (
         </div>
         </div>
     </div>
+    </div>
+    <div className={style.container}>
+      <Comments/>
     </div>
     </div>
 );
