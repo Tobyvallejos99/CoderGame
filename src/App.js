@@ -12,6 +12,7 @@ import SuccessBuy from "./components/Success/SuccessBuy";
 import CanceledBuy from "./components/Canceled/CanceledBuy";
 import Favorites from "./components/Favorites/favorites";
 import VideoGames from "./components/VideoGames/videogames";
+import DashBoard from "./components/DashBoard/DashBoard";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
 
           <Route path="/videogames" element={<VideoGames />} />
+
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </div>
     </ShoppingCartProvider>
