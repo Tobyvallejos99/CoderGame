@@ -14,6 +14,7 @@ const DashBoard = () => {
       {/* <SellerDashBoard /> */}
       {/* <UserDashBoard /> */}
       <AdminDashBoard />
+      <UserDashBoard />
     </div>
   );
 };
