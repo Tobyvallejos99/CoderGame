@@ -13,7 +13,8 @@ const DashBoard = () => {
             aqui traer una dhasboard segun tu userRol */}
       {/* <SellerDashBoard /> */}
       {/* <UserDashBoard /> */}
-      <AdminDashBoard />
+
+      <UserDashBoard />
     </div>
   );
 };

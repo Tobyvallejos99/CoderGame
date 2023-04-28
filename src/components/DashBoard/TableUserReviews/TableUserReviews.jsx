@@ -11,6 +11,10 @@ import {
   Badge,
 } from "@tremor/react";
 import card from "../../Card/card";
+import { getVideogames } from "../../../Redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
 const data = [
   {
     id: 1,
@@ -35,6 +39,13 @@ const data = [
   },
 ];
 const TableUserReviews = () => {
+  const dispatch = useDispatch();
+  const gamee = useSelector((state) => state.renderedVideogames);
+
+  useEffect(() => {
+    dispatch(getVideogames());
+  }, [dispatch]);
+
   return (
     <Card>
       <Title> My Reviews </Title>
@@ -48,11 +59,14 @@ const TableUserReviews = () => {
         </TableHead>
 
         <TableBody>
-          {data.map((game) => (
+          {gamee.map((game) => (
             <TableRow>
-              <TableCell>{game.gameName}</TableCell>
-              <TableCell>{game.image}</TableCell>
-              <TableCell>{game.review} </TableCell>
+              <TableCell>{game.name}</TableCell>
+              <TableCell>
+                {" "}
+                <img src={game.image} alt="F" />
+              </TableCell>
+              <TableCell>{game.description} </TableCell>
             </TableRow>
           ))}
         </TableBody>
