@@ -1,7 +1,6 @@
 import { TabList, Tab, Card, Text, Callout } from "@tremor/react";
   
   import style from './GamesComment.module.css';
-  import { useState } from "react";
   
   const data = [
     {
