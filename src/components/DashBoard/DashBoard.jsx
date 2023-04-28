@@ -11,8 +11,8 @@ const DashBoard = () => {
       <Title className={style.title}>Dashboard</Title>
       {/* aqui va la card profile
             aqui traer una dhasboard segun tu userRol */}
-      {/* <SellerDashBoard />
-      <UserDashBoard /> */}
+      {/* <SellerDashBoard /> */}
+      {/* <UserDashBoard /> */}
       <AdminDashBoard />
     </div>
   );

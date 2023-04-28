@@ -15,6 +15,7 @@ import {
     SelectBoxItem,
   } from "@tremor/react";
 import { Link } from 'react-router-dom';
+import trash from './iconmonstr-trash-can-29.svg'
   
   const data = [
     {
@@ -52,13 +53,14 @@ import { Link } from 'react-router-dom';
       <Table >
         <TableHead>
           <TableRow>
-            <TableHeaderCell>ID</TableHeaderCell>
-            <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>Rol</TableHeaderCell>
-            <TableHeaderCell>Buys</TableHeaderCell>
-            <TableHeaderCell>Sells</TableHeaderCell>
-            <TableHeaderCell>Banned</TableHeaderCell>
-            <TableHeaderCell>Profile</TableHeaderCell>
+            <TableHeaderCell >ID</TableHeaderCell>
+            <TableHeaderCell >Name</TableHeaderCell>
+            <TableHeaderCell >Rol</TableHeaderCell>
+            <TableHeaderCell >Buys</TableHeaderCell>
+            <TableHeaderCell >Sells</TableHeaderCell>
+            <TableHeaderCell >Banned</TableHeaderCell>
+            <TableHeaderCell >Profile</TableHeaderCell>
+            <TableHeaderCell ><img src={trash} alt="F" /></TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -96,7 +98,9 @@ import { Link } from 'react-router-dom';
               <TableCell>
                 <Link to={'/user'+item.id}>Link</Link>
               </TableCell>
-              
+              <TableCell>
+                <button><img src={trash} alt="F" /></button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
