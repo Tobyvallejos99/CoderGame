@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CartBtn = () => {
-    const favoritos = useSelector((state) => state.myFavorites)
+    const favoritos = useSelector((state) => state.myFavorites);
     return(
-        <Link className={style.container}>
+        <Link to={"/favorites"} className={style.container}>
             <div className={style.cont}>
                 {favoritos.length}
             </div>

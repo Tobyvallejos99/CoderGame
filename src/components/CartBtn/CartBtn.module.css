@@ -9,7 +9,15 @@
     animation-name: saltar;
     animation-duration: 5s;
     animation-iteration-count: infinite;
+    bottom: 0%;
+    right: 18%;
+    transform: translateX(50%);
 }
+
+.container:hover{
+    background-color: rgb(73, 72, 72);
+}
+
 
 .icon {
     width: 80px;
