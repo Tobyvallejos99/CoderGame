@@ -45,27 +45,6 @@ const validation = (input) => {
 
 const FormGames = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const res = await getAccessTokenSilently();
-        setToken(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getToken();
-  }, [getAccessTokenSilently]);
-
-  console.log("JWT:", token);
-  console.log(user);
-  const role = user?.idTokenPayload?.role;
-  if (role) {
-    console.log(role);
-  }
 
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.allGenres);
@@ -156,8 +135,9 @@ const FormGames = () => {
           image: imageUrl,
           price: input.price,
           gameLink: input.gameLink,
-        },
-        token
+          sub: user.sub,     
+        }
+        
       )
     );
 
