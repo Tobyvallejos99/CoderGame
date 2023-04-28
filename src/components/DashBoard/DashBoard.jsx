@@ -3,6 +3,7 @@ import style from "./DashBoard.module.css";
 import SellerDashBoard from "./SellerDashBoard";
 import UserDashBoard from "./UserDashBoard";
 import "@tremor/react";
+import AdminDashBoard from "./AdminDashBoard";
 
 const DashBoard = () => {
   return (
@@ -12,6 +13,7 @@ const DashBoard = () => {
             aqui traer una dhasboard segun tu userRol */}
       <SellerDashBoard />
       <UserDashBoard />
+      <AdminDashBoard />
     </div>
   );
 };
