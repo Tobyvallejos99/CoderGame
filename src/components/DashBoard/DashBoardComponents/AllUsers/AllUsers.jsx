@@ -11,84 +11,92 @@ import {
     TableCell,
     Text,
     Title,
-    Badge,
+    SelectBox,
+    SelectBoxItem,
   } from "@tremor/react";
+import { Link } from 'react-router-dom';
   
   const data = [
     {
+        id: 1,
       name: "Viola Amherd",
-      Role: "Federal Councillor",
-      departement:
-        "The Federal Department of Defence, Civil Protection and Sport (DDPS)",
-      status: "active",
+      rol: "user",
+      buys: 23,
+      sells: 0,
+      banned: 'false',
+      DashBoard: 'link'      
     },
     {
-      name: "Simonetta Sommaruga",
-      Role: "Federal Councillor",
-      departement:
-        "The Federal Department of the Environment, Transport, Energy and Communications (DETEC)",
-      status: "active",
+        id: 2,
+      name: "Viola Amherd",
+      rol: "user",
+      buys: 23,
+      sells: 0,
+      banned: 'false',
+      DashBoard: 'link'      
     },
     {
-      name: "Alain Berset",
-      Role: "Federal Councillor",
-      departement: "The Federal Department of Home Affairs (FDHA)",
-      status: "active",
-    },
-    {
-      name: "Ignazio Cassis",
-      Role: "Federal Councillor",
-      departement: "The Federal Department of Foreign Affairs (FDFA)",
-      status: "active",
-    },
-    {
-      name: "Ueli Maurer",
-      Role: "Federal Councillor",
-      departement: "The Federal Department of Finance (FDF)",
-      status: "active",
-    },
-    {
-      name: "Guy Parmelin",
-      Role: "Federal Councillor",
-      departement:
-        "The Federal Department of Economic Affairs, Education and Research (EAER)",
-      status: "active",
-    },
-    {
-      name: "Karin Keller-Sutter",
-      Role: "Federal Councillor",
-      departement: "The Federal Department of Justice and Police (FDJP)",
-      status: "active",
-    },
+        id: 3,
+      name: "Viola Amherd",
+      rol: "user",
+      buys: 23,
+      sells: 0,
+      banned: 'false',
+      DashBoard: 'link'      
+    }
   ];
   
   export default () => (
-    <Card>
-      <Title>List of Swiss Federal Councillours</Title>
-      <Table className="mt-5">
+    <Card className={style.container}>
+      <Title>All Users</Title>
+      <Table >
         <TableHead>
           <TableRow>
+            <TableHeaderCell>ID</TableHeaderCell>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>Position</TableHeaderCell>
-            <TableHeaderCell>Department</TableHeaderCell>
-            <TableHeaderCell>Status</TableHeaderCell>
+            <TableHeaderCell>Rol</TableHeaderCell>
+            <TableHeaderCell>Buys</TableHeaderCell>
+            <TableHeaderCell>Sells</TableHeaderCell>
+            <TableHeaderCell>Banned</TableHeaderCell>
+            <TableHeaderCell>Profile</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.name}>
-              <TableCell>{item.name}</TableCell>
+            <TableRow key={item.id}>
+              <TableCell>{item.id}</TableCell>
               <TableCell>
-                <Text>{item.Role}</Text>
+                <Text>{item.name}</Text>
               </TableCell>
               <TableCell>
-                <Text>{item.departement}</Text>
+                <SelectBox
+                onValueChange={(value) => item.rol = value.toLocaleLowerCase()}
+                defaultValue="1"
+                >
+                  <SelectBoxItem value="1" text="User" />
+                  <SelectBoxItem value="2" text="Seller"  />
+                  <SelectBoxItem value="3" text="Admin"  />
+                </SelectBox>
               </TableCell>
               <TableCell>
-                <Badge color="emerald" >
-                  {item.status}
-                </Badge>
+                <Text>{item.buys}</Text>
               </TableCell>
+              <TableCell>
+                <Text>{item.sells}</Text>
+              </TableCell>
+              <TableCell>
+              <SelectBox
+                onValueChange={(value) => item.banned = value.toLocaleLowerCase()}
+                defaultValue="1"
+                >
+                  <SelectBoxItem value="2" text="True" />
+                  <SelectBoxItem value="1" text="False"  />
+                </SelectBox>
+              </TableCell>
+              <TableCell>
+                <Link to={'/user'+item.id}>Link</Link>
+              </TableCell>
+              
             </TableRow>
           ))}
         </TableBody>
