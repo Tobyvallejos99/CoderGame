@@ -1,6 +1,7 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postGame, getGenres, getVideogames } from "../../Redux/actions/actions";
+import { postGame, getGenres, getPlatforms } from "../../Redux/actions/actions";
 import NavBar from "../NavBar/NavBar";
 import style from "../FormGames/FormGames.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -68,111 +69,39 @@ const FormGames = () => {
 
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.allGenres);
-  const [errors, setErrors] = useState({});
+  const allPlatforms = useSelector((state) => state.allPlatforms);
+  
+  const [button, setButton] = useState(true);
+  const [errors, setErrors] = useState({
+    name: "",
+    released: "",    
+    description: "",    
+    price: "",
+    gameLink: "",    
+  });
+
   const [input, setInput] = useState({
     name: "",
-    released: "",
-    platforms: [],
-    description: "",
-    genres: [],
-    imageFile: null,
+    released: "",    
+    description: "",    
     price: "",
-    gameLink: "",
-    // insertGame: "",
-  });
+    gameLink: "", 
+    imageFile: null,
+    genres: [],
+    platforms: [],
+})
   
  
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
 
-  const handleSelectGenres = (e) => {
-    setInput((input) => {
-      if (e.target.name === "genres") {
-        return {
-          ...input,
-          genres: [...input.genres, e.target.value],
-        };
-      } else {
-        return {
-          ...input,
-          [e.target.name]: e.target.value,
-        };
-      }
-    });
-    setErrors(
-      validation({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
-
-  const handleSelectPlatform = (e) => {
-    setInput((input) => {
-      if (e.target.name === "platforms") {
-        return {
-          ...input,
-          platforms: [...input.platforms, e.target.value],
-        };
-      } else {
-        return {
-          ...input,
-          [e.target.name]: e.target.value,
-        };
-      }
-    });
-    setErrors(
-      validation({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
-  const handleChange = (e) => {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-
-    setErrors(
-      validation({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
-
-  const handleImageChange = (e) => {
-    setInput((input) => ({
-      ...input,
-      imageFile: e.target.files[0],
-    }));
-    setErrors(
-      validation({
-        ...input,
-        [e.target.name]: e.target.files[0],
-      })
-    );
-  };
-
-  const handleDeleteGenres = (e) => {
-    setInput({
-      ...input,
-      genres: input.genres.filter((con) => con !== e),
-    });
-  };
-
-  const handleDeletePlatforms = (e) => {
-    setInput({
-      ...input,
-      platforms: input.platforms.filter((cont) => cont !== e),
-    });
-  };
+  useEffect(() => {
+    dispatch(getPlatforms());
+  }, [dispatch]);
   
   const games = useSelector((state) => state.allVideogames);
-  const handleSubmit = async (e) => {
-    e.preventDefault();    
+  useEffect(()=>{
     
     const existingGame = games.filter ((e) => (e.name == input.name));
     console.log (existingGame);
@@ -180,39 +109,41 @@ const FormGames = () => {
     const today = new Date();
     const releaseDate = new Date(input.released);
 
-    if (
-      existingGame.length
-    ){
-      return alert ("Name already exist, please choose a different one.")
-    } else if (
+    if (existingGame.length) return alert('Name already exist, please choose a different one')
 
-      existingGame.length ||      
-      (releaseDate > today) ||
-      input.price < 1||
-      !input.name ||
-      !input.released ||
-      !input.platforms ||
-      !input.description ||
-      !input.genres ||
-      !input.imageFile ||
-      !input.price ||
-      !input.gameLink
-    ) {
-      return alert("Complete the form correctly before submitting it");
-    }
+   else  if (      
+      releaseDate <= today &&
+      input.price >= 1 &&
+      input.name &&
+      input.released &&
+      input.platforms &&
+      input.description &&
+      input.genres &&
+      input.imageFile &&
+      input.price &&
+      input.gameLink
+    ) setButton (false)
+    else setButton (true)
+  }, [input, setButton]);
+
+
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
 
     const formData = new FormData();
-    formData.append("file", input.imageFile);
-    formData.append("upload_preset", "mrit7ruy");
-    const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dng2w6k2p/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    const data = await response.json();
-    const imageUrl = data.secure_url;
+  formData.append("file", input.imageFile);
+  formData.append("upload_preset", "mrit7ruy");
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dng2w6k2p/image/upload",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+  const data = await response.json();
+  const imageUrl = data.secure_url;
+   
       
     dispatch(
       postGame(
@@ -245,11 +176,68 @@ const FormGames = () => {
     });
   };
 
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors(validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      }))
+  }
+
+  const handleSelectGenres = (e) => {
+    setInput({
+      ...input,
+      genres: [...input.genres, e.target.value],
+    })
+  }
+
+  const handleDeleteGenres = (e) => {
+    setInput({
+      ...input,
+      genres: input.genres.filter((con) => con !== e),
+    })
+  };
+      
+
+  const handleSelectPlatform = (e) => {
+    setInput({
+      ...input,
+      platforms: [...input.platforms, e.target.value],
+        })
+      } 
+
+      const handleDeletePlatforms = (e) => {
+        setInput({
+          ...input,
+          platforms: input.platforms.filter((cont) => cont !== e),
+        });
+      }
+
+
+  const handleImageChange = (e) => {
+    setInput((input) => ({
+      ...input,
+      imageFile: e.target.files[0],
+    }));
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.files[0],
+      })
+    );
+  };
+
+  
+
   return (
     <div className={style.fondo2}>
       <NavBar />
       <div className={style.Box}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <img
             src="https://cdn.discordapp.com/attachments/509143549787504665/1097210824713580644/gamee.png "
             width="100px"
@@ -298,16 +286,14 @@ const FormGames = () => {
               }`}
               name="platforms"
               id="platform"
-              onChange={(e) => handleSelectPlatform(e)}
+              onChange={handleSelectPlatform}
             >
-              <option value="select"></option>
-              <option value="PlayStation5">PlayStation 5</option>
-              <option value="Xbox Series S/X">Xbox Series S/X</option>
-              <option value="PlayStation 4">PlayStation 4</option>
-              <option value="PC">PC</option>
-              <option value="Xbox One">Xbox One</option>
-              <option value="Xbox 360">Xbox 360</option>
-              <option value="PlayStation 3">PlayStation 3</option>
+              <option disabled selected></option>
+              {allPlatforms?.map((el) => (
+                <option key={el.id} value={el.name}>
+                  {el.name}
+                </option>
+              ))}
             </select>
             {errors.platforms && (
               <div className="invalid-feedback mb-2">{errors.platforms}</div>
@@ -346,9 +332,9 @@ const FormGames = () => {
               }`}
               name="genres"
               id="genres"
-              onChange={(e) => handleSelectGenres(e)}
+              onChange={handleSelectGenres}
             >
-              <option value="empty"></option>
+              <option disabled selected></option>
               {allGenres?.map((el) => (
                 <option key={el.id} value={el.name}>
                   {el.name}
@@ -405,9 +391,13 @@ const FormGames = () => {
           {/* {errors.insertGame && <p>{errors.insertGame}</p>} */}
           <hr />
 
-          <button className="btn btn-danger mx-auto d-block" type="submit">
+          <div>
+                        <button className="btn btn-danger mx-auto d-block" disabled={button} type="submit" input="input">Add Game</button>
+                    </div>
+
+          {/* <button className="btn btn-danger mx-auto d-block" type="submit">
             Add Game
-          </button>
+          </button> */}
         </form>
       </div>
     </div>
