@@ -1,46 +1,43 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
+import axios from 'axios';
 
-const Comments = ({ gameId }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+
+const Comments = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const { user, isAuthenticated } = useAuth0();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newComment = { name, email, comment };
+    const newComment = { comment, name: user.name, email: user.email };
+
     setComments([...comments, newComment]);
-    setName("");
-    setEmail("");
     setComment("");
+    try {
+      await axios.post('http://localhost:3001/videogames/comentario', user.sub, newComment );
+    } catch (error) {
+      console.error(error);
+    }
   };
+  console.log(user);
 
   return (
     <div>
-      <h3>Comments:</h3>
+      {/* <h3>Comments:</h3>
       <ul>
         {comments.map((comment, index) => (
           <li key={index}>
             <strong>{comment.name}</strong>: {comment.comment}
           </li>
         ))}
-      </ul>
+      </ul> */}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <label>Name: {user.name} </label>
         </div>
         <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <label>Email: {user.email}</label>
         </div>
         <div>
           <label>Comment:</label>

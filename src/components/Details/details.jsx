@@ -82,9 +82,6 @@ return (
         </div>
     </div>
     </div>
-    <div className={style.container}>
-      <Comments/>
-    </div>
     </div>
 );
 }
