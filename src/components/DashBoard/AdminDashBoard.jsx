@@ -1,10 +1,12 @@
-import { Card } from "@tremor/react"
-import AllUsers from "./DashBoardComponents/AllUsers/AllUsers"
+import { Card, Text, Title } from "@tremor/react";
+import AllGamesComments from "./DashBoardComponents/AllGamesComments/AllGamesComments";
+import AllUsers from "./DashBoardComponents/AllUsers/AllUsers";
 
 export default () => {
     return(
         <Card>
             <AllUsers />
+            <AllGamesComments />
         </Card>
     )
 }

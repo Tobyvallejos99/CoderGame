@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/createGame" element={<FormGames />} />
           <Route path="/game/:id" element={<Detail />} />
-          <Route path="/profile" element={<ProfileRender />} />
+          {/* <Route path="/profile" element={<ProfileRender />} /> */}
           {/* <Route path="/login" element={<LoginRender />} /> */}
 
           <Route path="/payment" element={<CoinBuyer />} />
@@ -35,7 +35,7 @@ function App() {
 
           <Route path="/videogames" element={<VideoGames />} />
 
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/profile" element={<DashBoard />} />
         </Routes>
       </div>
     </ShoppingCartProvider>
