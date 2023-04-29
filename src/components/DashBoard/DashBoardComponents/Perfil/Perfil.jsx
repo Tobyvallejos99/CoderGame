@@ -33,12 +33,13 @@ export default () => {
         e.preventDefault();
         const sub = user.sub;
         const update = {
+            sub: sub,
             image: input.image.length > 0 ? input.image : userInfo.profile.image,
             linkYoutube: input.linkYoutube.length > 0 ? input.linkYoutube : userInfo.profile.linkYoutube,
             description: input.description.length > 0 ? input.description : userInfo.profile.description
         }
         console.log(update, sub)
-        await axios.put(`http://localhost:3001/user/profile`, {sub, update});
+        await axios.put(`http://localhost:3001/user/profile`, update);
         setInput({
             image: '',
             linkYoutube: '',
