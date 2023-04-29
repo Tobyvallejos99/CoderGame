@@ -11,8 +11,6 @@ const params = useParams();
 const [videogame, setVideogame] = useState({});
 const comentario=videogame.ComentariosVs;
 
-console.log(comentario)
-
 
 useEffect(() => {
     axios
@@ -91,11 +89,12 @@ return (
 
     <div className={style.container}>
     {videogame.ComentariosVs?.map((comment) => (
-       <div key={comment.id}>
-    <p>{comment.message}</p>
-    <p>{comment.date}</p>
-    <p>{comment.name}</p>
-</div>
+    <div key={comment.id}>
+        <p className="btn btn-danger">Comments :</p>
+        <p>{comment.message}</p>
+        <p>{comment.date}</p>
+        <p>{comment.name}</p>
+    </div>
     ))}
 </div>
     </div>
