@@ -1,56 +1,49 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
-const Comments = ({ gameId }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+const Comments = ({ id }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  const handleSubmit = (e) => {
+  const { user, isAuthenticated } = useAuth0();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newComment = { name, email, comment };
-    setComments([...comments, newComment]);
-    setName("");
-    setEmail("");
-    setComment("");
+    try {
+      await axios.post(`http://localhost:3001/videogames/comentario`, {
+        sub: user.sub,
+        idVideogame: id,
+        comentario: comment
+      });
+      setComments([...comments, comment]);
+      setComment("");
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
+
 
   return (
     <div>
-      <h3>Comments:</h3>
-      <ul>
-        {comments.map((comment, index) => (
-          <li key={index}>
-            <strong>{comment.name}</strong>: {comment.comment}
-          </li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Comment:</label>
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      {isAuthenticated ? (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Comment:</label>
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <p>Please log in to leave a comment</p>
+      )}
+      {comments.map((c, i) => (
+        <div key={i}>{c}</div>
+      ))}
     </div>
   );
 };
