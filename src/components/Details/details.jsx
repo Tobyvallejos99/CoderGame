@@ -5,6 +5,7 @@ import style from './detail.module.css'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
 import Comments from "../Comments/comments";
+import CommentList from "../Comments/commentList";
 
 export default function Detail() {
 const params = useParams();
@@ -15,7 +16,6 @@ useEffect(() => {
     .get(`http://localhost:3001/videogames/${params.id}`)
     .then((response) => {
         setVideogame(response.data);
-        console.log(videogame)
     })
     .catch((err) => window.alert(`${err.message}`));
     // return () => {
@@ -81,6 +81,12 @@ return (
         </div>
         </div>
     </div>
+    </div>
+    <div className={style.container}>
+        <Comments id={params.id} />
+    </div>
+    <div className={style.container} >
+        <CommentList id={params.id} />
     </div>
     </div>
 );
