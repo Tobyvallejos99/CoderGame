@@ -8,7 +8,8 @@ import pencil from './edit.svg';
 
 export default () => {
     const {user} = useAuth0();
-    const [userInfo, setUserInfo] = useState(null)
+    const [userInfo, setUserInfo] = useState(null);
+    const [isActive, setIsActive] = useState(false);
 
     const editHandler = (e) => {
         e.preventDefault();
@@ -35,6 +36,7 @@ export default () => {
             <p>Coins Balance:</p>
             <Metric>{userInfo?.balance.balance} coins.</Metric>
             <p>Youtube link: <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button></p>
+            
             <Text>{userInfo?.profile.linkYoutube}</Text>
             <p>Description: <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button></p>
             <Text>{userInfo?.profile.description}</Text>
