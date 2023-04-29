@@ -4,7 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import style from './detail.module.css'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
-import Comments from "../Comments/comments";
+import Comments from "../Comments/comment";
 
 export default function Detail() {
 const params = useParams();
