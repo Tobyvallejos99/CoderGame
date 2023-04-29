@@ -10,6 +10,10 @@ export default () => {
     const {user} = useAuth0();
     const [userInfo, setUserInfo] = useState(null)
 
+    const editHandler = (e) => {
+        e.preventDefault();
+    }
+
     useEffect(() =>{
         const loadData = async () =>{
             const {data} = await axios(`http://localhost:3001/user/profile/bybalance/${user.sub}`);
@@ -30,9 +34,9 @@ export default () => {
             <h4>{user?.email}</h4>
             <p>Coins Balance:</p>
             <Metric>{userInfo?.balance.balance} coins.</Metric>
-            <p>Youtube link: <button><img className={style.pencil} src={pencil} alt="" /></button></p>
+            <p>Youtube link: <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button></p>
             <Text>{userInfo?.profile.linkYoutube}</Text>
-            <p>Description: <button><img className={style.pencil} src={pencil} alt="" /></button></p>
+            <p>Description: <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button></p>
             <Text>{userInfo?.profile.description}</Text>
         </Card>
     )
