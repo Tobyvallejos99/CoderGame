@@ -13,7 +13,7 @@ const Comments = ({ id }) => {
     try {
       await axios.post(`http://localhost:3001/videogames/comentario`, {
         sub: user.sub,
-        idVideogame: id,
+        idVideogame: parseInt(id),
         comentario: comment
       });
       setComments([...comments, comment]);
@@ -22,8 +22,6 @@ const Comments = ({ id }) => {
       console.error(error);
     }
   };
-  
-
 
   return (
     <div>
@@ -41,9 +39,7 @@ const Comments = ({ id }) => {
       ) : (
         <p>Please log in to leave a comment</p>
       )}
-      {comments.map((c, i) => (
-        <div key={i}>{c}</div>
-      ))}
+      
     </div>
   );
 };
