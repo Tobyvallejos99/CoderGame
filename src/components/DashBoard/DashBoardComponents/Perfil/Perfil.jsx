@@ -5,10 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import style from './Perfil.module.css';
 import pencil from './edit.svg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default () => {
     const {user} = useAuth0();
+    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState(null);
     const [isActive, setIsActive] = useState(false);
     const [input, setInput] = useState({
@@ -28,7 +29,7 @@ export default () => {
         e.preventDefault();
         isActive ? setIsActive(false) : setIsActive(true)
     }
-
+    
     const submitHandle = async (e) => {
         e.preventDefault();
         const sub = user.sub;
@@ -45,6 +46,9 @@ export default () => {
             linkYoutube: '',
             description: ''
         });
+        alert('Your change is done bro!!')
+        navigate('/')
+        
     }
 
     useEffect(() =>{
