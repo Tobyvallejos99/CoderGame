@@ -8,3 +8,7 @@
 .title {
     font-size: 3rem;
 }
+
+.lilBox {
+    display: flex;
+}
