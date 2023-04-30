@@ -15,7 +15,8 @@ export default () => {
     const [input, setInput] = useState({
         image: '',
         linkYoutube: '',
-        description: ''
+        description: '',
+        coverImage: ''
     });
 
     const handleChange = (e) => {
@@ -37,14 +38,16 @@ export default () => {
             sub: sub,
             image: input.image.length > 0 ? input.image : userInfo.profile.image,
             linkYoutube: input.linkYoutube.length > 0 ? input.linkYoutube : userInfo.profile.linkYoutube,
-            description: input.description.length > 0 ? input.description : userInfo.profile.description
+            description: input.description.length > 0 ? input.description : userInfo.profile.description,
+            coverImage: input.coverImage.length > 0 ? input.coverImage : userInfo.profile.coverImage
         }
         console.log(update, sub)
         await axios.put(`http://localhost:3001/user/profile`, update);
         setInput({
             image: '',
             linkYoutube: '',
-            description: ''
+            description: '',
+            coverImage: ''
         });
         alert('Your change is done bro!!')
         navigate('/')
@@ -71,6 +74,8 @@ export default () => {
                             <TextInput name="linkYoutube" value={input.linkYoutube} onChange={handleChange} placeholder="Text Here!!" />
                             <label> Descripcion:</label>
                             <TextInput name="description" value={input.description} onChange={handleChange} placeholder="Text Here!!" />
+                            <label> Cover Image:</label>
+                            <TextInput name="coverImage" value={input.coverImage} onChange={handleChange} placeholder="Text Here!!" />
                             <button>Confirm</button>
                         </form>}
             <h2>{user?.given_name} - ID: ({userInfo?.profile.id})</h2>
