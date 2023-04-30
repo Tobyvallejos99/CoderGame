@@ -44,10 +44,10 @@ const data = [
 const TableUserGames = () => {
   const dispatch = useDispatch();
   const allData = useSelector((state) => state.dataMasterUser);
-  console.log(allData);
+  console.log(allData, "jijijijijijijij");
   const { user, isAuthenticated } = useAuth0();
 
-  const userMaster = (user) => {
+  const userMaster = () => {
     return async (dispatch) => {
       try {
         console.log(user, "holaaaa");
@@ -55,19 +55,20 @@ const TableUserGames = () => {
           `http://localhost:3001/user/buyer/${user.sub}`
         );
 
-        console.log(response);
-        dispatch({ type: USER_MASTER, payload: response.data });
+        console.log(response, "dataTotal");
+        return dispatch({ type: USER_MASTER, payload: response.data });
       } catch (error) {
-        return window.alert(
-          "No se pudo hacer el pedido de videojuegos comprados  al servidor"
+        console.error(
+          "No se pudo hacer el pedido de videojuegos comprados  al servidor",
+          error
         );
       }
     };
   };
 
-  // useEffect(() => {
-  //   dispatch(userMaster());
-  // });
+  useEffect(() => {
+    dispatch(userMaster());
+  });
 
   return (
     <Card>

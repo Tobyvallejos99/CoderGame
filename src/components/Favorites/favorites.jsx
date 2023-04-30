@@ -90,8 +90,10 @@ function Favorites(props) {
           )
         ) : (
           <div className={style.conditionalDiv}>
-            <h4>Para continuar debes loguearte</h4>
-            <Login />
+            <Link>
+              {" "}
+              To complete purchase <Login />
+            </Link>
           </div>
         )}
         <p></p>

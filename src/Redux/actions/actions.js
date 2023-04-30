@@ -16,12 +16,11 @@ export const BUY_COIN = "BUY_COIN";
 export const POST_USER = "POST_USER";
 export const CREATE_USER = "CREARE_USER";
 export const LOGUIN_USER = "LOGUIN_USER";
-
+export const USER_MASTER = "USER_MASTER";
 export const ADD_FAV = "ADD_FAV";
 export const DELETE_FAV = "DELETE_FAV";
 
 export const ADD_COMMENT = "ADD_COMMENT";
-
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -61,7 +60,9 @@ export const getPlatforms = () => {
       const response = await axios.get("http://localhost:3001/platforms");
       dispatch({ type: GET_PLATFORMS, payload: response.data });
     } catch (error) {
-      return window.alert("No se pudo hacer el pedido de plataformas al servidor");
+      return window.alert(
+        "No se pudo hacer el pedido de plataformas al servidor"
+      );
     }
   };
 };
@@ -177,3 +178,20 @@ export const deleteFav = (id) => {
   return { type: DELETE_FAV, payload: id };
 };
 
+// export const userMaster = (value) => {
+//   return async (dispatch) => {
+//     try {
+//       console.log(value, "holaaaa");
+//       const response = await axios.get(
+//         `http://localhost:3001/user/buyer/${value}`
+//       );
+
+//       console.log(response);
+//       dispatch({ type: USER_MASTER, payload: response.data });
+//     } catch (error) {
+//       return window.alert(
+//         "No se pudo hacer el pedido de videojuegos  al servidor"
+//       );
+//     }
+//   };
+// };
