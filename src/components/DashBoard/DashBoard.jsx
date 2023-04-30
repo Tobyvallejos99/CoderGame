@@ -34,8 +34,8 @@ const DashBoard = () => {
               aqui traer una dhasboard segun tu userRol */}
         <Perfil />
         {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-        <AdminDashBoard/>
-        <SellerDashBoard />
+        {/* <AdminDashBoard/>
+        <SellerDashBoard /> */}
         <UserDashBoard/>
       </Card>
     </div>
