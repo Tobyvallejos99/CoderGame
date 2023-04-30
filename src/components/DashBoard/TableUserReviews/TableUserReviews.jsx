@@ -10,11 +10,12 @@ import {
   Title,
   Badge,
 } from "@tremor/react";
-
-import style from './TableUserReviews.module.css';
-import { getVideogames } from "../../../Redux/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import style from "./TableUserReviews.module.css";
 import { useEffect } from "react";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 const data = [
   {
     id: 1,
@@ -39,34 +40,45 @@ const data = [
   },
 ];
 const TableUserReviews = () => {
-  const dispatch = useDispatch();
-  const gamee = useSelector((state) => state.renderedVideogames);
+  const { user } = useAuth0();
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    dispatch(getVideogames());
-  }, [dispatch]);
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/buyer/${user.sub}`
+      );
+      setUserInfo(data);
+    };
+    loadData();
+  }, [user.sub]);
+
+  const commentsGame = userInfo?.comments || [];
 
   return (
     <Card className={style.container}>
-      <Title> My Reviews </Title>
+      <Title>
+        {" "}
+        <h1> My Reviews </h1>
+      </Title>
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell> gameName </TableHeaderCell>
-            <TableHeaderCell> image </TableHeaderCell>
+            <TableHeaderCell> Game </TableHeaderCell>
             <TableHeaderCell> review </TableHeaderCell>
+            <TableHeaderCell> delete </TableHeaderCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {gamee.map((game) => (
+          {commentsGame.map((game) => (
             <TableRow>
-              <TableCell>{game.name}</TableCell>
+              <TableCell>{game.Videogame.name}</TableCell>
+              <TableCell> {game.message}</TableCell>
               <TableCell>
                 {" "}
-                <img className={style.gameImg} src={game.image} alt="F" />
+                <Link to={game.deleted}> Delete</Link>{" "}
               </TableCell>
-              <TableCell>{game.description} </TableCell>
             </TableRow>
           ))}
         </TableBody>
