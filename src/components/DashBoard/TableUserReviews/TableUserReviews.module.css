@@ -1,0 +1,10 @@
+.container {
+    border: 1px solid black;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.gameImg {
+    width: 100%;
+}

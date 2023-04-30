@@ -7,10 +7,10 @@ import UserWalletCoins from "./UserWalletCoins/UserWalletCoins";
 const UserDashBoard = () => {
   return (
     <Card>
-      {/* <TableUserGames />
-      <TableUserReviews />
-      <UserWalletCoins /> */}
       <Perfil />
+      <TableUserGames />
+      <TableUserReviews />
+      <UserWalletCoins />
     </Card>
   );
 };

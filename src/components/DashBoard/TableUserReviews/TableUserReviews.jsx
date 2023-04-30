@@ -10,10 +10,10 @@ import {
   Title,
   Badge,
 } from "@tremor/react";
-import card from "../../Card/card";
+
+import style from './TableUserReviews.module.css';
 import { getVideogames } from "../../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { useEffect } from "react";
 const data = [
   {
@@ -47,7 +47,7 @@ const TableUserReviews = () => {
   }, [dispatch]);
 
   return (
-    <Card>
+    <Card className={style.container}>
       <Title> My Reviews </Title>
       <Table>
         <TableHead>
@@ -64,7 +64,7 @@ const TableUserReviews = () => {
               <TableCell>{game.name}</TableCell>
               <TableCell>
                 {" "}
-                <img src={game.image} alt="F" />
+                <img className={style.gameImg} src={game.image} alt="F" />
               </TableCell>
               <TableCell>{game.description} </TableCell>
             </TableRow>
