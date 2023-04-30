@@ -4,7 +4,7 @@ import SellerDashBoard from "./SellerDashBoard";
 import UserDashBoard from "./UserDashBoard";
 import "@tremor/react";
 import AdminDashBoard from "./AdminDashBoard";
-import NavBar from '../NavBar/NavBar'
+import NavBar from "../NavBar/NavBar";
 import Perfil from "./DashBoardComponents/Perfil/Perfil";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -13,17 +13,19 @@ import axios from "axios";
 
 const DashBoard = () => {
   const { user } = useAuth0();
-  const [ userInfo, setUserInfo] = useState(null)
-  
-  useEffect(() =>{
-    const loadData = async () =>{
-        const {data} = await axios(`http://localhost:3001/user/rol/${user.sub}`);
-        setUserInfo(data);
-    }
-    loadData();
-},[]);
+  const [userInfo, setUserInfo] = useState(null);
 
-  console.log(userInfo)
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/rol/${user.sub}`
+      );
+      setUserInfo(data);
+    };
+    loadData();
+  }, []);
+
+  console.log(userInfo);
 
   return (
     <div className={style.container}>
@@ -34,9 +36,9 @@ const DashBoard = () => {
               aqui traer una dhasboard segun tu userRol */}
         <Perfil />
         {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-        <AdminDashBoard/>
-        <SellerDashBoard />
-        <UserDashBoard/>
+        {/* <AdminDashBoard/> */}
+        {/* <SellerDashBoard /> */}
+        <UserDashBoard />
       </Card>
     </div>
   );
