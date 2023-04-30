@@ -16,22 +16,22 @@ import {
   ADD_FAV,
   DELETE_FAV,
   POST_USER,
-  ADD_COMMENT
-
-
+  ADD_COMMENT,
+  USER_MASTER,
 } from "../actions/actions";
 
 const initialState = {
   allVideogames: [],
   allGenres: [],
-  allPlatforms:[],
-  myFavorites:[],
+  allPlatforms: [],
+  myFavorites: [],
   renderedVideogames: [],
   toFilterByVideogames: [],
   toFilterByGenre: [],
   page: 1,
   userId: {},
   comments: [],
+  dataMasterUser: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -57,14 +57,14 @@ export default function reducer(state = initialState, action) {
     case ADD_FAV:
       return {
         ...state,
-        myFavorites: [...state.myFavorites, action.payload]
-      }
+        myFavorites: [...state.myFavorites, action.payload],
+      };
 
     case DELETE_FAV:
       return {
         ...state,
-        myFavorites: state.myFavorites.filter((el) => el.id !== action.payload)
-      }
+        myFavorites: state.myFavorites.filter((el) => el.id !== action.payload),
+      };
 
     case "ORDER_BY_NAME":
       if (action.payload === "asc") {
@@ -119,7 +119,7 @@ export default function reducer(state = initialState, action) {
         allGenres: [...action.payload],
       };
 
-      case GET_PLATFORMS:
+    case GET_PLATFORMS:
       return {
         ...state,
         allPlatforms: [...action.payload],
@@ -238,11 +238,10 @@ export default function reducer(state = initialState, action) {
           ...state.allVideogames.filter((videogame) => {
             return videogame.Genregames.some(
               (obj) => obj.name === action.payload
-              
             );
           }),
         ];
-        console.log(copyToFilterByGenre)
+        console.log(copyToFilterByGenre);
         return {
           ...state,
           renderedVideogames: [...copyToFilterByGenre],
@@ -304,7 +303,10 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
       };
+    case USER_MASTER:
+      return {
+        ...state,
+        dataMasterUser: action.payload,
+      };
   }
-
-  
 }
