@@ -16,15 +16,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 // import { userMaster } from "../../../Redux/actions/actions";
-import { USER_MASTER } from "react";
+
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./TableUserGames.module.css";
 
 const TableUserGames = () => {
-  const dispatch = useDispatch();
-  const allData = useSelector((state) => state.dataMasterUser);
-  console.log(allData, "jijijijijijijij");
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
 
