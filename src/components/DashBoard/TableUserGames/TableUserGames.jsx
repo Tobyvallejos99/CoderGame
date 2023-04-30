@@ -19,59 +19,35 @@ import { useEffect } from "react";
 import { USER_MASTER } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-
-const data = [
-  {
-    id: 1,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "https://www.youtube.com/watch?v=IUjbxb6816Y",
-  },
-  {
-    id: 3,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "https://www.youtube.com/watch?v=IUjbxb6816Y",
-  },
-  {
-    id: 2,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "https://www.youtube.com/watch?v=IUjbxb6816Y",
-  },
-];
+import style from "./TableUserGames.module.css";
 
 const TableUserGames = () => {
   const dispatch = useDispatch();
   const allData = useSelector((state) => state.dataMasterUser);
-  console.log(allData);
-  const { user, isAuthenticated } = useAuth0();
+  console.log(allData, "jijijijijijijij");
+  const { user } = useAuth0();
+  const [userInfo, setUserInfo] = useState(null);
 
-  const userMaster = (user) => {
-    return async (dispatch) => {
-      try {
-        console.log(user, "holaaaa");
-        const response = await axios.get(
-          `http://localhost:3001/user/buyer/${user.sub}`
-        );
-
-        console.log(response);
-        dispatch({ type: USER_MASTER, payload: response.data });
-      } catch (error) {
-        return window.alert(
-          "No se pudo hacer el pedido de videojuegos comprados  al servidor"
-        );
-      }
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/buyer/${user.sub}`
+      );
+      setUserInfo(data);
     };
-  };
+    loadData();
+  }, [user.sub]);
 
-  // useEffect(() => {
-  //   dispatch(userMaster());
-  // });
+  console.log(userInfo, "info de usuario");
+  const fav = userInfo?.favorites || [];
+  console.log(fav);
 
   return (
     <Card>
-      <Title> My Games </Title>
+      <Title>
+        {" "}
+        <h1> My Games </h1>
+      </Title>
       <Table>
         <TableHead>
           <TableRow>
@@ -83,13 +59,20 @@ const TableUserGames = () => {
         </TableHead>
 
         <TableBody>
-          {data.map((game) => (
+          {fav.map((game) => (
             <TableRow>
-              <TableCell>{game.image}</TableCell>
-              <TableCell>{game.name}</TableCell>
+              <TableCell>
+                {" "}
+                <img
+                  className={style.imagee}
+                  src={game.Videogame.image}
+                  alt="F"
+                />
+              </TableCell>
+              <TableCell>{game.Videogame.name}</TableCell>
               <TableCell>{game.id}</TableCell>
               <TableCell>
-                <Link to={game.gameLink}>Go to game</Link>{" "}
+                <Link to={game.Videogame.gameLink}>Go to game</Link>{" "}
               </TableCell>
             </TableRow>
           ))}
