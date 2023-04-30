@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import style from './Perfil.module.css';
 import pencil from './edit.svg';
 import { Link, useNavigate } from "react-router-dom";
+import Logout from "../../../LoginLogout/Logout";
 
 export default () => {
     const {user} = useAuth0();
@@ -67,6 +68,7 @@ export default () => {
             <img src={userInfo?.profile.image || user?.picture} alt="F" />
             <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button>
             
+            
             {isActive && <form onSubmit={submitHandle}>
                             <label> Img:</label>
                             <TextInput name="image" value={input.image} onChange={handleChange} placeholder="insert img link here!!" />
@@ -87,6 +89,7 @@ export default () => {
             <Text>{userInfo?.profile.linkYoutube}</Text>
             <p>Description: </p>
             <Text>{userInfo?.profile.description}</Text>
+            <Logout />
         </Card>
     )
 }
