@@ -26,9 +26,9 @@ import { useEffect } from 'react';
     const [userInfo, setUserInfo] = useState(null);
     const [show, setShow] = useState(false);
 
-    const showBtn = () => {
-      show ? setShow(false) : setShow(true);
-    }
+    // const showBtn = () => {
+    //   show ? setShow(false) : setShow(true);
+    // }
 
     const deleteHandler = () => {
 
@@ -49,9 +49,9 @@ import { useEffect } from 'react';
       <div className={style.container}>
           <div className={style.titlebox}>
             <Title>All Users</Title>
-            <button onClick={showBtn}><img src={plus} alt="" /></button>
+            {/* <button onClick={showBtn}><img src={plus} alt="" /></button> */}
           </div>
-          {show && 
+          {show || 
           <Table>
           <TableHead>
             <TableRow>

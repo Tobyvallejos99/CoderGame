@@ -6,12 +6,14 @@ import UserWalletCoins from "./UserWalletCoins/UserWalletCoins";
 
 const UserDashBoard = () => {
   return (
-    <Card>
-      <TableBuys />
+    <div className="container">
       <TableUserGames />
+      <p></p>
       <TableUserReviews />
+      <p></p>
       <UserWalletCoins />
-    </Card>
+      <TableBuys />
+    </div>
   );
 };
 

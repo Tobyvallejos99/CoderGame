@@ -23,7 +23,7 @@ import { TabList, Tab, Card, Text, Callout } from "@tremor/react";
   export default () => {
 
     return (
-      <Card className={style.container}>
+      <div className={style.container}>
         <Text><strong> Comments in your games!! </strong></Text>
         {data.map((game) => (
           <Card className={style.commentsBox}>
@@ -33,7 +33,7 @@ import { TabList, Tab, Card, Text, Callout } from "@tremor/react";
             ))}
           </Card>
         ))}
-      </Card>
+      </div>
     );
   };
   
