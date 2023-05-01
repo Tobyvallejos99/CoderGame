@@ -43,7 +43,7 @@ const TableUserGames = () => {
   console.log(fav);
 
   return (
-    <Card className="container rounded bg-danger">
+    <Card>
       <Title>
         {" "}
         <h1> My Games </h1>
@@ -54,7 +54,8 @@ const TableUserGames = () => {
             <TableHeaderCell> Image </TableHeaderCell>
             <TableHeaderCell> Name </TableHeaderCell>
             <TableHeaderCell> Detail </TableHeaderCell>
-            <TableHeaderCell> GameLink </TableHeaderCell>
+            <TableHeaderCell> Play </TableHeaderCell>
+            <TableHeaderCell> My review </TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -70,10 +71,15 @@ const TableUserGames = () => {
                 />
               </TableCell>
               <TableCell>{game.Videogame.name}</TableCell>
-              <TableCell>{game.id}</TableCell>
               <TableCell>
-                <Link to={game.Videogame.gameLink}>Go to game</Link>{" "}
+                {" "}
+                <Link to={"/game/" + game.VideogameId}> About </Link>{" "}
               </TableCell>
+
+              <TableCell>
+                <Link to={game.Videogame.gameLink}>Play</Link>{" "}
+              </TableCell>
+              <TableCell>{game.Videogame.ComentariosVs} </TableCell>
             </TableRow>
           ))}
         </TableBody>
