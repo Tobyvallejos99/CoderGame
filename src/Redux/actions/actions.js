@@ -22,6 +22,8 @@ export const DELETE_FAV = "DELETE_FAV";
 
 export const ADD_COMMENT = "ADD_COMMENT";
 
+export const USER_MASTER = 'USER_MASTER';
+
 
 export const getVideogames = () => {
   return async (dispatch) => {

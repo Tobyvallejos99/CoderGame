@@ -9,7 +9,6 @@ import {
     TableCell,
     Text,
     Title,
-    Badge,
   } from "@tremor/react";
   import style from './TableGamesToSell.module.css';
 

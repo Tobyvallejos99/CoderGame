@@ -35,7 +35,7 @@ function App() {
 
           <Route path="/videogames" element={<VideoGames />} />
 
-          <Route path="/profile" element={<DashBoard />} />
+          <Route path="/profile/:id" element={<DashBoard />} />
         </Routes>
       </div>
     </ShoppingCartProvider>

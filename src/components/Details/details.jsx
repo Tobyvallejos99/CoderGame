@@ -4,18 +4,19 @@ import { useParams, NavLink } from "react-router-dom";
 import style from './detail.module.css'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
-import Comments from "../Comments/comments";
+import Comments from "../Comments/comment";
 
 export default function Detail() {
 const params = useParams();
 const [videogame, setVideogame] = useState({});
+const comentario=videogame.ComentariosVs;
+
 
 useEffect(() => {
     axios
     .get(`http://localhost:3001/videogames/${params.id}`)
     .then((response) => {
         setVideogame(response.data);
-        console.log(videogame)
     })
     .catch((err) => window.alert(`${err.message}`));
     // return () => {
@@ -83,8 +84,19 @@ return (
     </div>
     </div>
     <div className={style.container}>
-      <Comments/>
+        <Comments id={params.id} />
     </div>
+
+    <div className={style.container}>
+    {videogame.ComentariosVs?.map((comment) => (
+    <div key={comment.id}>
+        <p className="btn btn-danger">Comments :</p>
+        <p>{comment.message}</p>
+        <p>{comment.date}</p>
+        <p>{comment.name}</p>
+    </div>
+    ))}
+</div>
     </div>
 );
 }

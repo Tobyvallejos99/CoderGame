@@ -11,33 +11,43 @@ import {
   Badge,
 } from "@tremor/react";
 import { Link } from "react-router-dom";
-import card from "../../Card/card";
-
-const data = [
-  {
-    id: 1,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "pepito",
-  },
-  {
-    id: 3,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "pepito2",
-  },
-  {
-    id: 2,
-    name: "Mario Bros",
-    image: "imageFile",
-    gameLink: "pepito3",
-  },
-];
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+// import { userMaster } from "../../../Redux/actions/actions";
+import { USER_MASTER } from "react";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import style from "./TableUserGames.module.css";
 
 const TableUserGames = () => {
+  const dispatch = useDispatch();
+  const allData = useSelector((state) => state.dataMasterUser);
+  console.log(allData, "jijijijijijijij");
+  const { user } = useAuth0();
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/buyer/${user.sub}`
+      );
+      setUserInfo(data);
+    };
+    loadData();
+  }, [user.sub]);
+
+  console.log(userInfo, "info de usuario");
+  const fav = userInfo?.favorites || [];
+  console.log(fav);
+
   return (
     <Card>
-      <Title> My Games </Title>
+      <Title>
+        {" "}
+        <h1> My Games </h1>
+      </Title>
       <Table>
         <TableHead>
           <TableRow>
@@ -49,12 +59,21 @@ const TableUserGames = () => {
         </TableHead>
 
         <TableBody>
-          {data.map((game) => (
+          {fav.map((game) => (
             <TableRow>
-              <TableCell>{game.image}</TableCell>
-              <TableCell>{game.name}</TableCell>
+              <TableCell>
+                {" "}
+                <img
+                  className={style.imagee}
+                  src={game.Videogame.image}
+                  alt="F"
+                />
+              </TableCell>
+              <TableCell>{game.Videogame.name}</TableCell>
               <TableCell>{game.id}</TableCell>
-              <TableCell>{game.gameLink} </TableCell>
+              <TableCell>
+                <Link to={game.Videogame.gameLink}>Go to game</Link>{" "}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

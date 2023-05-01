@@ -1,5 +1,5 @@
 import { Card } from "@tremor/react";
-import Perfil from "./DashBoardComponents/Perfil/Perfil";
+import TableBuys from "./DashBoardComponents/TableBuys/TableBuys";
 import TableUserGames from "./TableUserGames/TableUserGames";
 import TableUserReviews from "./TableUserReviews/TableUserReviews";
 import UserWalletCoins from "./UserWalletCoins/UserWalletCoins";
@@ -7,10 +7,10 @@ import UserWalletCoins from "./UserWalletCoins/UserWalletCoins";
 const UserDashBoard = () => {
   return (
     <Card>
-      {/* <TableUserGames />
+      <TableBuys />
+      <TableUserGames />
       <TableUserReviews />
-      <UserWalletCoins /> */}
-      <Perfil />
+      <UserWalletCoins />
     </Card>
   );
 };
