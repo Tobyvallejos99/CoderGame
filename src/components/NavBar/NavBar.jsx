@@ -8,6 +8,7 @@ import { CartContext } from "../ShoppingCart/ShoppingCartContext";
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const [cart, setCart] = useContext(CartContext);
+  const { user } = useAuth0();
 
   return (
     <nav>
@@ -46,7 +47,7 @@ export default function NavBar() {
 
           {isAuthenticated ? (
             <>
-              <Link className="btn btn-outline-danger" to="/profile">
+              <Link className="btn btn-outline-danger" to={'/profile/' + user?.sub}>
                 Profile
               </Link>
             </>

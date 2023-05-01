@@ -23,8 +23,6 @@ const DashBoard = () => {
     loadData();
 },[]);
 
-  console.log(userInfo)
-
   return (
     <div className={style.container}>
       <NavBar />
