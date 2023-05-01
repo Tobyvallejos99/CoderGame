@@ -1,12 +1,19 @@
 .container {
     margin: 1%;
     padding: 1%;
-    border: 1px solid black;
+    border: 3px solid rgb(153, 8, 8);
     border-radius: 10px;
     width: fit-content;
     height: fit-content;
+    background-color: rgb(59, 58, 58);
+    color: rgb(206, 209, 212);
 }
 
 .pencil {
     width: 20px;
+}
+
+.perfil{
+    background-color: black;
+    color: rgb(0, 0, 0);
 }

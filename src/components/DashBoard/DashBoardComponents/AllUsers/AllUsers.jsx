@@ -46,7 +46,7 @@ import { useEffect } from 'react';
     const allUsers = userInfo?.sellers.concat(userInfo.clients)
 
     return(
-      <Card className={style.container}>
+      <div className={style.container}>
           <div className={style.titlebox}>
             <Title>All Users</Title>
             <button onClick={showBtn}><img src={plus} alt="" /></button>
@@ -132,6 +132,6 @@ import { useEffect } from 'react';
             ))}
           </TableBody>
         </Table>}
-        </Card>
+        </div>
   )};
   
