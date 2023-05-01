@@ -47,8 +47,10 @@ import { useEffect } from 'react';
 
     return(
       <Card className={style.container}>
-          <Title>All Users</Title>
-          <button onClick={showBtn}><img src={plus} alt="" /></button>
+          <div className={style.titlebox}>
+            <Title>All Users</Title>
+            <button onClick={showBtn}><img src={plus} alt="" /></button>
+          </div>
           {show && 
           <Table>
           <TableHead>
