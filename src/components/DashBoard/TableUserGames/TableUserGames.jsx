@@ -55,7 +55,6 @@ const TableUserGames = () => {
             <TableHeaderCell> Name </TableHeaderCell>
             <TableHeaderCell> Detail </TableHeaderCell>
             <TableHeaderCell> Play </TableHeaderCell>
-            <TableHeaderCell> My review </TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -79,7 +78,6 @@ const TableUserGames = () => {
               <TableCell>
                 <Link to={game.Videogame.gameLink}>Play</Link>{" "}
               </TableCell>
-              <TableCell>{game.Videogame.ComentariosVs} </TableCell>
             </TableRow>
           ))}
         </TableBody>
