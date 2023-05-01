@@ -56,7 +56,7 @@ const TableUserReviews = () => {
   const commentsGame = userInfo?.comments || [];
 
   return (
-    <Card className={style.container}>
+    <Card className="container rounded bg-danger">
       <Title>
         {" "}
         <h1> My Reviews </h1>

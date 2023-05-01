@@ -30,17 +30,23 @@ const DashBoard = () => {
       
       <Title className={style.title}>Dashboard</Title>
       
-      {/* <Card className={style.lilBox}> */}
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
-        <div className={style.cardContainer}>
-          <Perfil/>
+          
           {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-          <AdminDashBoard/>
-        </div>
-        {/* <SellerDashBoard /> */}
-        {/* <UserDashBoard/> */}
-      {/* </Card> */}
+          <div className={style.cardContainer}>
+            <Perfil/>
+            <AdminDashBoard/>
+          </div>
+          {/* <div className={style.cardContainer}>
+            <Perfil/>
+            <SellerDashBoard />
+          </div> */}
+          {/* <div className={style.cardContainer}>
+            <Perfil/>
+            <UserDashBoard/>
+          </div> */}
+
     </div>
     </div>
   );

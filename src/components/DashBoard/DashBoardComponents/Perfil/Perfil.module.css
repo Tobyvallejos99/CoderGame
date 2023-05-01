@@ -3,7 +3,7 @@
     padding: 1%;
     border: 3px solid rgb(153, 8, 8);
     border-radius: 10px;
-    width: fit-content;
+    width: auto;
     height: fit-content;
     background-color: rgb(59, 58, 58);
     color: rgb(206, 209, 212);

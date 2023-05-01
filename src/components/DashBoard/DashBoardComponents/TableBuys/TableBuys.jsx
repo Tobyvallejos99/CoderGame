@@ -35,7 +35,7 @@ export default () => {
 
     console.log(userInfo)
     return(
-        <Card className={style.container}>
+      <Card className="container rounded bg-danger">
             <Title>List of Transactions</Title>
             <button onClick={handleClick}><img src={btn} alt="f" /></button>
             {show ? <Card className={style.container}>

@@ -43,7 +43,7 @@ const TableUserGames = () => {
   console.log(fav);
 
   return (
-    <Card>
+    <Card className="container rounded bg-danger">
       <Title>
         {" "}
         <h1> My Games </h1>

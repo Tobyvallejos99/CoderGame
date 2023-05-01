@@ -9,7 +9,7 @@ const data = [
 ];
 const UserWalletCoins = () => {
   return (
-    <Card>
+    <Card className="container rounded bg-danger">
       <Text>My Wallet</Text>
       {data.map((coins) => (
         <Metric>

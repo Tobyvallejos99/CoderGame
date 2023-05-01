@@ -43,7 +43,7 @@ import {
 ]
  
   export default () => (
-    <Card className={style.container}>
+    <div className={style.container}>
       <Title>List of Games</Title>
       <Table className="mt-5">
         <TableHead>
@@ -83,5 +83,5 @@ import {
           ))}
         </TableBody>
       </Table>
-    </Card>
+    </div>
   );
