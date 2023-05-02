@@ -5,11 +5,13 @@ import TableUserReviews from "./TableUserReviews/TableUserReviews";
 
 const UserDashBoard = () => {
   return (
-    <div className="container">
-      <TableUserGames />
-      <p></p>
-      <TableUserReviews />
-      <p></p>
+    <div className="container" style={{ display: 'flex' }}>
+      <div style={{ flex: 1 }}>
+        <TableUserGames />
+      </div>
+      <div style={{ flex: 1 }}>
+        <TableUserReviews />
+      </div>
       <TableBuys />
     </div>
   );

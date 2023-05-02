@@ -47,13 +47,14 @@ const TableUserReviews = () => {
   const commentsGame = userInfo?.comments || [];
 
   return (
-    <Card className="container rounded bg-danger">
+    <div class="d-flex ">
+      <div className={style.minibox}>
       <Title>
         {" "}
         <h1> My Reviews </h1>
       </Title>
-      <Table>
-        <TableHead>
+      <Table >
+        <TableHead >
           <TableRow>
             <TableHeaderCell> Game </TableHeaderCell>
             <TableHeaderCell> review </TableHeaderCell>
@@ -61,14 +62,14 @@ const TableUserReviews = () => {
           </TableRow>
         </TableHead>
 
-        <TableBody>
+        <TableBody className="border p-2">
           {commentsGame.map((game) => (
-            <TableRow>
-              <TableCell>{game.Videogame.name}</TableCell>
-              <TableCell> {game.message}</TableCell>
-              <TableCell>
+            <TableRow >
+              <TableCell className="border p-2">{game.Videogame.name}</TableCell>
+              <TableCell className="border p-2"> {game.message}</TableCell>
+              <TableCell className="border p-2">
                 {" "}
-                <button onClick={() => handleDeleteReview(game.id)}>
+                <button className="btn btn-dark" onClick={() => handleDeleteReview(game.id)}>
                   Delete
                 </button>
               </TableCell>
@@ -76,7 +77,8 @@ const TableUserReviews = () => {
           ))}
         </TableBody>
       </Table>
-    </Card>
+    </div>
+    </div>
   );
 };
 
