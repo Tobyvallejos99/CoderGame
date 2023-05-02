@@ -45,7 +45,6 @@ export default () => {
     );
     const data = await response.json();
     const imageUrl = data.secure_url;
-    console.log(imageUrl)
 
     const sub = user.sub;
     const update = {
