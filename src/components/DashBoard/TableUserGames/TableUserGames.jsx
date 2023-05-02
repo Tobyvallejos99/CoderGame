@@ -54,7 +54,7 @@ const TableUserGames = () => {
             <TableHeaderCell> Image </TableHeaderCell>
             <TableHeaderCell> Name </TableHeaderCell>
             <TableHeaderCell> Detail </TableHeaderCell>
-            <TableHeaderCell> GameLink </TableHeaderCell>
+            <TableHeaderCell> Play </TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -70,9 +70,13 @@ const TableUserGames = () => {
                 />
               </TableCell>
               <TableCell>{game.Videogame.name}</TableCell>
-              <TableCell>{game.id}</TableCell>
               <TableCell>
-                <Link to={game.Videogame.gameLink}>Go to game</Link>{" "}
+                {" "}
+                <Link to={"/game/" + game.VideogameId}> About </Link>{" "}
+              </TableCell>
+
+              <TableCell>
+                <Link to={game.Videogame.gameLink}>Play</Link>{" "}
               </TableCell>
             </TableRow>
           ))}

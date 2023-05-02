@@ -24,18 +24,30 @@ const DashBoard = () => {
 },[]);
 
   return (
-    <div className={style.container}>
+    <div >
       <NavBar />
+    <div className={style.container}>
+      
       <Title className={style.title}>Dashboard</Title>
-      <Card className={style.lilBox}>
+      
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
-        <Perfil />
-        {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-        <AdminDashBoard/>
-        {/* <SellerDashBoard /> */}
-        {/* <UserDashBoard/> */}
-      </Card>
+          
+          {/* {userInfo.rol === 'admin' ? <AdminDashBoard /> : userInfo.rol === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
+          <div className={style.cardContainer}>
+            <Perfil/>
+            <AdminDashBoard/>
+          </div>
+          {/* <div className={style.cardContainer}>
+            <Perfil/>
+            <SellerDashBoard />
+          </div> */}
+          {/* <div className={style.cardContainer}>
+            <Perfil/>
+            <UserDashBoard/>
+          </div> */}
+
+    </div>
     </div>
   );
 };
