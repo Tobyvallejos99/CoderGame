@@ -14,6 +14,7 @@ export default () => {
   const [isActive, setIsActive] = useState(false);
   const [input, setInput] = useState({
     image: null,
+    nickname: '',
     linkYoutube: "",
     description: "",
   });
@@ -46,11 +47,15 @@ export default () => {
     const data = await response.json();
     const imageUrl = data.secure_url;
 
-    const sub = user.sub;
+    const sub = user?.sub;
     const update = {
       sub: sub,
       // image: imageUrl,
       image:  imageUrl ? imageUrl : userInfo.profile.image,
+      nickname: 
+        input.nickname.length > 0
+          ? input.nickname
+          : userInfo.profile.nickname,
       linkYoutube:
         input.linkYoutube.length > 0
           ? input.linkYoutube
@@ -60,10 +65,11 @@ export default () => {
           ? input.description
           : userInfo.profile.description,
     };
-    console.log(update, sub);
+    
     await axios.put(`http://localhost:3001/user/profile`, update);
     setInput({
       image: null,
+      nickname: '',
       linkYoutube: "",
       description: "",
     });
@@ -105,6 +111,13 @@ export default () => {
               onChange={(e) => handleImageChange(e)}
               placeholder="insert img link here!!"
             />
+            <label> Nickname:</label>
+            <TextInput
+              name="nickname"
+              value={input.nickname}
+              onChange={handleChange}
+              placeholder="Text Here!!"
+            />
             <label> Youtube Link:</label>
             <TextInput
               name="linkYoutube"
@@ -118,21 +131,14 @@ export default () => {
               value={input.description}
               onChange={handleChange}
               placeholder="Text Here!!"
-            />
-            <label> Cover Image:</label>
-            <TextInput
-              name="coverImage"
-              value={input.coverImage}
-              onChange={handleChange}
-              placeholder="Text Here!!"
-            />
+            /><br/>
             <button>Confirm</button>
           </form>
         )}
         <h2>
-          {user?.given_name}
+          {userInfo?.profile.nickname ? userInfo.profile.nickname : user?.nickname}
         </h2>
-        <h4>{user?.email}</h4>
+        {/* <h4>{user?.email}</h4> */}
         <p>Coins Balance:</p>
         <Metric>{userInfo?.balance.balance} coins.</Metric>
         <Link className="btn btn-outline-danger" to={"/payment"}>
