@@ -25,10 +25,12 @@ useEffect(() => {
 }, [setComment]);
 
 const formErrorHandle = (event) =>{
-    const id = event.target.id
-    console.log(id)
-    setComment(id)
-    console.log(commentLocal)
+    if(event.target.id == commentLocal) {setComment(null)}
+    else{
+        const id = event.target.id
+        setComment(id)
+    }
+
 }
 
 const sendReport = async (event) =>{
@@ -106,13 +108,13 @@ return (
     {videogame.ComentariosVs?.map((comment) => (
         
     <div key={comment.id}>
-        <button onClick={formErrorHandle} id={comment.id}> ! </button>
+        <button onClick={formErrorHandle} id={comment.id}> {comment.id==commentLocal?('x'):('!')} </button>
         <p className="btn btn-danger">Comments :</p>
         <p>{comment.message}</p>
         <p>{comment.date}</p>
         <p>{comment.name}</p>
         
-        {comment.id === 33 ?(
+        {comment.id == commentLocal ?(
             <div>
                 <button id={comment.id} value={'Hate or discriminatory speech'} onClick={sendReport}>Hate or discriminatory speech</button>
                 <button id={comment.id} value={'Threats or violent expressions.'} onClick={sendReport}>Threats or violent expressions.</button>
