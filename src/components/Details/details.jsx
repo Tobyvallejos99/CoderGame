@@ -90,6 +90,7 @@ return (
     <div className={style.container}>
     {videogame.ComentariosVs?.map((comment) => (
     <div key={comment.id}>
+        <button > ! </button>
         <p className="btn btn-danger">Comments :</p>
         <p>{comment.message}</p>
         <p>{comment.date}</p>

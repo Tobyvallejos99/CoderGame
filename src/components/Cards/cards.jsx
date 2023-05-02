@@ -4,22 +4,25 @@ import { getVideogames } from "../../Redux/actions/actions";
 import Card from "../Card/card";
 import Pagination from "../Pagination/Pagination";
 import style from '../Cards/cards.module.css'
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Cards = () => {
     
     const dispatch = useDispatch();
     const games = useSelector((state) => state.renderedVideogames);
     const page = useSelector(state => state.page)
-    
+    const {user, isAuthenticated} = useAuth0()
+
     const [gamesPerPage, setGamesPerPage] = useState(5)
     const indexOfLastGame = page * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame)
-
+    
 
     useEffect(() => {
-        dispatch(getVideogames());
+        isAuthenticated?dispatch(getVideogames(user.sub))
+        :dispatch(getVideogames())
+        ;
     }, [dispatch])
 
     return(
@@ -29,7 +32,7 @@ const Cards = () => {
                         return (
                             <div key={el.id} className={style.Cards__Box}>
                             <div key={el.id} className={style.Card}>
-                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description}/>
+                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description} promotions={el.Promotions} favorites={el.Favorites?el.Favorites[0]:null}/>
                             </div>
                             <p></p>
                             </div>
