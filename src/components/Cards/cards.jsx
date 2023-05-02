@@ -32,7 +32,7 @@ const Cards = () => {
                         return (
                             <div key={el.id} className={style.Cards__Box}>
                             <div key={el.id} className={style.Card}>
-                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description} promotions={el.Promotions} favorites={el.Favorites}/>
+                                <Card key={el.id} id={el.id} name={el.name} image={el.image} released={el.released} price={el.price} description={el.description} promotions={el.Promotions} favorites={el.Favorites?el.Favorites[0]:null}/>
                             </div>
                             <p></p>
                             </div>
