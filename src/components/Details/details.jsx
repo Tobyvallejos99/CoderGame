@@ -10,7 +10,7 @@ export default function Detail() {
 const params = useParams();
 const [videogame, setVideogame] = useState({});
 const comentario=videogame.ComentariosVs;
-
+const [commentLocal, setComment] = useState(null)
 
 useEffect(() => {
     axios
@@ -22,7 +22,22 @@ useEffect(() => {
     // return () => {
     // //setVideogame({});
     // };
-}, []);
+}, [setComment]);
+
+const formErrorHandle = (event) =>{
+    const id = event.target.id
+    console.log(id)
+    setComment(id)
+    console.log(commentLocal)
+}
+
+const sendReport = async (event) =>{
+    setComment(-1)
+    const obj = { comment: event.target.id, text: event.target.value }
+    const response = await axios.post('http://localhost:3001/email/report/comment', obj )
+    
+    
+}
 
 return (
     <div className={style.fondo2}>
@@ -89,12 +104,24 @@ return (
 
     <div className={style.container}>
     {videogame.ComentariosVs?.map((comment) => (
+        
     <div key={comment.id}>
-        <button > ! </button>
+        <button onClick={formErrorHandle} id={comment.id}> ! </button>
         <p className="btn btn-danger">Comments :</p>
         <p>{comment.message}</p>
         <p>{comment.date}</p>
         <p>{comment.name}</p>
+        
+        {comment.id === 33 ?(
+            <div>
+                <button id={comment.id} value={'Hate or discriminatory speech'} onClick={sendReport}>Hate or discriminatory speech</button>
+                <button id={comment.id} value={'Threats or violent expressions.'} onClick={sendReport}>Threats or violent expressions.</button>
+                <button id={comment.id} value={'Obscenity'} onClick={sendReport}>Obscenity</button>
+                <button id={comment.id} value={'others'} onClick={sendReport}>others</button>
+            </div>
+             
+        ):null
+        }
     </div>
     ))}
 </div>
