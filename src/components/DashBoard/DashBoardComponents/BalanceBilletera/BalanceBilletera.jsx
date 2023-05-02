@@ -1,47 +1,39 @@
 import React from "react";
-import { BadgeDelta, Card, ColGrid, Flex, Metric, Text } from '@tremor/react';
-const chartdata = [
-    {
-      name: "Balance de Juegos Comprados",
-      "Balance": 34734,
-      delta: '9.5%',
-    },
-    {
-      name: "Saldo de Coins",
-      "Balance":1445,
-      delta: '5.1%',
-    },
-  ]
+import { BadgeDelta, Card, Flex, Metric, Text } from '@tremor/react';
+import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import axios from "axios";
 
-  const dataFormatter = (number: number)  => 
-    `$ ${Intl.NumberFormat("us").format(number).toString()}`;
+export default function Balance () {
 
-export default () => {
+    const [userInfo, setUserInfo] = useState(null);
+    const  { user } = useAuth0();
 
+    useEffect(() =>{
+        const sub = user?.sub
+        const loadData = async () =>{
+            const {data} = await axios.get('http://localhost:3001/admin/allusers/' + sub);
+            setUserInfo(data);
+        }
+        loadData();
+      },[]);
+      console.log(userInfo,'hola')
+
+    //const balance = userInfo?.sellers ? userInfo.sallers.reduce((total, seller) => total + seller.clients, 0) : 100;
+    const allUsers = userInfo?.sellers ? userInfo?.sellers.concat(userInfo.clients).reduce((totalBalance, seller) => totalBalance + seller.clients, 0) : 0;
     return(
-        <ColGrid
-        numColsMd={2}
-        numColsLg={3}
-        marginTop="mt-6"
-        gapX="gap-x-6"
-        gapY="gap-y-6"
-        >
-            {chartdata.map((item) => (
-                <Card className="max-w-sm">
-                    <Flex justifyContent="between" alignItems="center">
-                        <Text>{item.name}</Text>
-                        <BadgeDelta
-                            deltaType="moderaIncrease"
-                            isIncreasePositive={true}
-                            text={item.delta}
-                            size="xs"
-                        >
-                            {item.delta}
-                        </BadgeDelta>
-                    </Flex>
-                    <Metric valueFormatter={dataFormatter}>${item.Balance}</Metric>
-                </Card>
-            ))}
-        </ColGrid>
+        <>
+            {/* {allUsers?.map((item) => ( */}
+        <Card>
+            <Flex>
+                <Text>Total Balance</Text>
+                ${allUsers}
+            </Flex>
+            <Metric>${allUsers}</Metric>
+        </Card>
+        {/* ))} */}
+        
+        </>
     )
 };

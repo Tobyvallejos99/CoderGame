@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import Balance from "./DashBoardComponents/BalanceBilletera/BalanceBilletera";
 
 const DashBoard = () => {
   const { user } = useAuth0();
@@ -37,6 +38,7 @@ const DashBoard = () => {
           <div className={style.cardContainer}>
             <Perfil/>
             <AdminDashBoard/>
+            <Balance />
           </div>
           {/* <div className={style.cardContainer}>
             <Perfil/>
