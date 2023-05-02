@@ -16,7 +16,6 @@ export default () => {
     image: null,
     linkYoutube: "",
     description: "",
-    coverImage: "",
   });
 
   const handleChange = (e) => {
@@ -46,12 +45,13 @@ export default () => {
     );
     const data = await response.json();
     const imageUrl = data.secure_url;
+    console.log(imageUrl)
 
     const sub = user.sub;
     const update = {
       sub: sub,
       // image: imageUrl,
-      image: input.image.length > 0 ? imageUrl : userInfo.profile.image,
+      image:  imageUrl ? imageUrl : userInfo.profile.image,
       linkYoutube:
         input.linkYoutube.length > 0
           ? input.linkYoutube
@@ -60,10 +60,6 @@ export default () => {
         input.description.length > 0
           ? input.description
           : userInfo.profile.description,
-      coverImage:
-        input.coverImage.length > 0
-          ? input.coverImage
-          : userInfo.profile.coverImage,
     };
     console.log(update, sub);
     await axios.put(`http://localhost:3001/user/profile`, update);
@@ -71,7 +67,6 @@ export default () => {
       image: null,
       linkYoutube: "",
       description: "",
-      coverImage: "",
     });
     alert("Your change is done bro!!");
   };
