@@ -10,7 +10,6 @@ import trash from '../iconmonstr-trash-can-29.svg';
 import { Link, useNavigate } from "react-router-dom";
 
 export default () => {
-    const navigate = useNavigate();
     const {user} = useAuth0();
     const [show, setShow] = useState(false);
     const [userInfo, setUserInfo] = useState(null);

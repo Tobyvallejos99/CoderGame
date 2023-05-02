@@ -22,7 +22,6 @@ import { useEffect } from 'react';
 
 export default () => {
   const {user} = useAuth0();
-  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [show, setShow] = useState(false);
 
@@ -80,7 +79,6 @@ export default () => {
                       rol : type
                     })
                     alert('Your change has done');
-                    navigate('/');
                   } catch (error) {
                     window.alert(error.response.data);
                   }
@@ -108,7 +106,6 @@ export default () => {
                       banned : bool
                     })
                     alert('Your change has done');
-                    navigate('/');
                   } catch (error) {
                     window.alert(error.response.data);
                   }
@@ -130,7 +127,6 @@ export default () => {
                         deleted : true
                       })
                       alert('Your change has done');
-                      navigate('/');
                     } catch (error) {
                       window.alert(error.response.data);
                     }

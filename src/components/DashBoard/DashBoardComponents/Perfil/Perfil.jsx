@@ -10,7 +10,6 @@ import Logout from "../../../LoginLogout/Logout";
 
 export default () => {
     const {user} = useAuth0();
-    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState(null);
     const [isActive, setIsActive] = useState(false);
     const [input, setInput] = useState({
@@ -50,9 +49,7 @@ export default () => {
             description: '',
             coverImage: ''
         });
-        alert('Your change is done bro!!')
-        navigate('/')
-        
+        alert('Your change is done bro!!');        
     }
 
     useEffect(() =>{
