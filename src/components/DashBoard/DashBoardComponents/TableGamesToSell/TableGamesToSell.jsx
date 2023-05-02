@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Table,
@@ -12,29 +12,47 @@ import {
 } from "@tremor/react";
 import style from "./TableGamesToSell.module.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 export default () => {
   const { user } = useAuth0();
   const [data, setData] = useState([]);
+  const [deleted, setDeleted] = useState({});
+  const [sales, setSales] = useState({});
+
+  const sub = user?.sub;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sub = user?.sub;
         const { data } = await axios.get(
           `http://localhost:3001/empresa/ventas/${sub}`
         );
         setData(data);
+        const initialSales = {};
+        data.forEach((item) => {
+          initialSales[item.id] = item.deleted;
+        });
+        setSales(initialSales);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, [user?.sub]);
+  }, [deleted]);
 
-  console.log("DATA:", data);
+  const handlerDelet = async (id, sub) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:3001/videogames/delete/${id}`,
+        { sub }
+      );
+      setDeleted((prevState) => ({ ...prevState, [id]: !prevState[id] }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -48,8 +66,7 @@ export default () => {
             <TableHeaderCell>Price</TableHeaderCell>
             <TableHeaderCell>Selled Units</TableHeaderCell>
             <TableHeaderCell>Earns</TableHeaderCell>
-            <TableHeaderCell>In the CART of</TableHeaderCell>
-            <TableHeaderCell>Delete Game</TableHeaderCell>
+            <TableHeaderCell>Status Game</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,7 +93,12 @@ export default () => {
               </TableCell>
               <TableCell>
                 <Text>
-                  <Link to={item.delete}> Delete</Link>
+                  <Link
+                    to={item.deleted}
+                    onClick={() => handlerDelet(item.id, sub)}
+                  >
+                    {sales[item.id] ? "Start Sales" : "Stop Sales"}
+                  </Link>
                 </Text>
               </TableCell>
             </TableRow>
