@@ -16,9 +16,9 @@ function CoinBuyer() {
     const [inputError, setInputError] = useState(true) 
 
     const handleChange = (e) => {
+      input > 9 ? setInputError(false) : setInputError(true)
       setInput(e.target.value);
-      input > 0 ? setInputError(false) : setInputError(true)
-      }
+    }
 
     useEffect(() => {
         setStripePromise(loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8'));    
@@ -36,8 +36,8 @@ function CoinBuyer() {
       <div className={style.container}>
         <div>
           <h3>Ingrese la cantidad deseada de CoderCoins a comprar</h3>
-          <p>Ingresar una cantidad mayor a 10</p>
-          <input type="text" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
+          <p>Ingresa una cantidad mayor a 10 coins</p>
+          <input autocomplete="off" type="number" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
           <p>coins</p>
           <p>Su total es de : {input} USD</p>
           <button disabled={inputError} className={style.btn} onClick={handleClick}>Confirmar</button>
