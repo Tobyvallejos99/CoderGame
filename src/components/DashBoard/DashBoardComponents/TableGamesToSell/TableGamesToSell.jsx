@@ -20,7 +20,6 @@ export default () => {
   const [data, setData] = useState([]);
   const [deleted, setDeleted] = useState({});
   const [sales, setSales] = useState({});
-
   const sub = user?.sub;
 
   useEffect(() => {
