@@ -1,17 +1,32 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Card, Metric, Text, TextInput } from "@tremor/react";
+import { Metric, Text, TextInput } from "@tremor/react";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import style from "./Perfil.module.css";
 import pencil from "./edit.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logout from "../../../LoginLogout/Logout";
+
+const validation = (input) => {
+  let errors = {};
+  let regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+  if (input.nickname.length > 32)errors.nickname = "can not have more than 32 characters";
+  if (input.description.length > 200)errors.description = "can not have more than 200 characters";
+  if (!regex.test(input.linkYoutube))errors.linkYoutube = 'it is not a YouTube link';
+  return errors;
+}
 
 export default () => {
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const [errors, setErrors] = useState({
+    image: null,
+    nickname: '',
+    linkYoutube: "",
+    description: "",
+  });
   const [input, setInput] = useState({
     image: null,
     nickname: '',
@@ -24,6 +39,10 @@ export default () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(validation({
+      ...input,
+      [e.target.name]: e.target.value,
+    }))
   };
 
   const editHandler = (e) => {
@@ -53,15 +72,15 @@ export default () => {
       // image: imageUrl,
       image:  imageUrl ? imageUrl : userInfo.profile.image,
       nickname: 
-        input.nickname.length > 0
+        !errors.nickname && input.nickname.length > 0
           ? input.nickname
           : userInfo.profile.nickname,
       linkYoutube:
-        input.linkYoutube.length > 0
+        !errors.linkYoutube && input.linkYoutube.length > 0
           ? input.linkYoutube
           : userInfo.profile.linkYoutube,
       description:
-        input.description.length > 0
+        !errors.description && input.description.length > 0
           ? input.description
           : userInfo.profile.description,
     };
@@ -118,6 +137,7 @@ export default () => {
               onChange={handleChange}
               placeholder="Text Here!!"
             />
+            {errors.nickname && <p>{errors.nickname}</p>}
             <label> Youtube Link:</label>
             <TextInput
               name="linkYoutube"
@@ -125,13 +145,16 @@ export default () => {
               onChange={handleChange}
               placeholder="Text Here!!"
             />
+            {errors.linkYoutube && <p>{errors.linkYoutube}</p>}
             <label> Descripcion:</label>
             <TextInput
               name="description"
               value={input.description}
               onChange={handleChange}
               placeholder="Text Here!!"
-            /><br/>
+            />
+            {errors.description && <p>{errors.description}</p>}
+            <br/>
             <button>Confirm</button>
           </form>
         )}
