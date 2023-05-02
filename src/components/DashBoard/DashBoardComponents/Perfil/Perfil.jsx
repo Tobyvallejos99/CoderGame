@@ -79,7 +79,8 @@ export default () => {
     };
     loadData();
   }, []);
-
+  console.log(userInfo)
+  console.log(user)
   const handleImageChange = (e) => {
     setInput((input) => ({
       ...input,
@@ -129,7 +130,7 @@ export default () => {
           </form>
         )}
         <h2>
-          {user?.given_name} - ID: ({userInfo?.profile.id})
+          {user?.given_name}
         </h2>
         <h4>{user?.email}</h4>
         <p>Coins Balance:</p>

@@ -40,14 +40,14 @@ const DashBoard = () => {
             <Perfil/>
             <AdminDashBoard/>
           </div> */}
-          <div className={style.cardContainer}>
-            <Perfil/>
-            <SellerDashBoard />
-          </div>
           {/* <div className={style.cardContainer}>
             <Perfil/>
-            <UserDashBoard/>
+            <SellerDashBoard />
           </div> */}
+          <div className={style.cardContainer}>
+            <Perfil/>
+            <UserDashBoard/>
+          </div>
       </div>
     </div>
   );

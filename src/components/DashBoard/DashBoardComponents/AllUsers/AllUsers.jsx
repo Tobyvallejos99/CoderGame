@@ -37,7 +37,6 @@ export default () => {
     }
     loadData();
   },[]);
-  console.log(userInfo,'hola')
 
   const allUsers = userInfo?.sellers.concat(userInfo.clients)
 
