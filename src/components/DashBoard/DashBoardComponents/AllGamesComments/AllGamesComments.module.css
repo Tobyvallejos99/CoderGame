@@ -4,3 +4,11 @@
     border: 1px solid red;
     border-radius: 10px;
 }
+
+.gameImg {
+    width: 200px;
+}
+
+.idBox {
+    width: 100px;
+}

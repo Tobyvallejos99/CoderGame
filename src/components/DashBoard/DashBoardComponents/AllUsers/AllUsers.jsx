@@ -13,7 +13,7 @@ import {
 } from "@tremor/react";
 import style from './AllUsers.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import trash from './iconmonstr-trash-can-29.svg';
+import trash from '../iconmonstr-trash-can-29.svg';
 import plus from '../plus.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
@@ -135,7 +135,7 @@ export default () => {
                       window.alert(error.response.data);
                     }
                   }
-                }>
+                }>  
                   {item.deleted ? <img src={plus} alt="F" /> : <img src={trash} alt="F" />}
                 </button>
               </TableCell>
