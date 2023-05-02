@@ -10,7 +10,7 @@ export default function Detail() {
 const params = useParams();
 const [videogame, setVideogame] = useState({});
 const comentario=videogame.ComentariosVs;
-
+const [commentLocal, setComment] = useState(null)
 
 useEffect(() => {
     axios
@@ -22,7 +22,24 @@ useEffect(() => {
     // return () => {
     // //setVideogame({});
     // };
-}, []);
+}, [setComment]);
+
+const formErrorHandle = (event) =>{
+    if(event.target.id == commentLocal) {setComment(null)}
+    else{
+        const id = event.target.id
+        setComment(id)
+    }
+
+}
+
+const sendReport = async (event) =>{
+    setComment(-1)
+    const obj = { comment: event.target.id, text: event.target.value }
+    const response = await axios.post('http://localhost:3001/email/report/comment', obj )
+    
+    
+}
 
 return (
     <div className={style.fondo2}>
@@ -91,12 +108,30 @@ return (
     <div className={style.minibox}>
     <hr />
     {videogame.ComentariosVs?.map((comment) => (
+        
     <div key={comment.id}>
+        <button onClick={formErrorHandle} id={comment.id}> {comment.id==commentLocal?('x'):('!')} </button>
+        <p className="btn btn-danger">Comments :</p>
+        <p>{comment.message}</p>
+        <p>{comment.date}</p>
+        <p>{comment.name}</p>
+        
+        {comment.id == commentLocal ?(
+            <div>
+                <button id={comment.id} value={'Hate or discriminatory speech'} onClick={sendReport}>Hate or discriminatory speech</button>
+                <button id={comment.id} value={'Threats or violent expressions.'} onClick={sendReport}>Threats or violent expressions.</button>
+                <button id={comment.id} value={'Obscenity'} onClick={sendReport}>Obscenity</button>
+                <button id={comment.id} value={'others'} onClick={sendReport}>others</button>
+            </div>
+             
+        ):null
+        }
         <button > ! </button>
         <p className="text-center">{comment.User.name}</p>
         <p> {comment.message} </p>
         <p>Date: {comment.date}</p>
         <hr />
+
     </div>
     ))}
     </div>
