@@ -16,29 +16,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-const data = [
-  {
-    id: 1,
-    gameName: "Mario Bros",
-    image: "pepito",
-    review:
-      "todo muy Bonito pero no tienen todo lo que necesito para poder desenvolverme en mi dia a dia.tambein me gustaria aclarar que estoy muy enojada",
-  },
-  {
-    id: 2,
-    gameName: "Mario Bros",
-    image: "pepito",
-    review:
-      "todo muy Bonito pero no tienen todo lo que necesito para poder desenvolverme en mi dia a dia.tambein me gustaria aclarar que estoy muy enojada",
-  },
-  {
-    id: 3,
-    gameName: "Mario Bros",
-    image: "pepito",
-    review:
-      "todo muy Bonito pero no tienen todo lo que necesito para poder desenvolverme en mi dia a dia.tambein me gustaria aclarar que estoy muy enojada",
-  },
-];
 const TableUserReviews = () => {
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
@@ -53,10 +30,24 @@ const TableUserReviews = () => {
     loadData();
   }, [user.sub]);
 
+  const handleDeleteReview = async (id) => {
+    await axios.delete(`http://localhost:3001/comment`, {
+      data: {
+        sub: user.sub,
+        id,
+      },
+    });
+
+    const updatedCommentsGame = userInfo.comments.filter(
+      (game) => game.id !== id
+    );
+    setUserInfo({ ...userInfo, comments: updatedCommentsGame });
+  };
+
   const commentsGame = userInfo?.comments || [];
 
   return (
-    <Card className={style.container}>
+    <Card className="container rounded bg-danger">
       <Title>
         {" "}
         <h1> My Reviews </h1>
@@ -77,7 +68,9 @@ const TableUserReviews = () => {
               <TableCell> {game.message}</TableCell>
               <TableCell>
                 {" "}
-                <Link to={game.deleted}> Delete X</Link>{" "}
+                <button onClick={() => handleDeleteReview(game.id)}>
+                  Delete
+                </button>
               </TableCell>
             </TableRow>
           ))}

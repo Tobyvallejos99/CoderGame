@@ -64,7 +64,8 @@ export default () => {
     },[]);
     
     return(
-        <Card className={style.container}>
+        <div className={style.container}>
+            <div className="text-center">
             <img src={userInfo?.profile.image || user?.picture} alt="F" />
             <button onClick={editHandler}><img className={style.pencil} src={pencil} alt="" /></button>
             
@@ -90,6 +91,7 @@ export default () => {
             <p>Description: </p>
             <Text>{userInfo?.profile.description}</Text>
             <Logout />
-        </Card>
+            </div>
+        </div>
     )
 }

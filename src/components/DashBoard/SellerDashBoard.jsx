@@ -4,10 +4,10 @@ import TableGamesToSell from "./DashBoardComponents/TableGamesToSell/TableGamesT
 
 const SellerDashBoard = () => {
   return (
-    <Card>
+    <div className="text-center">
       <TableGamesToSell />
       <GamesComment />
-    </Card>
+    </div>
   );
 };
 

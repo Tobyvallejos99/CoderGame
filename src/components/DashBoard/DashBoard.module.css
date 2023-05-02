@@ -1,14 +1,32 @@
 .container {
-    border: 1px solid red;
-    background-color: white;
+    border: 3px solid red;
+    background-color: rgb(37, 37, 37);
     border-radius: 10px;
     margin: 1%;
 }
 
 .title {
-    font-size: 3rem;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  color: #a32222;
+  text-shadow: 2px 2px #5f0505;
+  border-radius: 10px;
+  background-color: rgb(37, 37, 37);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .lilBox {
     display: flex;
+    background-color: rgb(37, 37, 37);
 }
+
+.perfil{
+    background-color: rgb(37, 37, 37);
+    color: aliceblue;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content:center;
+  }
