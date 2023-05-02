@@ -35,7 +35,8 @@ export default () => {
 
     console.log(userInfo)
     return(
-      <Card className="container rounded bg-danger">
+      <div class="d-flex">
+      <div className={style.minibox}>
             <Title>List of Transactions</Title>
             <button onClick={handleClick}><img src={btn} alt="f" /></button>
             {show ? <Card className={style.container}>
@@ -66,6 +67,7 @@ export default () => {
         </Card> 
         :
          null}
-        </Card>
+        </div>
+        </div>
     )
 }

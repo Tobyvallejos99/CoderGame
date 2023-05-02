@@ -43,7 +43,8 @@ const TableUserGames = () => {
   console.log(fav);
 
   return (
-    <Card>
+    <div class="d-flex">
+      <div className={style.minibox}>
       <Title>
         {" "}
         <h1> My Games </h1>
@@ -61,7 +62,7 @@ const TableUserGames = () => {
         <TableBody>
           {fav.map((game) => (
             <TableRow>
-              <TableCell>
+              <TableCell className="border p-2">
                 {" "}
                 <img
                   className={style.imagee}
@@ -69,20 +70,23 @@ const TableUserGames = () => {
                   alt="F"
                 />
               </TableCell>
-              <TableCell>{game.Videogame.name}</TableCell>
-              <TableCell>
+              <TableCell className="border p-2">{game.Videogame.name}</TableCell>
+              <TableCell className="border p-2">
                 {" "}
-                <Link to={"/game/" + game.VideogameId}> About </Link>{" "}
+                <Link  className="btn btn-dark" to={"/game/" + game.VideogameId}> About </Link>{" "}
               </TableCell>
 
-              <TableCell>
-                <Link to={game.Videogame.gameLink}>Play</Link>{" "}
+              <TableCell className="border p-2">
+                <Link className="btn btn-dark" to={game.Videogame.gameLink}>Play</Link>{" "}
               </TableCell>
             </TableRow>
           ))}
+          
         </TableBody>
+    
       </Table>
-    </Card>
+    </div>
+    </div>
   );
 };
 
