@@ -14,7 +14,7 @@ function Favorites(props) {
   const [arrFav, setArrFav] = useState([]);
   const [balance, setBalance] = useState(0);
   const [total, setTotal] = useState(0);
-
+  const [render, setRender] = useState(true)
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -29,7 +29,12 @@ function Favorites(props) {
       return fav;
     };
     getFav();
-  }, [user, total]);
+  }, [user, total, render]);
+
+  const renderHandle = () =>{
+    setRender(!render)
+    console.log(render)
+  }
 
   const handleSubmit = async () => {
     const idVideogames = arrFav.map((fav) => fav.id);
@@ -74,6 +79,7 @@ function Favorites(props) {
             image={elem.image}
             description={elem.description}
             id={elem.id}
+            renderHandle = {renderHandle}
           ></Card>
         ))}
         {isAuthenticated ? (

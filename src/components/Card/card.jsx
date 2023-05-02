@@ -21,6 +21,7 @@ function Card({
   myFavorites,
   favorites,
   promotions,
+  renderHandle,
 }) {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
@@ -28,9 +29,11 @@ function Card({
   // const user = useSelector((state) => state.userId)
 
   const handleFavorite = async () => {
+    
     if (isfav) {
       setIsFav(false);
       deleteFav(id);
+      
       try {
         await axios.delete("http://localhost:3001/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
@@ -54,6 +57,7 @@ function Card({
         console.error(error);
       }
     }
+    renderHandle()
   };
 
   useEffect(() => {
