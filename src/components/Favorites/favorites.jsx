@@ -53,7 +53,7 @@ function Favorites(props) {
           data: { idVideogame: id, idUser: user.sub },
         });
       }
-      console.log("Cart delete successfully!");
+
       // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
     } catch (error) {
       console.error("Error delete cart:", error);
@@ -66,7 +66,7 @@ function Favorites(props) {
       <div className={style.fondo2}>
         <Navbar />
         <p></p>
-        {props.myFavorites.map((elem) => (
+        {arrFav.map((elem) => (
           <Card
             name={elem.name}
             released={elem.released}
@@ -77,7 +77,7 @@ function Favorites(props) {
           ></Card>
         ))}
         {isAuthenticated ? (
-          props.myFavorites.length ? (
+          arrFav.length ? (
             <>
               <button className="btn btn-danger" onClick={handleSubmit}>
                 Complete purchase

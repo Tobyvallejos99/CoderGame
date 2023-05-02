@@ -25,10 +25,14 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const USER_MASTER = 'USER_MASTER';
 
 
-export const getVideogames = () => {
+export const getVideogames = (sub) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/videogames");
+      const response = await axios.get("http://localhost:3001/videogames",{
+        params: {
+          sub:sub,
+        }
+      });
       console.log(response);
       dispatch({ type: GET_VIDEOGAMES, payload: response.data });
     } catch (error) {

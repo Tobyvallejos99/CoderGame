@@ -19,6 +19,8 @@ function Card({
   addFav,
   onclose,
   myFavorites,
+  favorites,
+  promotions,
 }) {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
@@ -85,13 +87,13 @@ function Card({
         </div>
       </Link>
       <div className={style.containerderecha}>
-        {isfav ? (
+        {favorites[0]?.buy?(<h1>Bought</h1>):(isfav ? (
           <button onClick={handleFavorite}>
             <p> ❌ REMOVE</p>
           </button>
         ) : (
           <button onClick={handleFavorite}>🛒 +ADD To Cart</button>
-        )}
+        ))}
 
         <p className={style.price}>${price} </p>
       </div>

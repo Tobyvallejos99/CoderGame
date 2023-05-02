@@ -124,8 +124,8 @@ const FormGames = () => {
   const imageUrl = data.secure_url;
    
       
-    dispatch(
-      postGame(
+   dispatch(
+       postGame(
         {
           name: input.name,
           released: input.released,
