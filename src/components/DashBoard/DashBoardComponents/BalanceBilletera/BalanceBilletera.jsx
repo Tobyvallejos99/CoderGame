@@ -1,47 +1,53 @@
 import React from "react";
 import { BadgeDelta, Card, ColGrid, Flex, Metric, Text } from '@tremor/react';
-const chartdata = [
-    {
-      name: "Balance de Juegos Comprados",
-      "Balance": 34734,
-      delta: '9.5%',
-    },
-    {
-      name: "Saldo de Coins",
-      "Balance":1445,
-      delta: '5.1%',
-    },
-  ]
+import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import axios from "axios";
+// const chartdata = [
+//     {
+//       name: "Balance de Juegos Comprados",
+//       "Balance": 34734,
+//       delta: '9.5%',
+//     },
+//     {
+//       name: "Saldo de Coins",
+//       "Balance":1445,
+//       delta: '5.1%',
+//     },
+//   ]
 
-  const dataFormatter = (number: number)  => 
-    `$ ${Intl.NumberFormat("us").format(number).toString()}`;
+//   const dataFormatter = (number: number)  => 
+//     `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
-export default () => {
+export default function Balance ()  {
+    const [userInfo, setUserInfo] = useState({sallers: []});
+    const  { user } = useAuth0();
+
+    useEffect(() => {
+        const sub = user?.sub
+        //const loadData = async () => {
+            //console.log(loadData)
+            const {data} = axios.get(`http://localhost:3001/admin/allusers?sub=${sub}`);
+            setUserInfo(data);
+        
+         //loadData();
+        //console.log(loadData)
+        
+    }, []);
+
+    const balance = userInfo?.sellers ? userInfo.sallers.reduce((total, seller) => total + seller.Balance, 0) : 0;
 
     return(
-        <ColGrid
-        numColsMd={2}
-        numColsLg={3}
-        marginTop="mt-6"
-        gapX="gap-x-6"
-        gapY="gap-y-6"
-        >
-            {chartdata.map((item) => (
-                <Card className="max-w-sm">
-                    <Flex justifyContent="between" alignItems="center">
-                        <Text>{item.name}</Text>
-                        <BadgeDelta
-                            deltaType="moderaIncrease"
-                            isIncreasePositive={true}
-                            text={item.delta}
-                            size="xs"
-                        >
-                            {item.delta}
-                        </BadgeDelta>
-                    </Flex>
-                    <Metric valueFormatter={dataFormatter}>${item.Balance}</Metric>
-                </Card>
-            ))}
-        </ColGrid>
+        <>
+        <Card>
+            <Flex>
+                <Text>Total Balance</Text>
+                <BadgeDelta text={balance} />
+            </Flex>
+            <Metric>${balance}</Metric>
+        </Card>
+        
+        </>
     )
 };
