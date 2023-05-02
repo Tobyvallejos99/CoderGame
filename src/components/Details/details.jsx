@@ -78,13 +78,12 @@ return (
                 <p value="released">
                 {videogame.released}
                 </p>
-            </div>
-            <div className={style.minibox}>
+                <hr />
                 <h2 >Rating</h2>
                 <p value="rating">
                 {videogame.rating ? videogame.rating : 'No Rated Yet'}
                 </p>
-            </div>
+ </div>
             <div className={style.minibox}>
                 <h2>Platforms</h2>
                 <ul className={style.platformBox}>
@@ -105,6 +104,9 @@ return (
     </div>
 
     <div className={style.container}>
+    <p className="btn btn-danger">Comments :</p>
+    <div className={style.minibox}>
+    <hr />
     {videogame.ComentariosVs?.map((comment) => (
         
     <div key={comment.id}>
@@ -124,8 +126,15 @@ return (
              
         ):null
         }
+        <button > ! </button>
+        <p className="text-center">{comment.User.name}</p>
+        <p> {comment.message} </p>
+        <p>Date: {comment.date}</p>
+        <hr />
+
     </div>
     ))}
+    </div>
 </div>
     </div>
 );
