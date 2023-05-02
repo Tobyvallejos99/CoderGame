@@ -90,7 +90,7 @@ export default () => {
   return (
     <div className={style.container}>
       <div className="text-center">
-        <img src={userInfo?.profile.image || user?.picture} alt="F" />
+        <img className={style.profileImg} src={userInfo?.profile.image || user?.picture} alt="F" />
         <button onClick={editHandler}>
           <img className={style.pencil} src={pencil} alt="" />
         </button>
