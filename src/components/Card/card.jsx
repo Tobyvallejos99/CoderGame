@@ -7,7 +7,6 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../LoginLogout/Login";
 
-
 function Card({
   name,
   image,
@@ -26,14 +25,14 @@ function Card({
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const [isfav, setIsFav] = useState(false);
+  const [rolUser, setRolUser] = useState(null);
   // const user = useSelector((state) => state.userId)
 
   const handleFavorite = async () => {
-    
     if (isfav) {
       setIsFav(false);
       deleteFav(id);
-      
+
       try {
         await axios.delete("http://localhost:3001/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
@@ -54,7 +53,7 @@ function Card({
         console.error(error);
       }
     }
-    renderHandle()
+    renderHandle();
   };
 
   useEffect(() => {
@@ -64,6 +63,17 @@ function Card({
       }
     });
   }, [myFavorites]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/bytransaction/${user?.sub}`
+      );
+      setRolUser(data);
+    };
+    loadData();
+  }, [user?.sub]);
+
   return (
     <div className={style.minibox}>
       <div className={style.title_container}>
@@ -87,14 +97,19 @@ function Card({
             : description}
         </div>
       </Link>
+
       <div className={style.containerderecha}>
-        {favorites?.buy?(<h1 className="btn">Bought</h1>):(isfav ? (
+        {favorites?.buy ? (
+          <h1 className="btn">Bought</h1>
+        ) : isfav ? (
           <button onClick={handleFavorite}>
             <p> ❌ REMOVE</p>
           </button>
         ) : (
-          <button onClick={handleFavorite}>🛒 +ADD To Cart</button>
-        ))}
+          rolUser?.rol === "seller" && (
+            <button onClick={handleFavorite}>🛒 +ADD To Cart</button>
+          )
+        )}
 
         <p className={style.price}>${price} </p>
       </div>
