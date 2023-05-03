@@ -21,6 +21,7 @@ export default () => {
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const [rolUser, setRolUser] = useState(null);
   const [errors, setErrors] = useState({
     image: null,
     nickname: '',
@@ -104,8 +105,15 @@ export default () => {
     };
     loadData();
   }, []);
-  console.log(userInfo)
-  console.log(user)
+  
+  useEffect(() =>{
+    const loadData = async () =>{
+        const {data} = await axios(`http://localhost:3001/user/bytransaction/${user.sub}`);
+        setRolUser(data.rol);
+    }
+    loadData();
+},[]);
+
   const handleImageChange = (e) => {
     setInput((input) => ({
       ...input,
@@ -171,6 +179,7 @@ export default () => {
         <Text>{userInfo?.profile.linkYoutube}</Text>
         <p>Description: </p>
         <Text>{userInfo?.profile.description}</Text>
+        {rolUser === 'client' && <button>Sell your games with us!!</button>}
         <Logout />
       </div>
     </div>
