@@ -104,18 +104,13 @@ return (
     </div>
 
     <div className={style.container}>
-    <p className="btn btn-danger">Comments :</p>
+    <p className="btn btn-danger">Review :</p>
     <div className={style.minibox}>
     <hr />
     {videogame.ComentariosVs?.map((comment) => (
         
     <div key={comment.id}>
         <button onClick={formErrorHandle} id={comment.id}> {comment.id==commentLocal?('x'):('!')} </button>
-        <p className="btn btn-danger">Comments :</p>
-        <p>{comment.message}</p>
-        <p>{comment.date}</p>
-        <p>{comment.name}</p>
-        
         {comment.id == commentLocal ?(
             <div>
                 <button id={comment.id} value={'Hate or discriminatory speech'} onClick={sendReport}>Hate or discriminatory speech</button>
@@ -126,7 +121,6 @@ return (
              
         ):null
         }
-        <button > ! </button>
         <p className="text-center">{comment.User.name}</p>
         <p> {comment.message} </p>
         <p>Date: {comment.date}</p>
