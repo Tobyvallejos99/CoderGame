@@ -34,20 +34,20 @@ const DashBoard = () => {
 
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
-          
-          {/* {userInfo.rol === 'admin' ? <AdminDashBoard /> : userInfo.rol === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-          {/* <div className={style.cardContainer}>
+
+        {/* {userInfo.rol === 'admin' ? <AdminDashBoard /> : userInfo.rol === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
+        {/* <div className={style.cardContainer}>
             <Perfil/>
             <AdminDashBoard/>
           </div> */}
-          {/* <div className={style.cardContainer}>
-            <Perfil/>
-            <SellerDashBoard />
-          </div> */}
-          <div className={style.cardContainer}>
-            <Perfil/>
-            <UserDashBoard/>
-          </div>
+        <div className={style.cardContainer}>
+          <Perfil />
+          <SellerDashBoard />
+        </div>
+        {/* <div className={style.cardContainer}>
+          <Perfil />
+          <UserDashBoard />
+        </div> */}
       </div>
     </div>
   );

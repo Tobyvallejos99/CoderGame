@@ -7,59 +7,44 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DonutSeller = () => {
-  const [chartData, setChartData] = useState({});
-  const { user } = useAuth0();
+function DonutSeller({ data }) {
+  let labels = [];
+  let ganancia = [];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/empresa/ventas/${user?.sub}`
-        );
-        const { data } = response;
-        console.log(data);
+  data?.forEach((el) => {
+    labels.push(el.name);
+    ganancia.push(el.ganancias);
+  });
+  const datasets = [
+    {
+      label: "Ganancias por Juego",
+      data: ganancia,
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ];
 
-        if (data && data.length > 0) {
-          const nameGame = data?.map((producto) => producto.name);
-          console.log(nameGame);
-          const sell = data?.map((producto) => producto.ganancias);
-          console.log(sell);
-          setChartData({
-            labels: nameGame,
-            datasets: [
-              {
-                data: sell,
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 206, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                  "rgba(153, 102, 255, 0.2)",
-                  "rgba(255, 159, 64, 0.2)",
-                ],
-                borderColor: [
-                  "rgba(255, 99, 132, 1)",
-                  "rgba(54, 162, 235, 1)",
-                  "rgba(255, 206, 86, 1)",
-                  "rgba(75, 192, 192, 1)",
-                  "rgba(153, 102, 255, 1)",
-                  "rgba(255, 159, 64, 1)",
-                ],
-                borderWidth: 1,
-              },
-            ],
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const datadonut = {
+    labels: labels,
+    datasets: datasets,
+  };
 
-    return fetchData();
-  }, [user.sub]);
-
-  return <Doughnut data={chartData} />;
-};
+  return <Doughnut data={datadonut} />;
+}
 
 export default DonutSeller;
