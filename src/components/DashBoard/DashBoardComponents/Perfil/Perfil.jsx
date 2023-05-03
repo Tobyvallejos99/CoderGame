@@ -179,7 +179,11 @@ export default () => {
         <Text>{userInfo?.profile.linkYoutube}</Text>
         <p>Description: </p>
         <Text>{userInfo?.profile.description}</Text>
-        {rolUser === 'client' && <button>Sell your games with us!!</button>}
+        {rolUser === 'client' && <button
+        onClick={() => {
+          alert('An admin will be in touch as soon as posible.')
+        }}
+        >Sell your games with us!!</button>}
         <Logout />
       </div>
     </div>
