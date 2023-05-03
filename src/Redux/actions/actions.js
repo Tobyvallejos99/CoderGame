@@ -33,7 +33,6 @@ export const getVideogames = (sub) => {
           sub:sub,
         }
       });
-      console.log(response);
       dispatch({ type: GET_VIDEOGAMES, payload: response.data });
     } catch (error) {
       return window.alert(
@@ -120,7 +119,6 @@ export const postUser = (payload, token) => {
       payload,
       token
     );
-    console.log(info);
     return {
       type: POST_USER,
       payload,
@@ -163,7 +161,6 @@ export const buyCoin = (payload) => {
       "http://localhost:3001/create-checkout-session",
       payload
     );
-    console.log(payload, "hola");
     return buy;
   };
 };
