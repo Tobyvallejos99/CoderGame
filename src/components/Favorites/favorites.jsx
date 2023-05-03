@@ -14,7 +14,7 @@ function Favorites(props) {
   const [arrFav, setArrFav] = useState([]);
   const [balance, setBalance] = useState(0);
   const [total, setTotal] = useState(0);
-
+  const [render, setRender] = useState(true)
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -29,7 +29,12 @@ function Favorites(props) {
       return fav;
     };
     getFav();
-  }, [user, total]);
+  }, [user, total, render]);
+
+  const renderHandle = () =>{
+    setRender(!render)
+    console.log(render)
+  }
 
   const handleSubmit = async () => {
     const idVideogames = arrFav.map((fav) => fav.id);
@@ -53,7 +58,7 @@ function Favorites(props) {
           data: { idVideogame: id, idUser: user.sub },
         });
       }
-      console.log("Cart delete successfully!");
+
       // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
     } catch (error) {
       console.error("Error delete cart:", error);
@@ -66,7 +71,7 @@ function Favorites(props) {
       <div className={style.fondo2}>
         <Navbar />
         <p></p>
-        {props.myFavorites.map((elem) => (
+        {arrFav.map((elem) => (
           <Card
             name={elem.name}
             released={elem.released}
@@ -74,10 +79,11 @@ function Favorites(props) {
             image={elem.image}
             description={elem.description}
             id={elem.id}
+            renderHandle = {renderHandle}
           ></Card>
         ))}
         {isAuthenticated ? (
-          props.myFavorites.length ? (
+          arrFav.length ? (
             <>
               <button className="btn btn-danger" onClick={handleSubmit}>
                 Complete purchase

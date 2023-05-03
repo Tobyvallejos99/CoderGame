@@ -5,3 +5,13 @@
     border-radius: 10px;
     width: fit-content;
 }
+
+.minibox{
+    padding: 1.5rem;
+  border-radius: 1rem;
+    background-color: rgba(243, 71, 71, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(130, 130, 130, 0.37);
+    width: auto;
+    margin: 4rem auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }

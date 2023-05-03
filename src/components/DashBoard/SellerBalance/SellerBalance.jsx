@@ -4,22 +4,23 @@ import { Link } from "react-router-dom";
 const data = [
   {
     id: 1,
-    saldoCoins: 2500,
+    nameGame: "pepito",
+    ganancias: 3000,
   },
 ];
-const UserWalletCoins = () => {
+const UserWalletCoins = ({ total }) => {
   return (
     <Card className="container rounded bg-danger">
-      <Text>My Wallet</Text>
+      <Text>
+        {" "}
+        <h2> Total Sells </h2>
+      </Text>
       {data.map((coins) => (
         <Metric>
           {" "}
-          <h1> ${coins.saldoCoins} Coins </h1>
+          <h1>$ {total}</h1>
         </Metric>
       ))}
-      <Text>
-        <Link to="/payment">Buy more CoderCoins</Link>
-      </Text>
     </Card>
   );
 };
