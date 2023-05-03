@@ -28,16 +28,14 @@ const TableUserGames = () => {
   useEffect(() => {
     const loadData = async () => {
       const { data } = await axios(
-        `http://localhost:3001/user/buyer/${user.sub}`
+        `http://localhost:3001/user/buyer/${user?.sub}`
       );
       setUserInfo(data);
     };
     loadData();
-  }, [user.sub]);
+  }, [user?.sub]);
 
-  console.log(userInfo, "info de usuario");
   const fav = userInfo?.favorites || [];
-  console.log(fav);
 
   return (
     <div class="d-flex">
@@ -57,7 +55,7 @@ const TableUserGames = () => {
         </TableHead>
 
         <TableBody>
-          {fav.map((game) => (
+          {fav?.map((game) => (
             <TableRow>
               <TableCell className="border p-2">
                 {" "}
