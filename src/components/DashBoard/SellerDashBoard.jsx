@@ -35,7 +35,7 @@ const SellerDashBoard = () => {
     <div className="text-center">
       <TableGamesToSell />
       <SellerBalance total={allTotal} />
-      <DonutSeller />
+      <DonutSeller data={data} />
     </div>
   );
 };
