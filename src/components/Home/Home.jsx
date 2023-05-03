@@ -27,7 +27,6 @@ const Home = () => {
     if (isAuthenticated) {
       const userInfo = { email: user.email, name: user.name, sub: user.sub };
       dispatch(postUser(userInfo));
-      console.log(userInfo);
     }
   }, [isAuthenticated, user, dispatch]);
 
