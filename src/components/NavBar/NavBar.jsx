@@ -4,11 +4,23 @@ import Login from "../LoginLogout/Login";
 import style from "./navbar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CartContext } from "../ShoppingCart/ShoppingCartContext";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const [cart, setCart] = useContext(CartContext);
   const { user } = useAuth0();
+  const [rolUser, setRolUser] = useState(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(
+        `http://localhost:3001/user/bytransaction/${user?.sub}`
+      );
+      setRolUser(data);
+    };
+    loadData();
+  }, [user?.sub]);
 
   return (
     <nav>
@@ -27,15 +39,16 @@ export default function NavBar() {
           <Link to={"/videogames"} className="btn btn-outline-danger">
             🎮 ALL Games
           </Link>
-          {isAuthenticated ? (
-            <>
-              <Link className="btn btn-outline-danger" to="/createGame">
-                Sell
-              </Link>
-            </>
-          ) : (
-            <></>
-          )}
+          {rolUser?.rol === "seller" &&
+            (isAuthenticated ? (
+              <>
+                <Link className="btn btn-outline-danger" to="/createGame">
+                  Sell
+                </Link>
+              </>
+            ) : (
+              <></>
+            ))}
 
           <Link to={"/favorites"} className="btn btn-outline-danger">
             🛒
@@ -47,7 +60,10 @@ export default function NavBar() {
 
           {isAuthenticated ? (
             <>
-              <Link className="btn btn-outline-danger" to={'/profile/' + user?.sub}>
+              <Link
+                className="btn btn-outline-danger"
+                to={"/profile/" + user?.sub}
+              >
                 Profile
               </Link>
             </>
