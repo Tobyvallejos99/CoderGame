@@ -19,6 +19,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import sign from './sign.svg';
+import checked from './checked.svg';
 
 export default () => {
   const {user} = useAuth0();
@@ -39,7 +41,7 @@ export default () => {
   },[]);
 
   const allUsers = userInfo?.sellers.concat(userInfo.clients)
-
+  console.log(allUsers)
   return(
     <Card className={style.container}>
         <div className={style.titlebox}>
@@ -53,6 +55,7 @@ export default () => {
             <TableHeaderCell >ID</TableHeaderCell>
             <TableHeaderCell >Name</TableHeaderCell>
             <TableHeaderCell >Rol</TableHeaderCell>
+            <TableHeaderCell >Seller Request</TableHeaderCell>
             <TableHeaderCell >Buys</TableHeaderCell>
             <TableHeaderCell >Sells</TableHeaderCell>
             <TableHeaderCell >Banned</TableHeaderCell>
@@ -88,6 +91,11 @@ export default () => {
                   <SelectBoxItem className={style.selectItem} value="2" text="Seller"  />
                   <SelectBoxItem className={style.selectItem} value="3" text="Admin"  />
                 </SelectBox>
+              </TableCell>
+              <TableCell>
+                {item.requestSeller && item.rol === 'client' 
+                ? <button disabled><img className={style.requesIcon} src={sign} alt="" /></button> 
+                : <button disabled><img className={style.requesIcon} src={checked} alt="" /></button>}
               </TableCell>
               <TableCell>
                 <Text>{item.totalBalance || 0}</Text>
