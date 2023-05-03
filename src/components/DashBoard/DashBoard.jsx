@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import Balance from "./DashBoardComponents/BalanceAdmi/BalanceAdmin";
+
 
 const DashBoard = () => {
   const { user } = useAuth0();
@@ -37,8 +37,7 @@ const DashBoard = () => {
         <Perfil />
         {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
         <AdminDashBoard/>
-
-        <Balance />
+        
         {/* <SellerDashBoard /> */}
         {/* <UserDashBoard/> */}
       {/* </Card> */}
