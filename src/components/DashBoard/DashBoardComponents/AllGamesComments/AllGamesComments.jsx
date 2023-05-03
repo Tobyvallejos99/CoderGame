@@ -28,7 +28,7 @@ export default () => {
       },[]);
       
     return(
-        <Card className={style.container}>
+        <div className={style.container}>
             <button onClick={showBtn}><img src={plus} alt="" /></button>
             {show && (
                 <Table>
@@ -91,6 +91,6 @@ export default () => {
                     </TableBody>
                 </Table>
             )}
-        </Card>
+        </div>
     )
 }
