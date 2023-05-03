@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../Redux/actions/actions";
-import Card from "../Card/card";
+import Card from "../Card/cardhome";
 import style from '../Cards/cards.module.css'
 
 
