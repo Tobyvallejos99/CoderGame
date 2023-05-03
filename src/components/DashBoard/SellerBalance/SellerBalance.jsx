@@ -13,12 +13,12 @@ const UserWalletCoins = () => {
     <Card className="container rounded bg-danger">
       <Text>
         {" "}
-        <h2> Sales </h2>
+        <h2> Total sales </h2>
       </Text>
       {data.map((coins) => (
         <Metric>
           {" "}
-          <h1> ${coins.saldoCoins} Coins </h1>
+          <h1> ${coins.ganancias} Coins </h1>
         </Metric>
       ))}
     </Card>
