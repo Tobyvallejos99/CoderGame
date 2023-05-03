@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import Balance from "./DashBoardComponents/BalanceBilletera/BalanceBilletera";
+import Balance from "./DashBoardComponents/BalanceAdmi/BalanceAdmin";
 
 const DashBoard = () => {
   const { user } = useAuth0();
@@ -27,29 +27,23 @@ const DashBoard = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
       <div className={style.container}>
         <Title className={style.title}>Dashboard</Title>
 
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
+        <Perfil />
+        {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
+        <AdminDashBoard/>
 
-        {/* {userInfo.rol === 'admin' ? <AdminDashBoard /> : userInfo.rol === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-        {/* <div className={style.cardContainer}>
-            <Perfil/>
-            <AdminDashBoard/>
-          </div> */}
-        <div className={style.cardContainer}>
-          <Perfil />
-          <SellerDashBoard />
-        </div>
-        {/* <div className={style.cardContainer}>
-          <Perfil />
-          <UserDashBoard />
-        </div> */}
-      </div>
+        <Balance />
+        {/* <SellerDashBoard /> */}
+        {/* <UserDashBoard/> */}
+      {/* </Card> */}
     </div>
+    </>
   );
 };
 
