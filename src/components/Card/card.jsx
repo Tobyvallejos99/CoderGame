@@ -38,10 +38,8 @@ function Card({
         await axios.delete("http://localhost:3001/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
         });
-        console.log("Game deleted successfully!");
         // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
       } catch (error) {
-        console.error("Error deleting game:", error);
         // Aquí podrías mostrar un mensaje de error al usuario, por ejemplo
       }
     } else {
@@ -52,7 +50,6 @@ function Card({
           idVideogame: id,
           idUser: user.sub,
         });
-        console.log("Game added successfully!");
       } catch (error) {
         console.error(error);
       }

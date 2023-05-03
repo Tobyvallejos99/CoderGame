@@ -143,7 +143,6 @@ export const postGame = (payload, token) => {
 // export const postGame = (payload) => {
 //   return async (dispatch) => {
 //     const info = await axios.post("http://localhost:3001/videogames", payload);
-//     console.log(info);
 //     return info;
 //   };
 // };

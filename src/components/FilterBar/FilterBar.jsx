@@ -7,7 +7,6 @@ import RatingFilter from "./RatingFilter";
 const FilterBar = () => {
     const dispatch = useDispatch();    
     const [orden, setOrden] = useState('');
-    //console.log(orden)
 
     const handlerNameOrder = (e) => {
         dispatch(orderName(e.target.value));        

@@ -26,7 +26,6 @@ export default () => {
         }
         loadData();
       },[]);
-      console.log(userInfo)
       
     return(
         <Card className={style.container}>

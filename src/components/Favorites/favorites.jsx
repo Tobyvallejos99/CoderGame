@@ -19,7 +19,6 @@ function Favorites(props) {
 
   useEffect(() => {
     const getFav = async () => {
-      console.log(user.sub);
       const fav = await axios.get(
         `http://localhost:3001/user/favorites/${user.sub}`
       );
@@ -33,12 +32,10 @@ function Favorites(props) {
 
   const renderHandle = () =>{
     setRender(!render)
-    console.log(render)
   }
 
   const handleSubmit = async () => {
     const idVideogames = arrFav.map((fav) => fav.id);
-    console.log(idVideogames);
     try {
       const response = await axios.post("http://localhost:3001/checkout/buy", {
         idVideogame: idVideogames,

@@ -29,7 +29,6 @@ const SellerDashBoard = () => {
     allTotal = element.ganancias + allTotal;
   });
 
-  console.log(`TOTAL = ${allTotal}`);
 
   return (
     <div className="text-center">

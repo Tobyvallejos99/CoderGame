@@ -28,7 +28,6 @@ function CoinBuyer() {
       e.preventDefault();
       const {data} = await axios.post("http://localhost:3001/checkout", {input})
         setClientSecret(data.clientSecret);
-        console.log(input, user, 'hola')
         axios.post('http://localhost:3001/checkout/cargacoins', {input, user})  
     }
   
@@ -82,8 +81,6 @@ function CoinBuyer() {
 //                 }
 //                 );
                 
-//                 console.log(data)
-//                 console.log(user.sub)
 //                 if(data.status !== 'succeeded'){
 //                     navigate('/canceled');
 //                 }

@@ -26,7 +26,7 @@ const Profile = () => {
     return <div>Loading ...</div>;
   }
   return (
-    console.log(user),
+    
     isAuthenticated && (
       <div className={style.container}>
         <img src={user.picture} alt={user.name} />

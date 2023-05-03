@@ -33,7 +33,6 @@ export default () => {
         loadData();
     },[]);
 
-    console.log(userInfo)
     return(
       <div class="d-flex">
       <div className={style.minibox}>

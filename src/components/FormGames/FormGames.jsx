@@ -83,7 +83,6 @@ const FormGames = () => {
   useEffect(()=>{
     
     const existingGame = games.filter ((e) => (e.name == input.name));
-    console.log (existingGame);
 
     const today = new Date();
     const releaseDate = new Date(input.released);
