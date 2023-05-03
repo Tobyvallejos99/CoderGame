@@ -37,7 +37,6 @@ const DashBoard = () => {
         <Perfil />
         {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
         <AdminDashBoard/>
-
         
         {/* <SellerDashBoard /> */}
         {/* <UserDashBoard/> */}
