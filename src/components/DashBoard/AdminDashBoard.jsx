@@ -9,7 +9,7 @@ export default () => {
         <div className={style.container}>
             <AllUsers />
             <AllGamesComments />
-            <Balance />
+            <Balance/>
         </div>
     )
 }
