@@ -25,7 +25,6 @@ const DashBoard = () => {
     };
     loadData();
   }, []);
-
   return (
     <>
       <NavBar />
@@ -34,14 +33,17 @@ const DashBoard = () => {
 
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
-        <Perfil />
-        {/* {userInfo === 'admin' ? <AdminDashBoard /> : userInfo === 'seller' ? <SellerDashBoard /> : <UserDashBoard />} */}
-        <AdminDashBoard/>
+        {userInfo?.rol === 'admin' 
+        ? <div><Perfil /><AdminDashBoard /></div> 
+        : userInfo?.rol === 'seller' 
+        ? <div><Perfil /><SellerDashBoard /></div> 
+        : <div><Perfil /><UserDashBoard /></div>}
         
+        {/* <Perfil />
+        <AdminDashBoard/> */}        
         {/* <SellerDashBoard /> */}
         {/* <UserDashBoard/> */}
-      {/* </Card> */}
-    </div>
+      </div>
     </>
   );
 };
