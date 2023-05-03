@@ -41,7 +41,6 @@ export default () => {
   },[]);
 
   const allUsers = userInfo?.sellers.concat(userInfo.clients)
-  console.log(allUsers)
   return(
     <Card className={style.container}>
         <div className={style.titlebox}>
