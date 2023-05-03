@@ -91,7 +91,7 @@ function Card({
         </div>
       </Link>
       <div className={style.containerderecha}>
-        {favorites?.buy?(<h1>Bought</h1>):(isfav ? (
+        {favorites?.buy?(<h1 className="btn">Bought</h1>):(isfav ? (
           <button onClick={handleFavorite}>
             <p> ❌ REMOVE</p>
           </button>
