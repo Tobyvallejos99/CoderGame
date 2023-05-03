@@ -49,10 +49,11 @@ export default function NavBar() {
             ) : (
               <></>
             ))}
-
-          <Link to={"/favorites"} className="btn btn-outline-danger">
-            🛒
-          </Link>
+          {rolUser?.rol === "client" && (
+            <Link to={"/favorites"} className="btn btn-outline-danger">
+              🛒
+            </Link>
+          )}
 
           {/* <Link class="btn btn-outline-danger" to="/">
             Profile
