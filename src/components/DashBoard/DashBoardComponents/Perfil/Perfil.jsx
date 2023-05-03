@@ -120,7 +120,6 @@ export default () => {
       image: e.target.files[0],
     }));
   };
-  console.log(rolUser)
   return (
     <div className={style.container}>
       <div className="text-center">
@@ -171,11 +170,13 @@ export default () => {
           {userInfo?.profile.nickname ? userInfo.profile.nickname : user?.nickname}
         </h2>
         {/* <h4>{user?.email}</h4> */}
-        <p>Coins Balance:</p>
-        <Metric>{userInfo?.balance.balance} coins.</Metric>
-        <Link className="btn btn-outline-danger" to={"/payment"}>
-          Buy Coins
-        </Link>
+        {rolUser?.rol === 'client' && <>
+          <p>Coins Balance:</p>
+          <Metric>{userInfo?.balance.balance} coins.</Metric>
+          <Link className="btn btn-outline-danger" to={"/payment"}>
+            Buy Coins
+          </Link>
+        </>}
         <p>Youtube link: </p>
         <Text>{userInfo?.profile.linkYoutube}</Text>
         <p>Description: </p>
