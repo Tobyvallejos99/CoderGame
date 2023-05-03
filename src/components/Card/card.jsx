@@ -106,7 +106,7 @@ function Card({
             <p> ❌ REMOVE</p>
           </button>
         ) : (
-          rolUser?.rol === "seller" && (
+          rolUser?.rol !== "seller" && (
             <button onClick={handleFavorite}>🛒 +ADD To Cart</button>
           )
         )}

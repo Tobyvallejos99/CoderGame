@@ -49,7 +49,7 @@ export default function NavBar() {
             ) : (
               <></>
             ))}
-          {rolUser?.rol === "client" && (
+          {rolUser?.rol !== "seller" && (
             <Link to={"/favorites"} className="btn btn-outline-danger">
               🛒
             </Link>
