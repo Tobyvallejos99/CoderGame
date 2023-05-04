@@ -25,7 +25,7 @@ import checked from './checked.svg';
 export default () => {
   const {user} = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
   const showBtn = () => {
     show ? setShow(false) : setShow(true);
@@ -45,9 +45,7 @@ export default () => {
     <div className={style.container}>
         <div className={style.titlebox}>
           <Title>All Users</Title>
-          <button onClick={showBtn}><img src={plus} alt="" /></button>
         </div>
-        {show && 
         <Table>
         <TableHead>
           <TableRow>
@@ -144,6 +142,6 @@ export default () => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>}
+      </Table>
       </div>
 )};
