@@ -32,15 +32,14 @@ const TableUserReviews = () => {
 
   const handleDeleteReview = async (id) => {
     await axios.put(`http://localhost:3001/comment`, {
-      data: {
-        sub: user?.sub,
-        id,
-      },
+      sub: user?.sub,
+      id: id,
     });
 
     const updatedCommentsGame = userInfo.comments?.filter(
       (game) => game.id !== id
     );
+
     setUserInfo({ ...userInfo, comments: updatedCommentsGame });
   };
 
