@@ -23,7 +23,7 @@ const TableUserReviews = () => {
   useEffect(() => {
     const loadData = async () => {
       const { data } = await axios(
-        `http://localhost:3001/user/buyer/${user.sub}`
+        `http://localhost:3001/user/buyer/${user?.sub}`
       );
       setUserInfo(data);
     };
@@ -31,14 +31,14 @@ const TableUserReviews = () => {
   }, [user.sub]);
 
   const handleDeleteReview = async (id) => {
-    await axios.delete(`http://localhost:3001/comment`, {
+    await axios.put(`http://localhost:3001/comment`, {
       data: {
-        sub: user.sub,
+        sub: user?.sub,
         id,
       },
     });
 
-    const updatedCommentsGame = userInfo.comments.filter(
+    const updatedCommentsGame = userInfo.comments?.filter(
       (game) => game.id !== id
     );
     setUserInfo({ ...userInfo, comments: updatedCommentsGame });
@@ -49,35 +49,40 @@ const TableUserReviews = () => {
   return (
     <div class="d-flex ">
       <div className={style.minibox}>
-      <Title>
-        {" "}
-        <h1> My Reviews </h1>
-      </Title>
-      <Table >
-        <TableHead >
-          <TableRow>
-            <TableHeaderCell> Game </TableHeaderCell>
-            <TableHeaderCell> review </TableHeaderCell>
-            <TableHeaderCell> delete </TableHeaderCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody className="border p-2">
-          {commentsGame.map((game) => (
-            <TableRow >
-              <TableCell className="border p-2">{game.Videogame.name}</TableCell>
-              <TableCell className="border p-2"> {game.message}</TableCell>
-              <TableCell className="border p-2">
-                {" "}
-                <button className="btn btn-dark" onClick={() => handleDeleteReview(game.id)}>
-                  Delete
-                </button>
-              </TableCell>
+        <Title>
+          {" "}
+          <h1> My Reviews </h1>
+        </Title>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell> Game </TableHeaderCell>
+              <TableHeaderCell> review </TableHeaderCell>
+              <TableHeaderCell> delete </TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHead>
+
+          <TableBody className="border p-2">
+            {commentsGame?.map((game) => (
+              <TableRow>
+                <TableCell className="border p-2">
+                  {game.Videogame.name}
+                </TableCell>
+                <TableCell className="border p-2"> {game.message}</TableCell>
+                <TableCell className="border p-2">
+                  {" "}
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => handleDeleteReview(game.id)}
+                  >
+                    Delete
+                  </button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };
