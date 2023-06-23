@@ -27,9 +27,7 @@ const TableUserGames = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const { data } = await axios(
-        `http://localhost:3001/user/buyer/${user?.sub}`
-      );
+      const { data } = await axios(`/user/buyer/${user?.sub}`);
       setUserInfo(data);
     };
     loadData();
@@ -40,47 +38,55 @@ const TableUserGames = () => {
   return (
     <div class="d-flex">
       <div className={style.minibox}>
-      <Title>
-        {" "}
-        <h1> My Games </h1>
-      </Title>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell> Image </TableHeaderCell>
-            <TableHeaderCell> Name </TableHeaderCell>
-            <TableHeaderCell> Detail </TableHeaderCell>
-            <TableHeaderCell> Play </TableHeaderCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {fav?.map((game) => (
+        <Title>
+          {" "}
+          <h1> My Games </h1>
+        </Title>
+        <Table>
+          <TableHead>
             <TableRow>
-              <TableCell className="border p-2">
-                {" "}
-                <img
-                  className={style.imagee}
-                  src={game.Videogame.image}
-                  alt="F"
-                />
-              </TableCell>
-              <TableCell className="border p-2">{game.Videogame.name}</TableCell>
-              <TableCell className="border p-2">
-                {" "}
-                <Link  className="btn btn-dark" to={"/game/" + game.VideogameId}> About </Link>{" "}
-              </TableCell>
-
-              <TableCell className="border p-2">
-                <Link className="btn btn-dark" to={game.Videogame.gameLink}>Play</Link>{" "}
-              </TableCell>
+              <TableHeaderCell> Image </TableHeaderCell>
+              <TableHeaderCell> Name </TableHeaderCell>
+              <TableHeaderCell> Detail </TableHeaderCell>
+              <TableHeaderCell> Play </TableHeaderCell>
             </TableRow>
-          ))}
-          
-        </TableBody>
-    
-      </Table>
-    </div>
+          </TableHead>
+
+          <TableBody>
+            {fav?.map((game) => (
+              <TableRow>
+                <TableCell className="border p-2">
+                  {" "}
+                  <img
+                    className={style.imagee}
+                    src={game.Videogame.image}
+                    alt="F"
+                  />
+                </TableCell>
+                <TableCell className="border p-2">
+                  {game.Videogame.name}
+                </TableCell>
+                <TableCell className="border p-2">
+                  {" "}
+                  <Link
+                    className="btn btn-dark"
+                    to={"/game/" + game.VideogameId}
+                  >
+                    {" "}
+                    About{" "}
+                  </Link>{" "}
+                </TableCell>
+
+                <TableCell className="border p-2">
+                  <Link className="btn btn-dark" to={game.Videogame.gameLink}>
+                    Play
+                  </Link>{" "}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

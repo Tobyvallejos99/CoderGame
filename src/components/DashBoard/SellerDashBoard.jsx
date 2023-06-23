@@ -14,9 +14,7 @@ const SellerDashBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3001/empresa/ventas/${sub}`
-        );
+        const { data } = await axios.get(`/empresa/ventas/${sub}`);
         setData(data);
       } catch (error) {
         console.error(error);
@@ -28,7 +26,6 @@ const SellerDashBoard = () => {
   data.forEach((element) => {
     allTotal = element.ganancias + allTotal;
   });
-
 
   return (
     <div className="text-center">

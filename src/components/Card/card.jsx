@@ -34,7 +34,7 @@ function Card({
       deleteFav(id);
 
       try {
-        await axios.delete("http://localhost:3001/user/favorites", {
+        await axios.delete("/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
         });
         // Aquí podrías mostrar un mensaje de éxito al usuario, por ejemplo
@@ -45,7 +45,7 @@ function Card({
       setIsFav(true);
       addFav({ name, image, description, released, price, id });
       try {
-        await axios.post("http://localhost:3001/user/favorites", {
+        await axios.post("/user/favorites", {
           idVideogame: id,
           idUser: user.sub,
         });
@@ -66,9 +66,7 @@ function Card({
 
   useEffect(() => {
     const loadData = async () => {
-      const { data } = await axios(
-        `http://localhost:3001/user/bytransaction/${user?.sub}`
-      );
+      const { data } = await axios(`/user/bytransaction/${user?.sub}`);
       setRolUser(data);
     };
     loadData();

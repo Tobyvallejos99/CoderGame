@@ -11,16 +11,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-
 const DashBoard = () => {
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
-      const { data } = await axios(
-        `http://localhost:3001/user/rol/${user.sub}`
-      );
+      const { data } = await axios(`/user/rol/${user.sub}`);
       setUserInfo(data);
     };
     loadData();
@@ -33,14 +30,25 @@ const DashBoard = () => {
 
         {/* aqui va la card profile
               aqui traer una dhasboard segun tu userRol */}
-        {userInfo?.rol === 'admin' 
-        ? <div className={style.cardContainer}><Perfil /><AdminDashBoard /></div> 
-        : userInfo?.rol === 'seller' 
-        ? <div className={style.cardContainer}><Perfil /><SellerDashBoard /></div> 
-        : <div className={style.cardContainer}><Perfil /><UserDashBoard /></div>}
-        
+        {userInfo?.rol === "admin" ? (
+          <div className={style.cardContainer}>
+            <Perfil />
+            <AdminDashBoard />
+          </div>
+        ) : userInfo?.rol === "seller" ? (
+          <div className={style.cardContainer}>
+            <Perfil />
+            <SellerDashBoard />
+          </div>
+        ) : (
+          <div className={style.cardContainer}>
+            <Perfil />
+            <UserDashBoard />
+          </div>
+        )}
+
         {/* <Perfil />
-        <AdminDashBoard/> */}        
+        <AdminDashBoard/> */}
         {/* <SellerDashBoard /> */}
         {/* <UserDashBoard/> */}
       </div>

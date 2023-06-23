@@ -22,16 +22,15 @@ export const DELETE_FAV = "DELETE_FAV";
 
 export const ADD_COMMENT = "ADD_COMMENT";
 
-export const USER_MASTER = 'USER_MASTER';
-
+export const USER_MASTER = "USER_MASTER";
 
 export const getVideogames = (sub) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/videogames",{
+      const response = await axios.get("/videogames", {
         params: {
-          sub:sub,
-        }
+          sub: sub,
+        },
       });
       dispatch({ type: GET_VIDEOGAMES, payload: response.data });
     } catch (error) {
@@ -63,10 +62,12 @@ export const resetVideogames = () => {
 export const getPlatforms = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/platforms");
+      const response = await axios.get("/platforms");
       dispatch({ type: GET_PLATFORMS, payload: response.data });
     } catch (error) {
-      return window.alert("No se pudo hacer el pedido de plataformas al servidor");
+      return window.alert(
+        "No se pudo hacer el pedido de plataformas al servidor"
+      );
     }
   };
 };
@@ -74,7 +75,7 @@ export const getPlatforms = () => {
 export const getGenres = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/genres");
+      const response = await axios.get("/genres");
       dispatch({ type: GET_GENRES, payload: response.data });
     } catch (error) {
       return window.alert("No se pudo hacer el pedido de géneros al servidor");
@@ -114,11 +115,7 @@ export const searchVideogames = (value) => {
 
 export const postUser = (payload, token) => {
   return async (dispatch) => {
-    const info = await axios.post(
-      "http://localhost:3001/user/register",
-      payload,
-      token
-    );
+    const info = await axios.post("/user/register", payload, token);
     return {
       type: POST_USER,
       payload,
@@ -131,11 +128,7 @@ export const postGame = (payload, token) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const info = await axios.post(
-      "http://localhost:3001/videogames",
-      payload,
-      config
-    );
+    const info = await axios.post("/videogames", payload, config);
     return info;
   };
 };
@@ -156,10 +149,7 @@ export const setPage = (payload) => {
 
 export const buyCoin = (payload) => {
   return async (dispatch) => {
-    const buy = await axios.post(
-      "http://localhost:3001/create-checkout-session",
-      payload
-    );
+    const buy = await axios.post("/create-checkout-session", payload);
     return buy;
   };
 };
@@ -178,4 +168,3 @@ export const addFav = (videogame) => {
 export const deleteFav = (id) => {
   return { type: DELETE_FAV, payload: id };
 };
-
