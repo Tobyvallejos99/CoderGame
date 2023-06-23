@@ -25,9 +25,7 @@ export default () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3001/empresa/ventas/${sub}`
-        );
+        const { data } = await axios.get(`/empresa/ventas/${sub}`);
         setData(data);
         const initialSales = {};
         data.forEach((item) => {
@@ -43,10 +41,7 @@ export default () => {
 
   const handlerDelet = async (id, sub) => {
     try {
-      const res = await axios.put(
-        `http://localhost:3001/videogames/delete/${id}`,
-        { sub }
-      );
+      const res = await axios.put(`/videogames/delete/${id}`, { sub });
       setDeleted((prevState) => ({ ...prevState, [id]: !prevState[id] }));
     } catch (error) {
       console.error(error);

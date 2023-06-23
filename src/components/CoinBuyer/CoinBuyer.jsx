@@ -1,54 +1,72 @@
-
 import { useState } from "react";
-import style from './CoinBuyer.module.css';
+import style from "./CoinBuyer.module.css";
 import { loadStripe } from "@stripe/stripe-js";
-import {  Elements } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import CheckoutForm from "./CheckoutForm";
 import { useEffect } from "react";
+import NavBar from "../NavBar/NavBar";
 
 function CoinBuyer() {
-    const {user} = useAuth0()
-    const [stripePromise, setStripePromise] = useState(null);
-    const [clientSecret, setClientSecret] = useState("");
-    const [input, setInput] = useState(0);
-    const [inputError, setInputError] = useState(true) 
+  const { user } = useAuth0();
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
+  const [input, setInput] = useState(0);
+  const [inputError, setInputError] = useState(true);
+  const handleChange = (e) => {
+    input > 9 ? setInputError(false) : setInputError(true);
+    setInput(e.target.value);
+  };
 
-    const handleChange = (e) => {
-      input > 9 ? setInputError(false) : setInputError(true)
-      setInput(e.target.value);
-    }
+  useEffect(() => {
+    setStripePromise(
+      loadStripe(
+        "pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8"
+      )
+    );
+  }, []);
 
-    useEffect(() => {
-        setStripePromise(loadStripe('pk_test_51MyDyrJEIGHeaJyNx4T7jf2neAOnJcNytwXOwJtkQB6CWZyP5H1j9nGnMwWCEdqDtokBmLtA3JwlStdgBpV1Aw7p004S44I6K8'));    
-      }, []);
-  
-    const handleClick = async (e) => {
-      e.preventDefault();
-      const {data} = await axios.post("http://localhost:3001/checkout", {input})
-        setClientSecret(data.clientSecret);
-        axios.post('http://localhost:3001/checkout/cargacoins', {input, user})  
-    }
-  
-    return (
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.post(`/checkout`, { input });
+    setClientSecret(data.clientSecret);
+    axios.post(`/checkout/cargacoins`, { input, user });
+  };
+  return (
+    <div>
+      <NavBar />
       <div className={style.container}>
         <div>
-          <h3>Ingrese la cantidad deseada de CoderCoins a comprar</h3>
-          <p>Ingresa una cantidad mayor a 10 coins</p>
-          <input autocomplete="off" type="number" name="coins" className={style.inp} placeholder='Ingrese Cantidad Aquí' onChange={handleChange} />
+          <h3>Please insert how many coins do you want to buy.</h3>
+          <p>Min 10 coins</p>
+          <input
+            autocomplete="off"
+            type="number"
+            name="coins"
+            className={style.inp}
+            placeholder="Ingrese Cantidad Aquí"
+            onChange={handleChange}
+          />
           <p>coins</p>
-          <p>Su total es de : {input} USD</p>
-          <button disabled={inputError} className={style.btn} onClick={handleClick}>Confirmar</button>
+          <p>Total : {input} USD</p>
+          <button
+            disabled={inputError}
+            className={style.btn}
+            onClick={handleClick}
+          >
+            Confirmar
+          </button>
         </div>
-        {clientSecret && stripePromise  && (
-          <Elements stripe={stripePromise} options={{ clientSecret }} >
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
             <CheckoutForm />
           </Elements>
         )}
       </div>
-    );
-  }
+    </div>
+  );
+}
 // const CheckoutForm = () =>{
 //     const stripe = useStripe();
 //     const element = useElements();
@@ -73,14 +91,14 @@ function CoinBuyer() {
 //         if(!error) {
 //             const { id } = paymentMethod;
 //             try {
-//                 const { data } = await axios.post('http://localhost:3001/checkout', 
+//                 const { data } = await axios.post('http://localhost:3001/checkout',
 //                 {
 //                     id,
 //                     amount: input * 100, //cent
 //                     user
 //                 }
 //                 );
-                
+
 //                 if(data.status !== 'succeeded'){
 //                     navigate('/canceled');
 //                 }
@@ -94,7 +112,6 @@ function CoinBuyer() {
 //             }
 //             setLoading(false);
 
-            
 //         }
 //     }
 

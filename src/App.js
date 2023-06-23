@@ -13,6 +13,8 @@ import CanceledBuy from "./components/Canceled/CanceledBuy";
 import Favorites from "./components/Favorites/favorites";
 import VideoGames from "./components/VideoGames/videogames";
 import DashBoard from "./components/DashBoard/DashBoard";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

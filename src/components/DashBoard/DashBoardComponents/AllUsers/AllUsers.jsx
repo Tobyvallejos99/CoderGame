@@ -1,5 +1,213 @@
+// import {
+//   Card,
+//   Table,
+//   TableHead,
+//   TableRow,
+//   TableHeaderCell,
+//   TableBody,
+//   TableCell,
+//   Text,
+//   Title,
+//   SelectBox,
+//   SelectBoxItem,
+// } from "@tremor/react";
+// import style from "./AllUsers.module.css";
+// import { Link, useNavigate } from "react-router-dom";
+// import trash from "../iconmonstr-trash-can-29.svg";
+// import plus from "../plus.svg";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import axios from "axios";
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import sign from "./sign.svg";
+// import checked from "./checked.svg";
+
+// export default () => {
+//   const { user } = useAuth0();
+//   const [userInfo, setUserInfo] = useState(null);
+//   // const [show, setShow] = useState(false);
+
+//   const showBtn = () => {
+//     show ? setShow(false) : setShow(true);
+//   };
+
+//   useEffect(() => {
+//     const sub = user?.sub;
+//     const loadData = async () => {
+//       const { data } = await axios.get(
+//         "http://localhost:3001/admin/allusers/" + sub
+//       );
+//       setUserInfo(data);
+//     };
+//     loadData();
+//   }, []);
+
+//   const allUsers = userInfo?.sellers.concat(userInfo.clients);
+//   return (
+//     <div className={style.container}>
+//       <div className={style.titlebox}>
+//         <Title>All Users</Title>
+//         <button onClick={showBtn}>
+//           <img src={plus} alt="" />
+//         </button>
+//       </div>
+//       {show && (
+//         <Table>
+//           <TableHead>
+//             <TableRow>
+//               <TableHeaderCell>ID</TableHeaderCell>
+//               <TableHeaderCell>Name</TableHeaderCell>
+//               <TableHeaderCell>Rol</TableHeaderCell>
+//               <TableHeaderCell>Seller Request</TableHeaderCell>
+//               <TableHeaderCell>Buys</TableHeaderCell>
+//               <TableHeaderCell>Sells</TableHeaderCell>
+//               <TableHeaderCell>Banned</TableHeaderCell>
+//               <TableHeaderCell>Profile</TableHeaderCell>
+//               <TableHeaderCell>
+//                 <img src={trash} alt="F" />
+//               </TableHeaderCell>
+//             </TableRow>
+//           </TableHead>
+//           <TableBody>
+//             {allUsers?.map((item) => (
+//               <TableRow key={item.sub}>
+//                 <TableCell>{allUsers.indexOf(item) + 1}</TableCell>
+//                 <TableCell>
+//                   <Text>{item.name || "User"}</Text>
+//                 </TableCell>
+//                 <TableCell>
+//                   <SelectBox
+//                     className={style.selectBox}
+//                     onValueChange={async (value) => {
+//                       let type = null;
+//                       value === "1"
+//                         ? (type = "client")
+//                         : value === "2"
+//                         ? (type = "seller")
+//                         : (type = "admin");
+
+//                       try {
+//                         const response = await axios.put(
+//                           "http://localhost:3001/user/" + item?.sub,
+//                           {
+//                             rol: type,
+//                           }
+//                         );
+//                         alert("Your change has done");
+//                       } catch (error) {
+//                         window.alert(error.response.data);
+//                       }
+//                     }}
+//                     defaultValue={
+//                       item.rol === "client"
+//                         ? "1"
+//                         : item.rol === "seller"
+//                         ? "2"
+//                         : "3"
+//                     }
+//                   >
+//                     <SelectBoxItem
+//                       className={style.selectItem}
+//                       value="1"
+//                       text="User"
+//                     />
+//                     <SelectBoxItem
+//                       className={style.selectItem}
+//                       value="2"
+//                       text="Seller"
+//                     />
+//                     <SelectBoxItem
+//                       className={style.selectItem}
+//                       value="3"
+//                       text="Admin"
+//                     />
+//                   </SelectBox>
+//                 </TableCell>
+//                 <TableCell>
+//                   {item.requestSeller && item.rol === "client" ? (
+//                     <button disabled>
+//                       <img className={style.requesIcon} src={sign} alt="" />
+//                     </button>
+//                   ) : (
+//                     <button disabled>
+//                       <img className={style.requesIcon} src={checked} alt="" />
+//                     </button>
+//                   )}
+//                 </TableCell>
+//                 <TableCell>
+//                   <Text>{item.totalBalance || 0}</Text>
+//                 </TableCell>
+//                 <TableCell>
+//                   <Text>{item.totalBuy || 0}</Text>
+//                 </TableCell>
+//                 <TableCell>
+//                   <SelectBox
+//                     className={style.selectBox}
+//                     onValueChange={async (value) => {
+//                       let bool = null;
+//                       value === "1" ? (bool = false) : (bool = true);
+//                       try {
+//                         const response = await axios.put(
+//                           "http://localhost:3001/user/" + item?.sub,
+//                           {
+//                             banned: bool,
+//                           }
+//                         );
+//                         alert("Your change has done");
+//                       } catch (error) {
+//                         window.alert(error.response.data);
+//                       }
+//                     }}
+//                     defaultValue={item.banned ? "2" : "1"}
+//                   >
+//                     <SelectBoxItem
+//                       className={style.selectItem}
+//                       value="2"
+//                       text="True"
+//                     />
+//                     <SelectBoxItem
+//                       className={style.selectItem}
+//                       value="1"
+//                       text="False"
+//                     />
+//                   </SelectBox>
+//                 </TableCell>
+//                 <TableCell>
+//                   <Link to={"/profile/" + item?.sub}>Link</Link>
+//                 </TableCell>
+//                 <TableCell>
+//                   <button
+//                     onClick={async () => {
+//                       try {
+//                         const response = await axios.put(
+//                           "http://localhost:3001/user/" + item?.sub,
+//                           {
+//                             deleted: true,
+//                           }
+//                         );
+//                         alert("Your change has done");
+//                       } catch (error) {
+//                         window.alert(error.response.data);
+//                       }
+//                     }}
+//                   >
+//                     {item.deleted ? (
+//                       <img src={plus} alt="F" />
+//                     ) : (
+//                       <img src={trash} alt="F" />
+//                     )}
+//                   </button>
+//                 </TableCell>
+//               </TableRow>
+//             ))}
+//           </TableBody>
+//         </Table>
+//       )}
+//     </div>
+//   );
+// };
+
 import {
-  Card,
   Table,
   TableHead,
   TableRow,
@@ -11,90 +219,115 @@ import {
   SelectBox,
   SelectBoxItem,
 } from "@tremor/react";
-import style from './AllUsers.module.css';
-import { Link, useNavigate } from 'react-router-dom';
-import trash from '../iconmonstr-trash-can-29.svg';
-import plus from '../plus.svg';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import sign from './sign.svg';
-import checked from './checked.svg';
+import style from "./AllUsers.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import trash from "../iconmonstr-trash-can-29.svg";
+import plus from "../plus.svg";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import sign from "./sign.svg";
+import checked from "./checked.svg";
 
 export default () => {
-  const {user} = useAuth0();
+  const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState(null);
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
-  const showBtn = () => {
-    show ? setShow(false) : setShow(true);
-  }
-
-  useEffect(() =>{
-    const sub = user?.sub
-    const loadData = async () =>{
-        const {data} = await axios.get('http://localhost:3001/admin/allusers/' + sub);
-        setUserInfo(data);
-    }
+  useEffect(() => {
+    const sub = user?.sub;
+    const loadData = async () => {
+      const { data } = await axios.get("/admin/allusers/" + sub);
+      setUserInfo(data);
+    };
     loadData();
-  },[]);
+  }, []);
 
-  const allUsers = userInfo?.sellers.concat(userInfo.clients)
-  return(
+  const allUsers = userInfo?.sellers.concat(userInfo.clients);
+  return (
     <div className={style.container}>
-        <div className={style.titlebox}>
-          <Title>All Users</Title>
-          <button onClick={showBtn}><img src={plus} alt="" /></button>
-        </div>
-        {show && 
-        <Table>
+      <div className={style.titlebox}>
+        <Title>All Users</Title>
+      </div>
+      <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell >ID</TableHeaderCell>
-            <TableHeaderCell >Name</TableHeaderCell>
-            <TableHeaderCell >Rol</TableHeaderCell>
-            <TableHeaderCell >Seller Request</TableHeaderCell>
-            <TableHeaderCell >Buys</TableHeaderCell>
-            <TableHeaderCell >Sells</TableHeaderCell>
-            <TableHeaderCell >Banned</TableHeaderCell>
-            <TableHeaderCell >Profile</TableHeaderCell>
-            <TableHeaderCell ><img src={trash} alt="F" /></TableHeaderCell>
+            <TableHeaderCell>ID</TableHeaderCell>
+            <TableHeaderCell>Name</TableHeaderCell>
+            <TableHeaderCell>Rol</TableHeaderCell>
+            <TableHeaderCell>Seller Request</TableHeaderCell>
+            <TableHeaderCell>Buys</TableHeaderCell>
+            <TableHeaderCell>Sells</TableHeaderCell>
+            <TableHeaderCell>Banned</TableHeaderCell>
+            <TableHeaderCell>Profile</TableHeaderCell>
+            <TableHeaderCell>
+              <img src={trash} alt="F" />
+            </TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {allUsers?.map((item) => (
             <TableRow key={item.sub}>
-              <TableCell>{allUsers.indexOf(item) +1}</TableCell>
+              <TableCell>{allUsers.indexOf(item) + 1}</TableCell>
               <TableCell>
-                <Text>{item.name || 'User'}</Text>
+                <Text>{item.name || "User"}</Text>
               </TableCell>
               <TableCell>
-                <SelectBox className={style.selectBox}
-                onValueChange={async(value) => {
-                  let type = null;
-                  value === '1' ? type = 'client' : value === '2' ? type = 'seller' : type = 'admin';
-                  
-                  try {
-                    const response = await axios.put("http://localhost:3001/user/"+ item?.sub, {
-                      rol : type
-                    })
-                    alert('Your change has done');
-                  } catch (error) {
-                    window.alert(error.response.data);
+                <SelectBox
+                  className={style.selectBox}
+                  onValueChange={async (value) => {
+                    let type = null;
+                    value === "1"
+                      ? (type = "client")
+                      : value === "2"
+                      ? (type = "seller")
+                      : (type = "admin");
+
+                    try {
+                      const response = await axios.put("/user/" + item?.sub, {
+                        rol: type,
+                      });
+                      alert("Your change has done");
+                    } catch (error) {
+                      window.alert(error.response.data);
+                    }
+                  }}
+                  defaultValue={
+                    item.rol === "client"
+                      ? "1"
+                      : item.rol === "seller"
+                      ? "2"
+                      : "3"
                   }
-                }}
-                defaultValue={item.rol === 'client' ? '1' : item.rol === 'seller' ? '2' : '3'}
                 >
-                  <SelectBoxItem className={style.selectItem} value="1" text="User" />
-                  <SelectBoxItem className={style.selectItem} value="2" text="Seller"  />
-                  <SelectBoxItem className={style.selectItem} value="3" text="Admin"  />
+                  <SelectBoxItem
+                    className={style.selectItem}
+                    value="1"
+                    text="User"
+                  />
+                  <SelectBoxItem
+                    className={style.selectItem}
+                    value="2"
+                    text="Seller"
+                  />
+                  <SelectBoxItem
+                    className={style.selectItem}
+                    value="3"
+                    text="Admin"
+                  />
                 </SelectBox>
               </TableCell>
               <TableCell>
-                {item.requestSeller && item.rol === 'client' 
-                ? <button disabled><img className={style.requesIcon} src={sign} alt="" /></button> 
-                : <button disabled><img className={style.requesIcon} src={checked} alt="" /></button>}
+                {item.requestSeller && item.rol === "client" ? (
+                  <button disabled>
+                    <img className={style.requesIcon} src={sign} alt="" />
+                  </button>
+                ) : (
+                  <button disabled>
+                    <img className={style.requesIcon} src={checked} alt="" />
+                  </button>
+                )}
               </TableCell>
               <TableCell>
                 <Text>{item.totalBalance || 0}</Text>
@@ -103,47 +336,61 @@ export default () => {
                 <Text>{item.totalBuy || 0}</Text>
               </TableCell>
               <TableCell>
-              <SelectBox className={style.selectBox}
-                onValueChange={async(value) => {
-                  let bool = null;
-                  value === '1' ? bool = false : bool = true;
-                  try {
-                    const response = await axios.put("http://localhost:3001/user/"+ item?.sub, {
-                      banned : bool
-                    })
-                    alert('Your change has done');
-                  } catch (error) {
-                    window.alert(error.response.data);
-                  }
-                }}
-                defaultValue={item.banned ? '2' : '1'}
-                >
-                  <SelectBoxItem className={style.selectItem} value="2" text="True" />
-                  <SelectBoxItem className={style.selectItem} value="1" text="False"  />
-                </SelectBox>
-              </TableCell>
-              <TableCell>
-                <Link to={'/profile/' + item?.sub}>Link</Link>
-              </TableCell>
-              <TableCell>
-                <button onClick={
-                  async () => {
+                <SelectBox
+                  className={style.selectBox}
+                  onValueChange={async (value) => {
+                    let bool = null;
+                    value === "1" ? (bool = false) : (bool = true);
                     try {
-                      const response = await axios.put("http://localhost:3001/user/"+ item?.sub, {
-                        deleted : true
-                      })
-                      alert('Your change has done');
+                      const response = await axios.put("/user/" + item?.sub, {
+                        banned: bool,
+                      });
+                      alert("Your change has done");
                     } catch (error) {
                       window.alert(error.response.data);
                     }
-                  }
-                }>  
-                  {item.deleted ? <img src={plus} alt="F" /> : <img src={trash} alt="F" />}
+                  }}
+                  defaultValue={item.banned ? "2" : "1"}
+                >
+                  <SelectBoxItem
+                    className={style.selectItem}
+                    value="2"
+                    text="True"
+                  />
+                  <SelectBoxItem
+                    className={style.selectItem}
+                    value="1"
+                    text="False"
+                  />
+                </SelectBox>
+              </TableCell>
+              <TableCell>
+                <Link to={"/profile/" + item?.sub}>Link</Link>
+              </TableCell>
+              <TableCell>
+                <button
+                  onClick={async () => {
+                    try {
+                      const response = await axios.put("/user/" + item?.sub, {
+                        deleted: true,
+                      });
+                      alert("Your change has done");
+                    } catch (error) {
+                      window.alert(error.response.data);
+                    }
+                  }}
+                >
+                  {item.deleted ? (
+                    <img src={plus} alt="F" />
+                  ) : (
+                    <img src={trash} alt="F" />
+                  )}
                 </button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>}
-      </div>
-)};
+      </Table>
+    </div>
+  );
+};

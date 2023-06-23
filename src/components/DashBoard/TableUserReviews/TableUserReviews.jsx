@@ -22,16 +22,14 @@ const TableUserReviews = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const { data } = await axios(
-        `http://localhost:3001/user/buyer/${user?.sub}`
-      );
+      const { data } = await axios(`/user/buyer/${user?.sub}`);
       setUserInfo(data);
     };
     loadData();
   }, [user.sub]);
 
   const handleDeleteReview = async (id) => {
-    await axios.put(`http://localhost:3001/comment`, {
+    await axios.put(`h/comment`, {
       sub: user?.sub,
       id: id,
     });

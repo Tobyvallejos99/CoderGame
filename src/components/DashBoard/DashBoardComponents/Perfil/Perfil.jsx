@@ -11,11 +11,14 @@ import Logout from "../../../LoginLogout/Logout";
 const validation = (input) => {
   let errors = {};
   let regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
-  if (input.nickname.length > 32)errors.nickname = "can not have more than 32 characters";
-  if (input.description.length > 200)errors.description = "can not have more than 200 characters";
-  if (!regex.test(input.linkYoutube))errors.linkYoutube = 'it is not a YouTube link';
+  if (input.nickname.length > 32)
+    errors.nickname = "can not have more than 32 characters";
+  if (input.description.length > 200)
+    errors.description = "can not have more than 200 characters";
+  if (!regex.test(input.linkYoutube))
+    errors.linkYoutube = "it is not a YouTube link";
   return errors;
-}
+};
 
 export default () => {
   const { user } = useAuth0();
@@ -24,13 +27,13 @@ export default () => {
   const [rolUser, setRolUser] = useState(null);
   const [errors, setErrors] = useState({
     image: null,
-    nickname: '',
+    nickname: "",
     linkYoutube: "",
     description: "",
   });
   const [input, setInput] = useState({
     image: null,
-    nickname: '',
+    nickname: "",
     linkYoutube: "",
     description: "",
   });
@@ -40,10 +43,12 @@ export default () => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setErrors(validation({
-      ...input,
-      [e.target.name]: e.target.value,
-    }))
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const editHandler = (e) => {
@@ -71,8 +76,8 @@ export default () => {
     const update = {
       sub: sub,
       // image: imageUrl,
-      image:  imageUrl ? imageUrl : userInfo.profile.image,
-      nickname: 
+      image: imageUrl ? imageUrl : userInfo.profile.image,
+      nickname:
         !errors.nickname && input.nickname.length > 0
           ? input.nickname
           : userInfo.profile.nickname,
@@ -85,11 +90,11 @@ export default () => {
           ? input.description
           : userInfo.profile.description,
     };
-    
-    await axios.put(`http://localhost:3001/user/profile`, update);
+
+    await axios.put(`/user/profile`, update);
     setInput({
       image: null,
-      nickname: '',
+      nickname: "",
       linkYoutube: "",
       description: "",
     });
@@ -98,21 +103,19 @@ export default () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const { data } = await axios(
-        `http://localhost:3001/user/profile/bybalance/${user.sub}`
-      );
+      const { data } = await axios(`/user/profile/bybalance/${user.sub}`);
       setUserInfo(data);
     };
     loadData();
   }, []);
-  
-  useEffect(() =>{
-    const loadData = async () =>{
-        const {data} = await axios(`http://localhost:3001/user/bytransaction/${user.sub}`);
-        setRolUser(data);
-    }
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { data } = await axios(`/user/bytransaction/${user.sub}`);
+      setRolUser(data);
+    };
     loadData();
-},[]);
+  }, []);
 
   const handleImageChange = (e) => {
     setInput((input) => ({
@@ -123,7 +126,11 @@ export default () => {
   return (
     <div className={style.container}>
       <div className="text-center">
-        <img className={style.profileImg} src={userInfo?.profile.image || user?.picture} alt="F" />
+        <img
+          className={style.profileImg}
+          src={userInfo?.profile.image || user?.picture}
+          alt="F"
+        />
         <br />
         <button onClick={editHandler}>
           <img className={style.pencil} src={pencil} alt="" />
@@ -162,32 +169,42 @@ export default () => {
               placeholder="Text Here!!"
             />
             {errors.description && <p>{errors.description}</p>}
-            <br/>
+            <br />
             <button>Confirm</button>
           </form>
         )}
         <h2>
-          {userInfo?.profile.nickname ? userInfo.profile.nickname : user?.nickname}
+          {userInfo?.profile.nickname
+            ? userInfo.profile.nickname
+            : user?.nickname}
         </h2>
         {/* <h4>{user?.email}</h4> */}
-        {rolUser?.rol === 'client' && <>
-          <p>Coins Balance:</p>
-          <Metric>{userInfo?.balance.balance} coins.</Metric>
-          <Link className="btn btn-outline-danger" to={"/payment"}>
-            Buy Coins
-          </Link>
-        </>}
+        {rolUser?.rol === "client" && (
+          <>
+            <p>Coins Balance:</p>
+            <Metric>{userInfo?.balance.balance} coins.</Metric>
+            <Link className="btn btn-outline-danger" to={"/payment"}>
+              Buy Coins
+            </Link>
+          </>
+        )}
         <p>Youtube link: </p>
         <Text>{userInfo?.profile.linkYoutube}</Text>
         <p>Description: </p>
         <Text>{userInfo?.profile.description}</Text>
-        {rolUser?.rol === 'client' && !rolUser?.requestSeller && <button
-        onClick={ async () => {
-          const sub = user?.sub;
-          const response = await axios.post('http://localhost:3001/email/request/seller', {sub})
-          alert('An admin will be in touch as soon as posible.')
-        }}
-        >Sell your games with us!!</button>}
+        {rolUser?.rol === "client" && !rolUser?.requestSeller && (
+          <button
+            onClick={async () => {
+              const sub = user?.sub;
+              const response = await axios.post("/email/request/seller", {
+                sub,
+              });
+              alert("An admin will be in touch as soon as posible.");
+            }}
+          >
+            Sell your games with us!!
+          </button>
+        )}
         <br />
         <br />
         <Logout />

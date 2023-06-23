@@ -14,14 +14,12 @@ function Favorites(props) {
   const [arrFav, setArrFav] = useState([]);
   const [balance, setBalance] = useState(0);
   const [total, setTotal] = useState(0);
-  const [render, setRender] = useState(true)
+  const [render, setRender] = useState(true);
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     const getFav = async () => {
-      const fav = await axios.get(
-        `http://localhost:3001/user/favorites/${user.sub}`
-      );
+      const fav = await axios.get(`/user/favorites/${user.sub}`);
       setArrFav(fav.data.listFavorites);
       setBalance(fav.data.balance.balance);
       setTotal(fav.data.total);
@@ -30,14 +28,14 @@ function Favorites(props) {
     getFav();
   }, [user, total, render]);
 
-  const renderHandle = () =>{
-    setRender(!render)
-  }
+  const renderHandle = () => {
+    setRender(!render);
+  };
 
   const handleSubmit = async () => {
     const idVideogames = arrFav.map((fav) => fav.id);
     try {
-      const response = await axios.post("http://localhost:3001/checkout/buy", {
+      const response = await axios.post("/checkout/buy", {
         idVideogame: idVideogames,
         idUser: user.sub,
       });
@@ -51,7 +49,7 @@ function Favorites(props) {
     try {
       for (const elem of props.myFavorites) {
         const { id } = elem;
-        await axios.delete("http://localhost:3001/user/favorites", {
+        await axios.delete("/user/favorites", {
           data: { idVideogame: id, idUser: user.sub },
         });
       }
@@ -76,7 +74,7 @@ function Favorites(props) {
             image={elem.image}
             description={elem.description}
             id={elem.id}
-            renderHandle = {renderHandle}
+            renderHandle={renderHandle}
           ></Card>
         ))}
         {isAuthenticated ? (
