@@ -35,13 +35,12 @@ const validation = (input) => {
   if (!input.price) errors.price = "required space";
   else if (Number(input.price) < 0)
     errors.price = "Price can not be lower than 0";
- 
+
   if (!input.gameLink || input.gameLink.length === 0)
     errors.gameLink = "required space";
 
   return errors;
 };
-
 
 const FormGames = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -49,28 +48,27 @@ const FormGames = () => {
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.allGenres);
   const allPlatforms = useSelector((state) => state.allPlatforms);
-  
+
   const [button, setButton] = useState(true);
   const [errors, setErrors] = useState({
     name: "",
-    released: "",    
-    description: "",    
+    released: "",
+    description: "",
     price: "",
-    gameLink: "",    
+    gameLink: "",
   });
 
   const [input, setInput] = useState({
     name: "",
-    released: "",    
-    description: "",    
+    released: "",
+    description: "",
     price: "",
-    gameLink: "", 
+    gameLink: "",
     imageFile: null,
     genres: [],
     platforms: [],
-})
-  
- 
+  });
+
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
@@ -78,18 +76,17 @@ const FormGames = () => {
   useEffect(() => {
     dispatch(getPlatforms());
   }, [dispatch]);
-  
+
   const games = useSelector((state) => state.allVideogames);
-  useEffect(()=>{
-    
-    const existingGame = games.filter ((e) => (e.name == input.name));
+  useEffect(() => {
+    const existingGame = games.filter((e) => e.name == input.name);
 
     const today = new Date();
     const releaseDate = new Date(input.released);
 
-    if (existingGame.length) return alert('Name already exist, please choose a different one')
-
-   else  if (      
+    if (existingGame.length)
+      return alert("Name already exist, please choose a different one");
+    else if (
       releaseDate <= today &&
       input.price >= 1 &&
       input.name &&
@@ -100,44 +97,39 @@ const FormGames = () => {
       input.imageFile &&
       input.price &&
       input.gameLink
-    ) setButton (false)
-    else setButton (true)
+    )
+      setButton(false);
+    else setButton(true);
   }, [input, setButton]);
 
-
- 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const formData = new FormData();
-  formData.append("file", input.imageFile);
-  formData.append("upload_preset", "mrit7ruy");
-  const response = await fetch(
-    "https://api.cloudinary.com/v1_1/dng2w6k2p/image/upload",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-  const data = await response.json();
-  const imageUrl = data.secure_url;
-   
-      
-   dispatch(
-       postGame(
-        {
-          name: input.name,
-          released: input.released,
-          platforms: input.platforms,
-          description: input.description,
-          genres: input.genres,
-          image: imageUrl,
-          price: input.price,
-          gameLink: input.gameLink,
-          sub: user.sub,     
-        }
-        
-      )
+    formData.append("file", input.imageFile);
+    formData.append("upload_preset", "mrit7ruy");
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dng2w6k2p/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await response.json();
+    const imageUrl = data.secure_url;
+
+    dispatch(
+      postGame({
+        name: input.name,
+        released: input.released,
+        platforms: input.platforms,
+        description: input.description,
+        genres: input.genres,
+        image: imageUrl,
+        price: input.price,
+        gameLink: input.gameLink,
+        sub: user.sub,
+      })
     );
 
     alert("The game has been created");
@@ -161,41 +153,41 @@ const FormGames = () => {
       [e.target.name]: e.target.value,
     });
 
-    setErrors(validation({
+    setErrors(
+      validation({
         ...input,
         [e.target.name]: e.target.value,
-      }))
-  }
+      })
+    );
+  };
 
   const handleSelectGenres = (e) => {
     setInput({
       ...input,
       genres: [...input.genres, e.target.value],
-    })
-  }
+    });
+  };
 
   const handleDeleteGenres = (e) => {
     setInput({
       ...input,
       genres: input.genres.filter((con) => con !== e),
-    })
+    });
   };
-      
 
   const handleSelectPlatform = (e) => {
     setInput({
       ...input,
       platforms: [...input.platforms, e.target.value],
-        })
-      } 
+    });
+  };
 
-      const handleDeletePlatforms = (e) => {
-        setInput({
-          ...input,
-          platforms: input.platforms.filter((cont) => cont !== e),
-        });
-      }
-
+  const handleDeletePlatforms = (e) => {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((cont) => cont !== e),
+    });
+  };
 
   const handleImageChange = (e) => {
     setInput((input) => ({
@@ -209,8 +201,6 @@ const FormGames = () => {
       })
     );
   };
-
-  
 
   return (
     <div className={style.fondo2}>
@@ -371,8 +361,15 @@ const FormGames = () => {
           <hr />
 
           <div>
-                        <button className="btn btn-danger mx-auto d-block" disabled={button} type="submit" input="input">Add Game</button>
-                    </div>
+            <button
+              className="btn btn-danger mx-auto d-block"
+              disabled={button}
+              type="submit"
+              input="input"
+            >
+              Add Game
+            </button>
+          </div>
 
           {/* <button className="btn btn-danger mx-auto d-block" type="submit">
             Add Game
@@ -384,4 +381,3 @@ const FormGames = () => {
 };
 
 export default FormGames;
-
